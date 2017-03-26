@@ -1,0 +1,21 @@
+1)  Upload info about conference
+2)  Postpone deadlines
+3)  Analyze abstract papers <-- Accept to evaluate
+4)  Analyze abstract papers <-- Refuse to evaluate
+5)  Assign paper to reviewers
+6)  Decide if the paper is rejected or accepted
+7)  Decide to send to other reviewers
+8)  See other reviews
+9)  Review the paper <-- Cannot decide about paper
+10) Review the paper <-- Refuse the paper
+11) Review the paper <-- Accept the paper
+12) Create account
+13) Authenticate
+14) Upload abstract and meta info of the paper
+15) Reupload or edit data about paper
+16) Upload full paper
+17) Improve paper
+18) Upload the content for the presentation <-- Upload ppt files
+19) Upload the content for the presentation <-- Upload pdf files
+20) Specify the section that they would like to participate
+21) Pay the registration fee
