@@ -1,6 +1,6 @@
 Adaugati atribute si eventual metode claselor urmatoare
 
-1) Oncioiu Costin, Pitigoi Gabriela
+1) Oncioiu Costin, Pitigoi Gabriela, Ureniuc Bogdan
 
 System
 User
@@ -10,7 +10,7 @@ AuthorPermissions
 PCMemberPermissions
 ChairPermissions
 
-2) Nicolescu Aurel, Oniga Bogdan, Ureniuc Bogdan
+2) Nicolescu Aurel, Oniga Bogdan
 
 Session
 Conference
