@@ -1,11 +1,19 @@
+Adaugati atribute si eventual metode claselor urmatoare
+
+1) Oncioiu Costin, Pitigoi Gabriela
+
 System
 User
-Permission
+Permissions
+ListenerPermissions
+AuthorPermissions
+PCMemberPermissions
+ChairPermissions
+
+2) Nicolescu Aurel, Oniga Bogdan, Ureniuc Bogdan
 
 Session
-File
 Conference
-
 ResearchPaper
 Qualifier
 Recommendation 
