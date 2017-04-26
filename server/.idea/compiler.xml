@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="CMS-backend_main" target="1.8" />
+      <module name="CMS-backend_test" target="1.8" />
+      <module name="CMS-middleware_main" target="1.8" />
+      <module name="CMS-middleware_test" target="1.8" />
+      <module name="CMS_main" target="1.8" />
+      <module name="CMS_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
