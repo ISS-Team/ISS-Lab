@@ -52,11 +52,11 @@ public class Review {
         this.qualifier = qualifier;
     }
 
-    public void addRecommendation(Recommendation recommendation){
+    public void addRecommendation(Recommendation recommendation) {
         recommendations.add(recommendation);
     }
 
-    public void clearRecommendations(){
+    public void clearRecommendations() {
         recommendations.clear();
     }
 }

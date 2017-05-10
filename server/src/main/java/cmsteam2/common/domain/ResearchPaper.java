@@ -14,7 +14,7 @@ public class ResearchPaper {
     private List<Review> reviews = new ArrayList<>();
     private List<User> authors = new ArrayList<>();
 
-    public ResearchPaper(String id, String title,User author) {
+    public ResearchPaper(String id, String title, User author) {
         this.id = id;
         this.title = title;
         this.authors.add(author);
@@ -51,9 +51,9 @@ public class ResearchPaper {
         return authors;
     }
 
-    public List<User> getReviewers(){
+    public List<User> getReviewers() {
         List<User> reviewers = new ArrayList<>();
-        for(Review review:this.reviews){
+        for (Review review : this.reviews) {
             reviewers.add(review.getReviewer());
         }
         return reviewers;
@@ -63,15 +63,15 @@ public class ResearchPaper {
         this.text = text;
     }
 
-    public void addMetaData(String meta){
+    public void addMetaData(String meta) {
         this.metaData.add(meta);
     }
 
-    public void addAuthor(User author){
+    public void addAuthor(User author) {
         this.authors.add(author);
     }
 
-    public void addReview(Review review){
+    public void addReview(Review review) {
         this.reviews.add(review);
     }
 }

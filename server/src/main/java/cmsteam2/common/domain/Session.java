@@ -13,8 +13,8 @@ public class Session {
     private ArrayList<User> speakers;
     private User sessionChair;
 
-    public Session(String title,User speaker) {
-        speakers=new ArrayList<User>();
+    public Session(String title, User speaker) {
+        speakers = new ArrayList<>();
         speakers.add(speaker);
         this.title = title;
     }

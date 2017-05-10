@@ -17,14 +17,14 @@ public class Conference {
     private ArrayList<Session> sessions;
 
     public Conference(String title, String theme, Date date) {
-        deadlines=new ArrayList<>();
-        sessions=new ArrayList<>();
+        deadlines = new ArrayList<>();
+        sessions = new ArrayList<>();
         this.title = title;
         this.theme = theme;
         this.date = date;
     }
 
-    public void addSession(Session s){
+    public void addSession(Session s) {
         sessions.add(s);
     }
 
