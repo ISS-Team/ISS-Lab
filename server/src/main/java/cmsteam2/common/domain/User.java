@@ -2,18 +2,21 @@ package cmsteam2.common.domain;
 
 public class User {
 
-    public final String name;
-    public final String password;
-    public final String email;
-    public final boolean isActivated;
+    public  String username;
+    public  String password;
+    public  String email;
+    public  boolean isActivated;
 
     /**
      * Permission level. The higher the more permission the user has.
      */
     private int permissionLevel;
 
+    public User() {
+    }
+
     public User(String name, String password, String email, boolean isActivated, Permission permission) {
-        this.name = name;
+        this.username = name;
         this.password = password;
         this.email = email;
         this.isActivated = isActivated;
