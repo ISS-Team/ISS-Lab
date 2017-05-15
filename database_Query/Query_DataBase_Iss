@@ -1,13 +1,13 @@
-CREATE TABLE Proiect_Iss.User(
+CREATE TABLE ISSDataBase.User(
 Username nvarchar(30) PRIMARY KEY,
 Password nvarchar(30),
 Email nvarchar(30),
 AccountActivated boolean,
-Permissions nvarchar(30)
+Permissions Integer
 );
 
 
-CREATE TABLE Proiect_Iss.Research_Paper(
+CREATE TABLE ISSDataBase.Research_Paper(
 Id_Research_Paper Integer PRIMARY KEY AUTOINCREMENT,
 Username nvarchar(30),
 Title nvarchar(50),
@@ -16,7 +16,7 @@ Text nvarchar(40),
 FOREIGN KEY(Username) REFERENCES User(Username)
 );
 
-CREATE TABLE Proiect_Iss.Review(
+CREATE TABLE ISSDataBase.Review(
 Id_Review Integer PRIMARY KEY AUTOINCREMENT,
 Username nvarchar(30),
 Id_Research_Paper int,
@@ -26,14 +26,14 @@ FOREIGN KEY(Username) REFERENCES Revieweri(Username),
 FOREIGN KEY(Id_Research_Paper) REFERENCES Research_Paper(Id_Research_Paper)
 );
 
-CREATE TABLE Proiect_Iss.Recommendation(
+CREATE TABLE ISSDataBase.Recommendation(
 Id_Recommendation Integer PRIMARY KEY AUTOINCREMENT,
 Description nvarchar(100),
 Id_Review Integer,
 FOREIGN KEY (Id_Review) REFERENCES Review(Id_Review)
 );
 
-CREATE TABLE Proiect_Iss.Session(
+CREATE TABLE ISSDataBase.Session(
 Id_Session Integer PRIMARY KEY AUTOINCREMENT,
 Id_Conference Integer,
 StarTime time,
@@ -42,7 +42,7 @@ FOREIGN KEY(Id_Conference) REFERENCES Conference(Id_Conference)
 
 );
 
-CREATE TABLE Proiect_Iss.Conference(
+CREATE TABLE ISSDataBase.Conference(
 Id_Conference Integer PRIMARY KEY AUTOINCREMENT,
 Title nvarchar(30),
 Theme nvarchar(30),
@@ -52,7 +52,7 @@ StartTime Integer,
 EndTime Integer
 );
 
-CREATE TABLE Proiect_Iss.Participants(
+CREATE TABLE ISSDataBase.Participants(
 Id_Session Integer ,
 Username Integer,
 Status text CHECK(Status IN('Listener','Speaker','Session Chair')),
@@ -61,7 +61,7 @@ FOREIGN KEY(Username) REFERENCES Username(Username),
 PRIMARY KEY(Id_Session,Username)
 );
 
-CREATE TABLE Proiect_Iss.Revieweri(
+CREATE TABLE ISSDataBase.Revieweri(
 Username nvarchar(30),
 Id_ResearchPaper Integer,
 Status text CHECK(Status IN('Accepted to review','Reviewing','Finished to review','Reviewed')),
@@ -70,10 +70,13 @@ FOREIGN KEY(Username) REFERENCES Username(Username),
 PRIMARY KEY(Id_ResearchPaper,Username)
 );
 
-Create Table Proiect_Iss.MetaData(
+Create Table ISSDataBase.MetaData(
 Id_MetaData Integer PRIMARY KEY AUTOINCREMENT,
 Content nvarchar(200),
 Id_Research_Paper Integer,
 FOREIGN KEY (Id_Research_Paper)REFERENCES Research_Paper(Id_Research_Paper)
 );
+
+
+
 
