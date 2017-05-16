@@ -31,6 +31,17 @@ public class User {
         this.permissionLevel = perm.level;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isActivated=" + isActivated +
+                ", permissionLevel=" + permissionLevel +
+                '}';
+    }
+
     public enum Permission {
         LISTENER(0),
         AUTHOR(1),
