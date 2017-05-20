@@ -1,24 +1,33 @@
 package cmsteam2.common.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Costi on 07.05.2017.
  */
+/**
+ * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
+ */
+@Entity
+@Table(name = "Conference")
 public class Conference {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String title;
     private String theme;
     private Date date;
-    private ArrayList<Date> deadlines;
+    private Date deadline;
     private long startTime;
     private long endTime;
-    private ArrayList<Session> sessions;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
+    private Set<Session> sessions=new HashSet<>();
 
-    public Conference(String title, String theme, Date date) {
-        deadlines = new ArrayList<>();
-        sessions = new ArrayList<>();
+    public Conference(String title, String theme, Date date,Date deadline) {
+        this.deadline = deadline;
         this.title = title;
         this.theme = theme;
         this.date = date;
@@ -63,14 +72,6 @@ public class Conference {
         this.date = date;
     }
 
-    public ArrayList<Date> getDeadlines() {
-        return deadlines;
-    }
-
-    public void setDeadlines(ArrayList<Date> deadlines) {
-        this.deadlines = deadlines;
-    }
-
     public long getStartTime() {
         return startTime;
     }
@@ -85,5 +86,13 @@ public class Conference {
 
     public void setEndTime(long endTime) {
         this.endTime = endTime;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
     }
 }

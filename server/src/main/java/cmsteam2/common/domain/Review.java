@@ -1,5 +1,6 @@
 package cmsteam2.common.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,56 +8,77 @@ import java.util.List;
 /**
  * Created by alex on 5/10/2017.
  */
+/**
+ * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
+ */
+@Entity
+@Table(name = "Review")
 public class Review {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int Id_Review;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     private User reviewer;
-    private String id;
+
     private Date date;
+
+    @Enumerated(EnumType.STRING)
     private Qualifier qualifier;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "review")
     private List<Recommendation> recommendations = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private ResearchPaper reviewedPaper;
 
-    public Review(User reviewer, String id, Date date, Qualifier qualifier, ResearchPaper reviewedPaper) {
-        this.reviewer = reviewer;
-        this.id = id;
+    public Review() {
+    }
+
+
+    public Qualifier getQualifier() {
+        return qualifier;
+    }
+
+
+    public void setQualifier(Qualifier qualifier) {
+        this.qualifier = qualifier;
+    }
+
+
+    public Review(Date date, Qualifier qualifier) {
         this.date = date;
         this.qualifier = qualifier;
-        this.reviewedPaper = reviewedPaper;
     }
 
     public User getReviewer() {
         return reviewer;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public Qualifier getQualifier() {
-        return qualifier;
-    }
-
-    public List<Recommendation> getRecommendations() {
-        return recommendations;
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
     }
 
     public ResearchPaper getReviewedPaper() {
         return reviewedPaper;
     }
 
-    public void setQualifier(Qualifier qualifier) {
-        this.qualifier = qualifier;
+    public List<Recommendation> getRecommendations() {
+        return recommendations;
     }
 
-    public void addRecommendation(Recommendation recommendation) {
-        recommendations.add(recommendation);
+    public void setRecommendations(List<Recommendation> recommendations) {
+        this.recommendations = recommendations;
     }
 
-    public void clearRecommendations() {
-        recommendations.clear();
+    public void setReviewedPaper(ResearchPaper reviewedPaper) {
+        this.reviewedPaper = reviewedPaper;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

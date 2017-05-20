@@ -1,11 +1,33 @@
 package cmsteam2.common.domain;
 
-public class User {
+import cmsteam2.common.domain.Participant;
 
-    public  String username;
-    public  String password;
-    public  String email;
-    public  boolean isActivated;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+/**
+ * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
+ */
+@Entity
+@Table(name = "User")
+public class User {
+    @Id
+    private String username;
+    private String password;
+    private String email;
+    private boolean isActivated;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Reviewer> Reviewers = new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<ResearchPaper> researchPapers = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Participant> sesiuni = new HashSet<>();
+
+
+
 
     /**
      * Permission level. The higher the more permission the user has.
@@ -29,6 +51,17 @@ public class User {
 
     public void setPermissionLevel(Permission perm) {
         this.permissionLevel = perm.level;
+    }
+
+    public Set<Participant> getSesiuni() {
+        return sesiuni;
+    }
+
+    public void setSesiuni(Set<Participant> sesiuni) {
+        this.sesiuni = sesiuni;
+    }
+    public void addResearchPaper(ResearchPaper researchPaper){
+        researchPapers.add(researchPaper);
     }
 
     public enum Permission {

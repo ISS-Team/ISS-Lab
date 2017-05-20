@@ -1,30 +1,45 @@
 package cmsteam2.common.domain;
 
-import java.util.ArrayList;
+import cmsteam2.common.domain.Conference;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Costi on 07.05.2017.
  */
+/**
+ * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
+ */
+@Entity
+@Table(name = "Session")
 public class Session {
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_Session;
     private String title;
     private long startTime;
     private long duration;
-    private ArrayList<User> speakers;
-    private User sessionChair;
 
-    public Session(String title, User speaker) {
-        speakers = new ArrayList<>();
-        speakers.add(speaker);
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_Conference")
+    private Conference conference;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
+    private Set<Participant> participanti = new HashSet<>();
+
+    public Session(String title,long startTime,long duration) {
+        this.duration=duration;
+        this.startTime=startTime;
         this.title = title;
     }
 
-    public String getId() {
-        return id;
+    public int getId_Session() {
+        return id_Session;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId_Session(int id_Session) {
+        this.id_Session = id_Session;
     }
 
     public String getTitle() {
@@ -51,19 +66,19 @@ public class Session {
         this.duration = duration;
     }
 
-    public ArrayList<User> getSpeakers() {
-        return speakers;
+    public Conference getConference() {
+        return conference;
     }
 
-    public void setSpeakers(ArrayList<User> speakers) {
-        this.speakers = speakers;
+    public void setConference(Conference conference) {
+        this.conference = conference;
     }
 
-    public User getSessionChair() {
-        return sessionChair;
+    public Set<Participant> getParticipanti() {
+        return participanti;
     }
 
-    public void setSessionChair(User sessionChair) {
-        this.sessionChair = sessionChair;
+    public void setParticipanti(Set<Participant> participanti) {
+        this.participanti = participanti;
     }
 }
