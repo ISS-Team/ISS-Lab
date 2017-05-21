@@ -62,6 +62,17 @@ public class User {
     }
     public void addResearchPaper(ResearchPaper researchPaper){
         researchPapers.add(researchPaper);
+	}
+	
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", isActivated=" + isActivated +
+                ", permissionLevel=" + permissionLevel +
+                '}';
     }
 
     public enum Permission {
