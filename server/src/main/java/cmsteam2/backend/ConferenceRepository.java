@@ -17,17 +17,19 @@ public class ConferenceRepository extends GenericRepository {
         super(props);
     }
 
-    public void update(Conference conference) {
+    public boolean update(Conference conference) {
         org.hibernate.Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
             session.update(conference);
             tx.commit();
+            return true;
         } catch (RuntimeException e) {
             e.printStackTrace();
             if (tx != null)
                 tx.rollback();
+            return false;
         } finally {
             session.close();
         }

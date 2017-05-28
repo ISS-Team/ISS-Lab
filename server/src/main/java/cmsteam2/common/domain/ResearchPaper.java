@@ -24,6 +24,22 @@ public class ResearchPaper {
     private String pathFile;
 
 
+    public String getAbstractPaper() {
+        return abstractPaper;
+    }
+
+    public void setAbstractPaper(String abstractPaper) {
+        this.abstractPaper = abstractPaper;
+    }
+
+    public MetaData getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(MetaData metaData) {
+        this.metaData = metaData;
+    }
+
     @OneToOne
     @JoinColumn(name="frn_ResearchPaper_Id")
     private MetaData metaData;

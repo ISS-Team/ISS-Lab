@@ -28,6 +28,7 @@ public class UserController {
     }
 
     @PostMapping
+    @RequestMapping("/login")
     public ResponseEntity login(@RequestBody User user) {
 //        System.out.println(user);
         String password = usersRepository.getPassword(user.getUsername());
@@ -39,6 +40,7 @@ public class UserController {
     }
 
     @PostMapping
+    @RequestMapping("/register")
     public ResponseEntity register(@RequestBody User user) {
         if (usersRepository.checkUsername(user.getUsername())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
