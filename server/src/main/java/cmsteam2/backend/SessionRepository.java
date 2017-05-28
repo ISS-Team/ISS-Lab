@@ -55,6 +55,5 @@ public class SessionRepository extends GenericRepository {
                 session.close();
                 return Sessions;
             }
-        }
     }
 }
