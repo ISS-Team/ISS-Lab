@@ -16,6 +16,7 @@ public class SessionRepository extends GenericRepository {
     public SessionRepository(Properties props) {
         super(props);
     }
+
     public boolean update(Session Sesiune) {
         org.hibernate.Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -41,19 +42,21 @@ public class SessionRepository extends GenericRepository {
         session.getTransaction().commit();
         session.close();
     }
+
     //returneaza toate sesiunile unei conferinte
-    public List<Session> GetAllByConference(int Conference_id){
-            org.hibernate.Session session=sessionFactory.openSession();
-            List<Session> Sessions =null;
-            try {
-                Sessions=session.createQuery("From Session where Session.conference.id = " + Conference_id,Session.class).list();
-                System.out.println(Sessions.size());
-            }catch (RuntimeException e){
-                e.printStackTrace();
-            }
-            finally {
-                session.close();
-                return Sessions;
-            }
+
+    public List<Session> GetAllByConference(int Conference_id) {
+        org.hibernate.Session session = sessionFactory.openSession();
+        List<Session> Sessions = null;
+        try {
+            Sessions = session.createQuery("From Session where Session.conference.id = " + Conference_id, Session.class).list();
+            System.out.println(Sessions.size());
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return Sessions;
+        }
+
     }
 }
