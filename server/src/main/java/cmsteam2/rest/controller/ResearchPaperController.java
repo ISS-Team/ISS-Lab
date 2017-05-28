@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by alex on 5/28/2017.
  */
@@ -48,6 +51,16 @@ public class ResearchPaperController {
         }
     }
 
+    @GetMapping("/getResearchPaper")
+    public List<ResearchPaper> getResearchPapers(){
+        List<ResearchPaper> papers = researchPaperRepository.getAll();
+        if(papers!=null){
+            return papers;
+        }
+        else{
+            return new ArrayList<ResearchPaper>();
+        }
+    }
 
 
 }
