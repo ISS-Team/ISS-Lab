@@ -27,11 +27,6 @@ public class UserController {
         usersRepository = new UsersRepository(GenericRepository.loadProps(), Main.sessionFactory);
     }
 
-    @GetMapping
-    public String getHello() {
-        return "HELOO BOY!";
-    }
-
     @PostMapping
     public ResponseEntity login(@RequestBody User user) {
 //        System.out.println(user);
