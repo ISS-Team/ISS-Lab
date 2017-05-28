@@ -20,17 +20,27 @@ public class Conference {
     private String title;
     private String theme;
     private Date date;
-    private Date deadline;
+    private Date deadlineAbstractInfo;
+    private Date deadlineFullPaper;
+    private Date deadlineReview;
     private long startTime;
     private long endTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
     private Set<Session> sessions=new HashSet<>();
 
-    public Conference(String title, String theme, Date date,Date deadline) {
-        this.deadline = deadline;
+    public Conference(String title, String theme, Date date) {
         this.title = title;
         this.theme = theme;
         this.date = date;
+    }
+
+    public Conference(String title, String theme, Date date, Date deadlineAbstractInfo, Date deadlineFullPaper, Date deadlineReview) {
+        this.title = title;
+        this.theme = theme;
+        this.date = date;
+        this.deadlineAbstractInfo = deadlineAbstractInfo;
+        this.deadlineFullPaper = deadlineFullPaper;
+        this.deadlineReview = deadlineReview;
     }
 
     public void addSession(Session s) {
@@ -88,11 +98,27 @@ public class Conference {
         this.endTime = endTime;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public Date getDeadlineAbstractInfo() {
+        return deadlineAbstractInfo;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setDeadlineAbstractInfo(Date deadlineAbstractInfo) {
+        this.deadlineAbstractInfo = deadlineAbstractInfo;
+    }
+
+    public Date getDeadlineFullPaper() {
+        return deadlineFullPaper;
+    }
+
+    public void setDeadlineFullPaper(Date deadlineFullPaper) {
+        this.deadlineFullPaper = deadlineFullPaper;
+    }
+
+    public Date getDeadlineReview() {
+        return deadlineReview;
+    }
+
+    public void setDeadlineReview(Date deadlineReview) {
+        this.deadlineReview = deadlineReview;
     }
 }
