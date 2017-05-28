@@ -60,6 +60,8 @@ public class User {
     public void setSesiuni(Set<Participant> sesiuni) {
         this.sesiuni = sesiuni;
     }
+
+
     public void addResearchPaper(ResearchPaper researchPaper){
         researchPapers.add(researchPaper);
 	}
@@ -73,6 +75,14 @@ public class User {
                 ", isActivated=" + isActivated +
                 ", permissionLevel=" + permissionLevel +
                 '}';
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public enum Permission {

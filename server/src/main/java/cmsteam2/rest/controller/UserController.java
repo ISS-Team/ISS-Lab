@@ -33,11 +33,23 @@ public class UserController {
     @PostMapping
     public ResponseEntity login(@RequestBody User user){
 //        System.out.println(user);
-        usersRepository.login(user);
-        if(user.password.equals("costi")){
+        String password = usersRepository.getPassword(user.getUsername());
+        if(user.getPassword().equals(password)){
             return new ResponseEntity(HttpStatus.OK);
         }else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping
+    public ResponseEntity register(@RequestBody User user){
+        if(usersRepository.checkUsername(user.getUsername())){
+            return new ResponseEntity(HttpStatus.IM_USED);
+        }
+        else{
+            usersRepository.save(user);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+    }
+
 }
