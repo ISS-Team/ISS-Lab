@@ -11,6 +11,7 @@ import java.util.Properties;
  * Created by User on 15/05/2017.
  */
 public class GenericRepository {
+
     private Properties props;
 
     public GenericRepository(Properties props) {
