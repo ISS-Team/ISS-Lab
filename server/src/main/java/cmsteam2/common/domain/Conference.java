@@ -23,8 +23,12 @@ public class Conference {
     private Date deadlineAbstractInfo;
     private Date deadlineFullPaper;
     private Date deadlineReview;
-    private long startTime;
-    private long endTime;
+    private Date startTime;
+    private Date endTime;
+
+    @OneToMany
+    private Set<ResearchPaper> researchPapers=new HashSet<>();
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
     private Set<Session> sessions=new HashSet<>();
 
@@ -82,19 +86,19 @@ public class Conference {
         this.date = date;
     }
 
-    public long getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public long getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(long endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
