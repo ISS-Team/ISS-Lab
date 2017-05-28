@@ -1,0 +1,51 @@
+package cmsteam2.rest.controller;
+
+import cmsteam2.backend.GenericRepository;
+import cmsteam2.backend.ResearchPaperRepository;
+import cmsteam2.common.domain.ResearchPaper;
+import cmsteam2.middleware.Main;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * Created by alex on 5/28/2017.
+ */
+
+@RestController
+@RequestMapping("/researchPapers")
+public class ResearchPaperController {
+
+    private ResearchPaperRepository researchPaperRepository;
+
+    public ResearchPaperController(){
+        researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps(), Main.sessionFactory);
+    }
+
+    private boolean checkPaper(ResearchPaper paper){
+        return ((paper.getMetaData()!=null)&&!(paper.getAbstractPaper().equals("")));
+    }
+
+    @PostMapping
+    public ResponseEntity save(@RequestBody ResearchPaper paper){
+        if(checkPaper(paper)){
+            researchPaperRepository.save(paper);
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity update(@RequestBody ResearchPaper paper){
+        if(checkPaper(paper)){
+            researchPaperRepository.update(paper);
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+}
