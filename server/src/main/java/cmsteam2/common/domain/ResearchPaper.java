@@ -18,32 +18,36 @@ import java.util.Set;
 @Table(name = "ResearchPaper")
 public class ResearchPaper {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private int id;
     private String title;
-    private String text;
+    private String abstractPaper;
+    private String pathFile;
 
 
-    @ElementCollection
-    @CollectionTable(name="MetaData",joinColumns = @JoinColumn(name="id_ResearchPaper"))
-    @Column(name = "metaData")
-    private Set<String> metaData = new HashSet<>();
+    @OneToOne
+    @JoinColumn(name="frn_ResearchPaper_Id")
+    private MetaData metaData;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper")
     private Set<Review> reviews = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "researchPaper")
     private Set<Reviewer> revieweri = new HashSet<>();
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Conference conference;
 
-    public ResearchPaper(String id, String title, User author) {
+
+    public ResearchPaper(int id, String title, User author) {
         this.id = id;
         this.title = title;
 //        this.author=author;
     }
 
-    public ResearchPaper(String id, String title, String text, User author) {
+    public ResearchPaper(int id, String title, String abstractPaper, User author) {
         this.id = id;
         this.title = title;
-        this.text = text;
+        this.abstractPaper = abstractPaper;
 //        this.author=author;
     }
 
@@ -51,7 +55,7 @@ public class ResearchPaper {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -60,32 +64,18 @@ public class ResearchPaper {
     }
 
     public String getText() {
-        return text;
+        return abstractPaper;
     }
 
 
 
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void addMetaData(String meta) {
-        this.metaData.add(meta);
-    }
 
 
     public void addReview(Review review) {
         this.reviews.add(review);
     }
 
-    public Set<String> getMetaData() {
-        return metaData;
-    }
-
-    public void setMetaData(Set<String> metaData) {
-        this.metaData = metaData;
-    }
 
     public Set<Review> getReviews() {
         return reviews;
