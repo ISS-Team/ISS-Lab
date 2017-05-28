@@ -9,20 +9,16 @@ import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
+import static cmsteam2.middleware.Main.sessionFactory;
+
 public class ResearchPaperRepository extends GenericRepository {
-
-
-    private final SessionFactory sessionFactory;
 
     public ResearchPaperRepository(Properties props, SessionFactory sessionFactory) {
         super(props);
-        this.sessionFactory=sessionFactory;
     }
 
     public void  update (ResearchPaper researchPaper){
-
         org.hibernate.Session session=sessionFactory.openSession();
-        boolean ok=false;
         Transaction tx=null;
         try {
             tx=session.beginTransaction();
