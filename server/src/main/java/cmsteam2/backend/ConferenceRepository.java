@@ -19,7 +19,8 @@ public class ConferenceRepository extends GenericRepository {
         this.sessionFactory=sessionFactory;
     }
 
-    public void  update (Conference Conf ,Date deadline){
+    public void  update (Conference Conf){
+
     }
 
     public void save(Conference conference){
