@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by alex on 5/28/2017.
  */
@@ -26,7 +29,7 @@ public class ResearchPaperController {
         return ((paper.getMetaData()!=null)&&!(paper.getAbstractPaper().equals("")));
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody ResearchPaper paper){
         if(checkPaper(paper)){
             researchPaperRepository.save(paper);
@@ -36,7 +39,7 @@ public class ResearchPaperController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/update")
     public ResponseEntity update(@RequestBody ResearchPaper paper){
         if(checkPaper(paper)){
             researchPaperRepository.update(paper);
@@ -46,6 +49,16 @@ public class ResearchPaperController {
         }
     }
 
+    @GetMapping("/getResearchPaper")
+    public List<ResearchPaper> getResearchPapers(){
+        List<ResearchPaper> papers = researchPaperRepository.getAll();
+        if(papers!=null){
+            return papers;
+        }
+        else{
+            return new ArrayList<ResearchPaper>();
+        }
+    }
 
 
 }
