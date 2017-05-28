@@ -5,7 +5,6 @@ import cmsteam2.common.domain.ResearchPaper;
 import cmsteam2.common.domain.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import sun.security.krb5.internal.tools.Klist;
 
 import java.util.Date;
 import java.sql.*;
@@ -20,17 +19,19 @@ public class ResearchPaperRepository extends GenericRepository {
         super(props);
     }
 
-    public void update(ResearchPaper researchPaper) {
+    public boolean update(ResearchPaper researchPaper) {
         org.hibernate.Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
             session.update(researchPaper);
             tx.commit();
+            return true;
         } catch (RuntimeException e) {
             e.printStackTrace();
             if (tx != null)
                 tx.rollback();
+            return false;
         } finally {
             session.close();
         }
