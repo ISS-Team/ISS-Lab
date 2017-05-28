@@ -80,7 +80,7 @@
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitRegister" type="submit" class="btn btn-default" value="Submit">
+        <input id="btnSubmitRegister" type="button" class="btn btn-default" value="Submit">
       </div>
     </div>
   </form>
@@ -133,38 +133,76 @@ $("#About").click(function(){
 	$("#generalInformations").show();
 });
 $("#btnSubmitRegister").click(function(){
-       var xhr = new XMLHttpRequest();
-       xhr.open("post", "myurl", true);
-       var firstName=$("#firstNameR").val();
-       var lastName=$("#lastNameR").val();
-	   var email=$("#emailR").val();
-	   var username=$("#usernameR").val();
-	   var password=SHA256($("#passwordR").val());
-	   var position=$("#selectPosition").val();
-	   
-	   var forRegister = {
-			"firstName":firstName,
-			"lastName":lastName,
-			"email":email,
-            "username":username,
-            "password":password,
-			"position":position,
-			} 
-	    xhr.send(JSON.stringify(forRegister));
-		alert("Datele au fost trimise");
+    var firstName=$("#firstNameR").val();
+    var lastName=$("#lastNameR").val();
+    var email=$("#emailR").val();
+    var username=$("#usernameR").val();
+//    var password=SHA256($("#passwordR").val());
+    var password = $("#passwordR").val();
+    var position=$("#selectPosition").val();
+
+    var forRegister = {
+        "firstName":firstName,
+        "lastName":lastName,
+        "email":email,
+        "username":username,
+        "password":password,
+        "position":position,
+    };
+
+    $.ajax({
+        url: "/users/register",
+        type: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify(forRegister),
+        success: function (res) {
+            alert("Success");
+            console.log(res);
+        },
+
+        error: function(res) {
+            alert("Eroare");
+        }
+    });
+//    var xhr = new XMLHttpRequest();
+
+//       xhr.open("post", "myurl", true);
+//	    xhr.send(JSON.stringify(forRegister));
+//		alert("Datele au fost trimise");
 
 });
 $("#btnSubmitLogin").click(function(){
-       var xhr = new XMLHttpRequest();
-       xhr.open("post", "/users/login", true);
-       var username=$("#username").val();
-	   var password=SHA256($("#password").val());
-	   var forLogin = {
-            "username":username,
-            "password":password
-			};
-	    xhr.send(JSON.stringify(forLogin));
-		alert("Datele au fost trimise");
+
+    var username=$("#username").val();
+//    var password=SHA256($("#password").val());
+    var password=$("#password").val();
+    var forLogin = {
+        "username":username,
+        "password":password
+    };
+
+    $.ajax({
+        url: "/users/login",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(forLogin),
+        dataType: "json",
+
+        success: function (res) {
+            alert("Success");
+            console.log(res);
+        },
+
+        error: function(res) {
+            alert("Eroare");
+        }
+    });
+//    var xhr = new XMLHttpRequest();
+//       xhr.open("post", "/users/login", true);
+
+//	    xhr.send(JSON.stringify(forLogin));
+//		alert("Datele au fost trimise");
 });
 });
 

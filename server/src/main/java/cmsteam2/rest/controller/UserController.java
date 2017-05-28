@@ -33,9 +33,9 @@ public class UserController {
 //        System.out.println(user);
         String password = usersRepository.getPassword(user.getUsername());
         if (user.getPassword().equals(password)) {
-            return ResponseEntity.ok().body(null);
+            return ResponseEntity.ok().body("{}");
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
