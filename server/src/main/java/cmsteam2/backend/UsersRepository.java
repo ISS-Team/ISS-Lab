@@ -74,8 +74,6 @@ public class UsersRepository extends GenericRepository {
         session.save(user);
         session.getTransaction().commit();
         session.close();
-
-
     }
 
 /*    public String login(User user){

@@ -19,11 +19,30 @@ public class ConferenceRepository extends GenericRepository {
         this.sessionFactory=sessionFactory;
     }
 
-    public void  update (Conference Conf){
+    public void  update (Conference conference){
 
+        org.hibernate.Session session=sessionFactory.openSession();
+        boolean ok=false;
+        Transaction tx=null;
+        try {
+            tx=session.beginTransaction();
+            session.update(conference);
+            tx.commit();
+        }catch (RuntimeException e){
+            e.printStackTrace();
+            if (tx!=null)
+                tx.rollback();
+        }
+        finally {
+            session.close();
+        }
     }
 
     public void save(Conference conference){
-
+        org.hibernate.Session session=sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(conference);
+        session.getTransaction().commit();
+        session.close();
     }
 }
