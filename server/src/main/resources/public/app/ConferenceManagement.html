@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Conference Management System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="sha256.js"> </script>
+  </head>
+<body>
+
+<!--Navigation bar-->
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Conference Mangement System</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a id="About" href="#">About</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+      <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!--div for general informations such as deadline, the name of the conference-->
+
+<div id="generalInformations" class="container">
+  <h3>General informations about the conference.</h3>
+</div>
+
+<!--form for register-->
+
+<div class="container">
+  <form id="formRegister" class="form-horizontal"  style="display:none;" method="post" action="">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="firstNameR">First name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name" name="firstNameR">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="lastNameR">Last name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name" name="lastNameR">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="emailR">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="emailR" placeholder="Enter your email" name="emailR">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="usernameR">Username:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="usernameR" placeholder="Enter username" name="usernameR">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="passwordR">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="passwordR" placeholder="Enter password" name="passwordR">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="selectPosition">Select your position:</label>
+       <div class="col-sm-10">
+	  <select class="form-control" id="selectPosition">
+        <option value="speaker">Speaker</option>
+        <option value="listener">Listener</option>
+        <option value="programCommitteeMember">Program Committee Member</option>
+      </select>
+	  </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <input id="btnSubmitRegister" type="submit" class="btn btn-default" value="Submit">
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--form for login-->
+
+<div class="container">
+  <form id="formLogin" class="form-horizontal"  style="display:none;" method="post" action="">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="username">Username:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <input id="btnSubmitLogin" type="submit" class="btn btn-default" value="Submit">
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+console.log("ready");
+$("#Login").click(function() {
+    $("#generalInformations").hide();
+	$("#formRegister").css("display","none");
+	$("#formLogin").css("display","block");
+	   
+});
+$("#Register").click(function() {
+	
+	$("#generalInformations").hide();
+	$("#formLogin").css("display","none");
+    $("#formRegister").css("display","block");
+
+   
+});
+$("#About").click(function(){
+	$("#formLogin").css("display","none");
+    $("#formRegister").css("display","none");
+	$("#generalInformations").show();
+});
+$("#btnSubmitRegister").click(function(){
+       var xhr = new XMLHttpRequest();
+       xhr.open("post", "myurl", true);
+       var firstName=$("#firstNameR").val();
+       var lastName=$("#lastNameR").val();
+	   var email=$("#emailR").val();
+	   var username=$("#usernameR").val();
+	   var password=SHA256($("#passwordR").val());
+	   var position=$("#selectPosition").val();
+	   
+	   var forRegister = {
+			"firstName":firstName,
+			"lastName":lastName,
+			"email":email,
+            "username":username,
+            "password":password,
+			"position":position,
+			} 
+	    xhr.send(JSON.stringify(forRegister));
+		alert("Datele au fost trimise");
+
+});
+$("#btnSubmitLogin").click(function(){
+       var xhr = new XMLHttpRequest();
+       xhr.open("post", "myurl", true);
+       var username=$("#username").val();
+	   var password=SHA256($("#password").val());
+	   var forLogin = {
+            "username":username,
+            "password":password,
+			} 
+	    xhr.send(JSON.stringify(forLogin));
+		alert("Datele au fost trimise");
+});
+});
+
+</script>
+</body>
+</html>

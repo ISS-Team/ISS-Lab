@@ -23,15 +23,6 @@ public class Main {
 
         initialize();
 //        Recommendation recommendation=new Recommendation("dsad",new Review(new Date(), Qualifier.ACCEPT));
-//        //Conference conference=new Conference("conferinta1","tema1",new Date(),new Date());
-//        Session sessions=new Session("session1",12,12);
-//        User user=new User("abb","a","a",true, User.Permission.MEMBER);
-//        ResearchPaper researchPaper=new ResearchPaper();
-//       // sessions.setConference(conference);
-//        org.hibernate.Session session=sessionFactory.openSession();
-//        session.beginTransaction();
-//        session.save(recommendation);
-//        //session.save(conference);
 //        session.save(sessions);
 //        user.addResearchPaper(researchPaper);
 //        session.save(user);
