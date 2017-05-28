@@ -1,19 +1,22 @@
 package cmsteam2.rest.controller;
 
 import cmsteam2.backend.ConferenceRepository;
+import cmsteam2.backend.GenericRepository;
 import cmsteam2.common.domain.Conference;
+import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/conferences")
 public class ConferenceController {
 
-    private ConferenceRepository conferenceRepository;
+    private ConferenceRepository conferenceRepository = new ConferenceRepository(GenericRepository.loadProps());
 
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Conference conference) {
@@ -29,5 +32,10 @@ public class ConferenceController {
         } else {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/getall")
+    public List<Conference> getAll() {
+        return conferenceRepository.getAll();
     }
 }

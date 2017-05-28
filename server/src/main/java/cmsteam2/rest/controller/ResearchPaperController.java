@@ -27,6 +27,7 @@ public class ResearchPaperController {
     }
 
     @PostMapping
+    @RequestMapping("/save")
     public ResponseEntity save(@RequestBody ResearchPaper paper){
         if(checkPaper(paper)){
             researchPaperRepository.save(paper);
@@ -37,6 +38,7 @@ public class ResearchPaperController {
     }
 
     @PostMapping
+    @RequestMapping("/update")
     public ResponseEntity update(@RequestBody ResearchPaper paper){
         if(checkPaper(paper)){
             researchPaperRepository.update(paper);

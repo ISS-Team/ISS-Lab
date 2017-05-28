@@ -5,6 +5,7 @@ import cmsteam2.common.domain.Conference;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.*;
 import java.util.List;
@@ -41,5 +42,22 @@ public class ConferenceRepository extends GenericRepository {
         session.save(conference);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public List<Conference> getAll() {
+        org.hibernate.Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            List<Conference> list = session.createQuery("from Conference", Conference.class).list();
+            session.close();
+            return list;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (tx != null)
+                tx.rollback();
+            session.close();
+            return null;
+        }
     }
 }
