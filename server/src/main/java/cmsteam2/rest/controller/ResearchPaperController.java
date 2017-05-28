@@ -19,7 +19,7 @@ public class ResearchPaperController {
     private ResearchPaperRepository researchPaperRepository;
 
     public ResearchPaperController(){
-        researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps(), Main.sessionFactory);
+        researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps());
     }
 
     private boolean checkPaper(ResearchPaper paper){

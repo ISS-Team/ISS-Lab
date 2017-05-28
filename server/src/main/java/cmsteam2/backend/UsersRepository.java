@@ -9,17 +9,14 @@ import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
+import static cmsteam2.middleware.Main.sessionFactory;
+
 /**
  * Created by Costi on 15.05.2017.
  */
 public class UsersRepository extends GenericRepository {
-
-
-    private final SessionFactory sessionFactory;
-
     public UsersRepository(Properties props, SessionFactory sessionFactory) {
         super(props);
-        this.sessionFactory=sessionFactory;
     }
 
     public boolean checkUsername(String username){

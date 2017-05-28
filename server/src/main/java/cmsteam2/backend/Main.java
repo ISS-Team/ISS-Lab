@@ -21,7 +21,7 @@ public class Main {
 //        System.out.println("This is cmsteam2.backend");
         SpringApplication.run(Main.class, args);
 
-        initialize();
+//        initialize();
 //        Recommendation recommendation=new Recommendation("dsad",new Review(new Date(), Qualifier.ACCEPT));
 //        session.save(sessions);
 //        user.addResearchPaper(researchPaper);
@@ -29,8 +29,8 @@ public class Main {
 //        session.getTransaction().commit();
 //        session.close();
     }
-    static SessionFactory sessionFactory;
-    static void initialize(){
+//    static SessionFactory sessionFactory;
+ /*   static void initialize(){
         final StandardServiceRegistry registry=new StandardServiceRegistryBuilder().configure().build();
         try {
             sessionFactory =new MetadataSources(registry).buildMetadata().buildSessionFactory();
@@ -43,5 +43,5 @@ public class Main {
         if(sessionFactory !=null){
             sessionFactory.close();
         }
-    }
+    }*/
 }
