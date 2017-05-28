@@ -3,6 +3,7 @@ package cmsteam2.rest.controller;
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.UsersRepository;
 import cmsteam2.common.domain.User;
+import cmsteam2.middleware.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class UserController {
     public UsersRepository usersRepository;
 
     public UserController() throws FileNotFoundException {
-       usersRepository=new UsersRepository(GenericRepository.loadProps());
+       usersRepository=new UsersRepository(GenericRepository.loadProps(),Main.sessionFactory);
     }
 
     @GetMapping
