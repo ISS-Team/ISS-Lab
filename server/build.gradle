@@ -15,6 +15,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-test:1.5.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
     compile 'org.hibernate:hibernate-core:5.2.10.Final'
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    compile 'com.google.code.gson:gson:2.8.0'
+    // https://mvnrepository.com/artifact/javax.mail/mail
+    compile group: 'javax.mail', name: 'mail', version: '1.4'
 }
