@@ -4,22 +4,18 @@ import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.UsersRepository;
 import cmsteam2.common.domain.User;
 import cmsteam2.middleware.Main;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
-
-/**
- * Created by Costi on 15.05.2017.
- */
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
 
     public UsersRepository usersRepository;
 

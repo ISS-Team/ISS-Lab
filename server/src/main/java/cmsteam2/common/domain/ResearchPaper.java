@@ -1,28 +1,18 @@
 package cmsteam2.common.domain;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-/**
- * Created by alex on 5/10/2017.
- */
-
-/**
- * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
- */
 @Entity
 @Table(name = "ResearchPaper")
 public class ResearchPaper {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String abstractPaper;
     private String pathFile;
-
 
     public String getAbstractPaper() {
         return abstractPaper;
@@ -41,7 +31,7 @@ public class ResearchPaper {
     }
 
     @OneToOne
-    @JoinColumn(name="frn_ResearchPaper_Id")
+    @JoinColumn(name = "frn_ResearchPaper_Id")
     private MetaData metaData;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper")
@@ -53,6 +43,8 @@ public class ResearchPaper {
     @ManyToOne(cascade = CascadeType.ALL)
     private Conference conference;
 
+    public ResearchPaper() {
+    }
 
     public ResearchPaper(int id, String title, User author) {
         this.id = id;
@@ -67,10 +59,6 @@ public class ResearchPaper {
 //        this.author=author;
     }
 
-    public ResearchPaper() {
-
-    }
-
     public int getId() {
         return id;
     }
@@ -82,10 +70,6 @@ public class ResearchPaper {
     public String getText() {
         return abstractPaper;
     }
-
-
-
-
 
 
     public void addReview(Review review) {

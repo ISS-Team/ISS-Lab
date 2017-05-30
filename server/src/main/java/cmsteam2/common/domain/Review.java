@@ -5,16 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by alex on 5/10/2017.
- */
-/**
- * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
- */
 @Entity
 @Table(name = "Review")
 public class Review {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id_Review;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -34,19 +29,16 @@ public class Review {
     public Review() {
     }
 
+    public Review(Date date, Qualifier qualifier) {
+        this.date = date;
+        this.qualifier = qualifier;
+    }
 
     public Qualifier getQualifier() {
         return qualifier;
     }
 
-
     public void setQualifier(Qualifier qualifier) {
-        this.qualifier = qualifier;
-    }
-
-
-    public Review(Date date, Qualifier qualifier) {
-        this.date = date;
         this.qualifier = qualifier;
     }
 

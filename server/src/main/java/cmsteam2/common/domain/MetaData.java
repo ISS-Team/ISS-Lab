@@ -12,17 +12,15 @@ public class MetaData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_MetaData;
 
-
     @ElementCollection
-    @CollectionTable(name="Topics",joinColumns = @JoinColumn(name="id_Topics"))
+    @CollectionTable(name = "Topics", joinColumns = @JoinColumn(name = "id_Topics"))
     @Column(name = "topic")
-    private Set<String> topics= new HashSet<>();
-
+    private Set<String> topics = new HashSet<>();
 
     @ElementCollection
-    @CollectionTable(name="Keywords",joinColumns = @JoinColumn(name="id_Keyword"))
+    @CollectionTable(name = "Keywords", joinColumns = @JoinColumn(name = "id_Keyword"))
     @Column(name = "keyword")
-    private Set<String> keywords= new HashSet<>();
+    private Set<String> keywords = new HashSet<>();
 
     private String name;
 

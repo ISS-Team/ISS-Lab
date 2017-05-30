@@ -2,23 +2,21 @@ package cmsteam2.common.domain;
 
 import javax.persistence.*;
 
-/**
- * Created by Robi on 5/20/2017.
- */
-/**
- * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
- */
 @Entity
-@Table(name = "Reviewer", uniqueConstraints = @UniqueConstraint(columnNames = {"Username","id_ResearchPaper"}))
+@Table(name = "Reviewer", uniqueConstraints = @UniqueConstraint(columnNames = {"Username", "id_ResearchPaper"}))
 public class Reviewer {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_Reviewer;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Username")
     private User user;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_ResearchPaper")
     private ResearchPaper researchPaper;
+
     private StatusReviewer statusReviewer;
 
     public int getId_Reviewer() {

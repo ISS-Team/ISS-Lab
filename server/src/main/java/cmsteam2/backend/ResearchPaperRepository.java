@@ -1,13 +1,8 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.domain.Session;
 import cmsteam2.common.domain.ResearchPaper;
-import cmsteam2.common.domain.User;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.util.Date;
-import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -37,16 +32,15 @@ public class ResearchPaperRepository extends GenericRepository {
         }
     }
 
-    public List<ResearchPaper> getAll(){
-        org.hibernate.Session session=sessionFactory.openSession();
-        List<ResearchPaper> ResearchPapers =null;
+    public List<ResearchPaper> getAll() {
+        org.hibernate.Session session = sessionFactory.openSession();
+        List<ResearchPaper> ResearchPapers = null;
         try {
-            ResearchPapers=session.createQuery("From ResearchPaper ",ResearchPaper.class).list();
+            ResearchPapers = session.createQuery("From ResearchPaper ", ResearchPaper.class).list();
             System.out.println(ResearchPapers.size());
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
             return ResearchPapers;
         }

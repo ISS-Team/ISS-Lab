@@ -1,21 +1,14 @@
 package cmsteam2.common.domain;
 
-import cmsteam2.common.domain.Conference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Costi on 07.05.2017.
- */
-/**
- * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
- */
 @Entity
 @Table(name = "Session")
 public class Session {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_Session;
     private String title;
     private long startTime;
@@ -28,9 +21,9 @@ public class Session {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
     private Set<Participant> participanti = new HashSet<>();
 
-    public Session(String title,long startTime,long duration) {
-        this.duration=duration;
-        this.startTime=startTime;
+    public Session(String title, long startTime, long duration) {
+        this.duration = duration;
+        this.startTime = startTime;
         this.title = title;
     }
 

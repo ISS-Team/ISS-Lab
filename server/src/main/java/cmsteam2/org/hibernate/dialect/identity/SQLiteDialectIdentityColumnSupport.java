@@ -7,7 +7,7 @@ public class SQLiteDialectIdentityColumnSupport extends IdentityColumnSupportImp
     }
 
   /*
-	public boolean supportsInsertSelectIdentity() {
+    public boolean supportsInsertSelectIdentity() {
     return true; // As specified in NHibernate dialect
   }
   */

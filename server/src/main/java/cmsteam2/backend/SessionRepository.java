@@ -1,12 +1,8 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.domain.ResearchPaper;
 import cmsteam2.common.domain.Session;
-import cmsteam2.common.domain.Conference;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 

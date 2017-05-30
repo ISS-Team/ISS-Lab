@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Main class for starting the cmsteam2.middleware
+ * Main class for starting the CMS project
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"cmsteam2.rest.controller"})
@@ -26,18 +26,18 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    static void initialize(){
-        final StandardServiceRegistry registry=new StandardServiceRegistryBuilder().configure().build();
+    static void initialize() {
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         try {
-            sessionFactory =new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        }catch (Exception e){
+            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
             e.printStackTrace();
         }
     }
 
-    static void close(){
-        if(sessionFactory !=null){
+    static void close() {
+        if (sessionFactory != null) {
             sessionFactory.close();
         }
     }

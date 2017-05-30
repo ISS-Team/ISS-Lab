@@ -1,72 +1,65 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.domain.Session;
 import cmsteam2.common.domain.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
 import static cmsteam2.middleware.Main.sessionFactory;
 
-/**
- * Created by Costi on 15.05.2017.
- */
 public class UsersRepository extends GenericRepository {
     public UsersRepository(Properties props, SessionFactory sessionFactory) {
         super(props);
     }
 
-    public boolean checkUsername(String username){
-        org.hibernate.Session session=sessionFactory.openSession();
-        boolean ok=false;
-        Transaction tx=null;
+    public boolean checkUsername(String username) {
+        org.hibernate.Session session = sessionFactory.openSession();
+        boolean ok = false;
+        Transaction tx = null;
         try {
-            tx=session.beginTransaction();
-            List<User> useri=session.createQuery("From User u where u.username like '"+username+"'",User.class).list();
+            tx = session.beginTransaction();
+            List<User> useri = session.createQuery("From User u where u.username like '" + username + "'", User.class).list();
             System.out.println(useri.size());
-            if(useri.size()==1)
-                ok=true;
+            if (useri.size() == 1)
+                ok = true;
             tx.commit();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
-            if (tx!=null)
+            if (tx != null)
                 tx.rollback();
-        }
-        finally {
+        } finally {
             session.close();
             return ok;
         }
     }
 
-    public String getPassword(String username){
-        org.hibernate.Session session=sessionFactory.openSession();
-        boolean ok=false;
-        String parola=null;
-        Transaction tx=null;
+    public String getPassword(String username) {
+        org.hibernate.Session session = sessionFactory.openSession();
+        boolean ok = false;
+        String parola = null;
+        Transaction tx = null;
         try {
-            tx=session.beginTransaction();
-            List<User> useri=session.createQuery("From User u where u.username like '"+username+"'",User.class).list();
+            tx = session.beginTransaction();
+            List<User> useri = session.createQuery("From User u where u.username like '" + username + "'", User.class).list();
             System.out.println(useri.size());
-            if(useri.size()==1)
-                parola=useri.get(0).getPassword();
+            if (useri.size() == 1)
+                parola = useri.get(0).getPassword();
             tx.commit();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             e.printStackTrace();
-            if (tx!=null)
+            if (tx != null)
                 tx.rollback();
-        }
-        finally {
+        } finally {
             session.close();
             return parola;
         }
     }
 
 
-    public void save(User user){
-        org.hibernate.Session session=sessionFactory.openSession();
+    public void save(User user) {
+        org.hibernate.Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
         session.getTransaction().commit();

@@ -7,9 +7,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * Created by User on 15/05/2017.
- */
 public class GenericRepository {
 
     private Properties props;
@@ -18,25 +15,25 @@ public class GenericRepository {
         this.props = props;
     }
 
-    public Connection getConnection(){
-        Connection conn=null;
+    public Connection getConnection() {
+        Connection conn = null;
         try {
-            String driver=props.getProperty("jdbc.driver");
-            String url=props.getProperty("jdbc.url");
+            String driver = props.getProperty("jdbc.driver");
+            String url = props.getProperty("jdbc.url");
             Class.forName(driver);
-            conn= DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(url);
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally {
+        } finally {
             return conn;
         }
 
     }
 
-    public static Properties loadProps(){
-        Properties properties=new Properties();
+    public static Properties loadProps() {
+        Properties properties = new Properties();
         try {
             properties.load(new FileReader("Bd.config"));
         } catch (IOException e) {

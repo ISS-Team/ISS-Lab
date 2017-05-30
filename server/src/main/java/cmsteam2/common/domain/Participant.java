@@ -2,15 +2,13 @@ package cmsteam2.common.domain;
 
 
 import javax.persistence.*;
-/**
- * Daca lipseste un getter, setter sau alta metoda care erau si le-am sters din greseala sau aveti nevoie va rog sa completati
- */
+
 @Entity
-@Table(name = "Participant",uniqueConstraints = {@UniqueConstraint(columnNames = {"username","id_session"})})
+@Table(name = "Participant", uniqueConstraints = {@UniqueConstraint(columnNames = {"username", "id_session"})})
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id_Participant;
+    private int id_Participant;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username")
     private User user;
@@ -20,9 +18,8 @@ public class Participant {
     private Status status;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name= "id_Review")
+    @JoinColumn(name = "id_Review")
     private Review review;
-
 
     public Status getStatus() {
         return status;
