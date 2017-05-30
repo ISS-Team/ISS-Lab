@@ -43,12 +43,10 @@ public class ResearchPaperController {
     @PostMapping
     @RequestMapping("/update")
     public ResponseEntity update(@RequestBody ResearchPaper paper){
-        if(checkPaper(paper)){
-            researchPaperRepository.update(paper);
-            return new ResponseEntity(HttpStatus.OK);
-        }else{
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
+        if(checkPaper(paper))
+            if(researchPaperRepository.update(paper))
+                return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getResearchPaper")
