@@ -77,6 +77,10 @@ public class User {
         return username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public enum Permission {
         LISTENER(0),
         AUTHOR(1),

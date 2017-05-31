@@ -42,7 +42,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         } else {
             usersRepository.save(user);
-            return ResponseEntity.status(HttpStatus.OK).body(null);
+            return ResponseEntity.ok("{}");
         }
     }
 
