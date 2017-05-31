@@ -23,12 +23,8 @@ public class ConferenceController {
 
     @PostMapping("/update")
     public ResponseEntity update(@RequestBody Conference conference) {
-        boolean exists = conferenceRepository.update(conference);
-        if (exists) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+        conferenceRepository.update(conference);
+        return ResponseEntity.ok("{}");
     }
 
     @GetMapping("/getall")

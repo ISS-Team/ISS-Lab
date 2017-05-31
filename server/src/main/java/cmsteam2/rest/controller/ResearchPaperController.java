@@ -39,9 +39,8 @@ public class ResearchPaperController {
     @RequestMapping("/update")
     public ResponseEntity update(@RequestBody ResearchPaper paper) {
         if (checkPaper(paper))
-            if (researchPaperRepository.update(paper))
-                return new ResponseEntity(HttpStatus.OK);
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            researchPaperRepository.update(paper);
+            return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/getResearchPaper")

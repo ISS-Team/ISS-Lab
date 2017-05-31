@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
 //        System.out.println("This is middleware");
-        Mail.send("sergius302@gmail.com", "HelloThere", "localhost", "Test", "This is a test");
+//        Mail.send("sergius302@gmail.com", "HelloThere", "localhost", "Test", "This is a test");
 
         initialize();
         SpringApplication.run(Main.class, args);
