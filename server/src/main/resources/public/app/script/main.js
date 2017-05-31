@@ -1,43 +1,43 @@
 /**
  * Created by Afterwind on 5/31/2017.
  */
-$(document).ready(function() {
+$(document).ready(function () {
     console.log("ready");
-    $("#Login").click(function() {
+    $("#Login").click(function () {
         $("#generalInformations").hide();
-        $("#formRegister").css("display","none");
-        $("#formLogin").css("display","block");
+        $("#formRegister").css("display", "none");
+        $("#formLogin").css("display", "block");
 
     });
-    $("#Register").click(function() {
+    $("#Register").click(function () {
 
         $("#generalInformations").hide();
-        $("#formLogin").css("display","none");
-        $("#formRegister").css("display","block");
+        $("#formLogin").css("display", "none");
+        $("#formRegister").css("display", "block");
 
 
     });
-    $("#About").click(function(){
-        $("#formLogin").css("display","none");
-        $("#formRegister").css("display","none");
+    $("#About").click(function () {
+        $("#formLogin").css("display", "none");
+        $("#formRegister").css("display", "none");
         $("#generalInformations").show();
     });
-    $("#btnSubmitRegister").click(function(){
-        var firstName=$("#firstNameR").val();
-        var lastName=$("#lastNameR").val();
-        var email=$("#emailR").val();
-        var username=$("#usernameR").val();
+    $("#btnSubmitRegister").click(function () {
+        var firstName = $("#firstNameR").val();
+        var lastName = $("#lastNameR").val();
+        var email = $("#emailR").val();
+        var username = $("#usernameR").val();
 //    var password=SHA256($("#passwordR").val());
         var password = $("#passwordR").val();
-        var position=$("#selectPosition").val();
+        var position = $("#selectPosition").val();
 
         var forRegister = {
-            "firstName":firstName,
-            "lastName":lastName,
-            "email":email,
-            "username":username,
-            "password":password,
-            "position":position,
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "username": username,
+            "password": password,
+            "position": position
         };
 
         $.ajax({
@@ -51,7 +51,7 @@ $(document).ready(function() {
                 console.log(res);
             },
 
-            error: function(res) {
+            error: function (res) {
                 alert("Eroare");
             }
         });
@@ -62,14 +62,14 @@ $(document).ready(function() {
 //		alert("Datele au fost trimise");
 
     });
-    $("#btnSubmitLogin").click(function(){
+    $("#btnSubmitLogin").click(function () {
 
-        var username=$("#username").val();
+        var username = $("#username").val();
 //    var password=SHA256($("#password").val());
-        var password=$("#password").val();
+        var password = $("#password").val();
         var forLogin = {
-            "username":username,
-            "password":password
+            "username": username,
+            "password": password
         };
 
         $.ajax({
@@ -84,7 +84,7 @@ $(document).ready(function() {
                 console.log(res);
             },
 
-            error: function(res) {
+            error: function (res) {
                 alert("Eroare");
             }
         });
