@@ -3,7 +3,9 @@ package cmsteam2.common.new_domain;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity

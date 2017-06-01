@@ -2,17 +2,13 @@ package cmsteam2.rest.controller;
 
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
-import cmsteam2.common.new_domain.Conference;
 import cmsteam2.common.new_domain.ResearchPaper;
-import org.hibernate.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
-
-import static cmsteam2.middleware.Main.sessionFactory;
 
 @RestController
 @RequestMapping("/conferences/{id}/papers")

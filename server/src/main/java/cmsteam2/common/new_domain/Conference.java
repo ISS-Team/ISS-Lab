@@ -1,6 +1,5 @@
 package cmsteam2.common.new_domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
