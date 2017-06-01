@@ -2,8 +2,7 @@ package cmsteam2.rest.controller;
 
 import cmsteam2.backend.ConferenceRepository;
 import cmsteam2.backend.GenericRepository;
-import cmsteam2.common.new_domain.Conference;
-import org.springframework.http.HttpStatus;
+import cmsteam2.common.domain.Conference;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

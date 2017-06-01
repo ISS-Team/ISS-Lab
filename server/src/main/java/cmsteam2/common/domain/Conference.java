@@ -1,5 +1,7 @@
 package cmsteam2.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
@@ -26,8 +28,7 @@ public class Conference {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conference")
     private Set<Session> sessions = new HashSet<>();
 
-    public Conference() {
-    }
+    public Conference() {}
 
     public Conference(String title, String theme, Date date) {
         this.title = title;
@@ -48,12 +49,9 @@ public class Conference {
         sessions.add(s);
     }
 
+    @JsonValue
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {

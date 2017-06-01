@@ -1,6 +1,6 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.new_domain.User;
+import cmsteam2.common.domain.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

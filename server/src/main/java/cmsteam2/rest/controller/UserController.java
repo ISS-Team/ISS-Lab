@@ -2,7 +2,7 @@ package cmsteam2.rest.controller;
 
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.UsersRepository;
-import cmsteam2.common.new_domain.User;
+import cmsteam2.common.domain.User;
 import cmsteam2.middleware.Main;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

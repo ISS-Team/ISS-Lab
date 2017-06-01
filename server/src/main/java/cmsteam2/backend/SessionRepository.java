@@ -1,6 +1,6 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.new_domain.Session;
+import cmsteam2.common.domain.Session;
 
 import java.util.List;
 import java.util.Properties;

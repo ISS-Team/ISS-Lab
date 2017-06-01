@@ -9,7 +9,7 @@ import java.util.Set;
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_Session;
+    private int id;
     private String title;
     private long startTime;
     private long duration;
@@ -18,8 +18,8 @@ public class Session {
     @JoinColumn(name = "id_Conference")
     private Conference conference;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
-    private Set<Participant> participanti = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    private Set<User> participants = new HashSet<>();
 
     public Session(String title, long startTime, long duration) {
         this.duration = duration;
@@ -27,12 +27,12 @@ public class Session {
         this.title = title;
     }
 
-    public int getId_Session() {
-        return id_Session;
+    public int getId() {
+        return id;
     }
 
-    public void setId_Session(int id_Session) {
-        this.id_Session = id_Session;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -67,11 +67,7 @@ public class Session {
         this.conference = conference;
     }
 
-    public Set<Participant> getParticipanti() {
-        return participanti;
-    }
-
-    public void setParticipanti(Set<Participant> participanti) {
-        this.participanti = participanti;
+    public Set<User> getParticipants() {
+        return participants;
     }
 }

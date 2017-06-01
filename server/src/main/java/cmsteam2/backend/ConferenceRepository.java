@@ -1,6 +1,6 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.new_domain.Conference;
+import cmsteam2.common.domain.Conference;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

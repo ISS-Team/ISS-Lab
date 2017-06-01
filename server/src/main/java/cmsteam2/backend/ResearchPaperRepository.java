@@ -1,6 +1,6 @@
 package cmsteam2.backend;
 
-import cmsteam2.common.new_domain.ResearchPaper;
+import cmsteam2.common.domain.ResearchPaper;
 import org.hibernate.Session;
 
 import java.util.List;

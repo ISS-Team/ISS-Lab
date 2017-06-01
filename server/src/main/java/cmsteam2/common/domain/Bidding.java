@@ -1,4 +1,4 @@
-package cmsteam2.common.new_domain;
+package cmsteam2.common.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

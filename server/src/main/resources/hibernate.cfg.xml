@@ -17,14 +17,14 @@
         <property name="show_sql">true</property>
 
 
-        <!--<mapping class="cmsteam2.common.new_domain.Recommendation"/>-->
-        <mapping class="cmsteam2.common.new_domain.Review"/>
-        <mapping class="cmsteam2.common.new_domain.Conference"/>
-        <mapping class="cmsteam2.common.new_domain.Session"/>
-        <mapping class="cmsteam2.common.new_domain.User"/>
-        <mapping class="cmsteam2.common.new_domain.ResearchPaper"/>
-        <!--<mapping class="cmsteam2.common.new_domain.Participant"/>-->
-        <!--<mapping class="cmsteam2.common.new_domain.Reviewer"/>-->
-        <!--<mapping class="cmsteam2.common.new_domain.MetaData"/>-->
+        <!--<mapping clacmsteam2.common.domain.Recommendation"/>-->
+        <mapping class="cmsteam2.common.domain.Review"/>
+        <mapping class="cmsteam2.common.domain.Conference"/>
+        <mapping class="cmsteam2.common.domain.Session"/>
+        <mapping class="cmsteam2.common.domain.User"/>
+        <mapping class="cmsteam2.common.domain.ResearchPaper"/>
+        <!--<mapping clacmsteam2.common.domain.Participant"/>-->
+        <!--<mapping clacmsteam2.common.domain.Reviewer"/>-->
+        <!--<mapping clacmsteam2.common.domain.MetaData"/>-->
     </session-factory>
 </hibernate-configuration>
