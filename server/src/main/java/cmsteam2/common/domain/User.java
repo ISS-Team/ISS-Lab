@@ -1,5 +1,6 @@
 package cmsteam2.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
@@ -18,6 +19,9 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
+    @OneToMany(mappedBy = "paper", fetch = FetchType.EAGER)
+    private Set<Bidding> biddings = new HashSet<>();
+
     /**
      * Permission level. The higher the more permission the user has.
      */
@@ -25,8 +29,8 @@ public class User {
 
     public User() {}
 
-    public User(String name, String password, String email, boolean isActivated, Permission permission) {
-        this.username = name;
+    public User(String username, String password, String email, boolean isActivated, Permission permission) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.isActivated = isActivated;

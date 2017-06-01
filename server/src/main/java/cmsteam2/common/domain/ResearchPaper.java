@@ -20,6 +20,9 @@ public class ResearchPaper {
     @ManyToOne
     private User author;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Bidding> bidders = new HashSet<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Topics", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "topics")
@@ -105,6 +108,10 @@ public class ResearchPaper {
 
     public Conference getConference() {
         return conference;
+    }
+
+    public Set<Bidding> getBidders() {
+        return bidders;
     }
 
     @JsonIgnore

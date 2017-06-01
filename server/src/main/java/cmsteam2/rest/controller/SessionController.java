@@ -23,9 +23,7 @@ public class SessionController {
         if (sessions != null) {
             return sessions;
         } else {
-            return new ArrayList<Session>();
+            return new ArrayList<>();
         }
     }
-
-
 }
