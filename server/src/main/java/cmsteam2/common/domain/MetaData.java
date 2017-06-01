@@ -10,7 +10,7 @@ public class MetaData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_MetaData;
+    private int idMetaData;
 
     @ElementCollection
     @CollectionTable(name = "Topics", joinColumns = @JoinColumn(name = "id_Topics"))

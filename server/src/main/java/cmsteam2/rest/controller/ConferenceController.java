@@ -18,7 +18,7 @@ public class ConferenceController {
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Conference conference) {
         conferenceRepository.save(conference);
-        return ResponseEntity.status(HttpStatus.OK).body("{\"id\": " + conference.getId() + "}");
+        return ResponseEntity.status(HttpStatus.OK).body("{\"id\": " + conference.getIdConference() + "}");
     }
 
     @PostMapping("/update")

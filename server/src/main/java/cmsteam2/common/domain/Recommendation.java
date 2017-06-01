@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Recommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id_Recommendation;
+    private int idRecommendation;
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -23,7 +23,7 @@ public class Recommendation {
     }
 
     public Recommendation(int id_Recommendation, String description) {
-        Id_Recommendation = id_Recommendation;
+        idRecommendation = id_Recommendation;
         this.description = description;
     }
 
@@ -35,12 +35,12 @@ public class Recommendation {
         this.review = review;
     }
 
-    public int getId_Recommendation() {
-        return Id_Recommendation;
+    public int getIdRecommendation() {
+        return idRecommendation;
     }
 
-    public void setId_Recommendation(int id_Recommendation) {
-        Id_Recommendation = id_Recommendation;
+    public void setIdRecommendation(int idRecommendation) {
+        this.idRecommendation = idRecommendation;
     }
 
     public void setDescription(String description) {

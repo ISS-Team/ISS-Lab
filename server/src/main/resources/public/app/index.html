@@ -20,59 +20,59 @@
       <a class="navbar-brand" href="#">Conference Mangement System</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a id="About" href="#">About</a></li>
+      <li><a idConference="About" href="#">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-      <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a idConference="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+      <li><a idConference="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
 </nav>
 
 <!--div for general informations such as deadline, the name of the conference-->
 
-<div id="generalInformations" class="container">
+<div idConference="generalInformations" class="container">
   <h3>General informations about the conference.</h3>
 </div>
 
 <!--form for register-->
 
 <div class="container">
-  <form id="formRegister" class="form-horizontal"  style="display:none;" method="post" action="">
+  <form idConference="formRegister" class="form-horizontal"  style="display:none;" method="post" action="">
     <div class="form-group">
       <label class="control-label col-sm-2" for="firstNameR">First name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name" name="firstNameR">
+        <input type="text" class="form-control" idConference="firstNameR" placeholder="Enter your first name" name="firstNameR">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="lastNameR">Last name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name" name="lastNameR">
+        <input type="text" class="form-control" idConference="lastNameR" placeholder="Enter your last name" name="lastNameR">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="emailR">Email:</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="emailR" placeholder="Enter your email" name="emailR">
+        <input type="email" class="form-control" idConference="emailR" placeholder="Enter your email" name="emailR">
       </div>
     </div>
 	<div class="form-group">
       <label class="control-label col-sm-2" for="usernameR">Username:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="usernameR" placeholder="Enter username" name="usernameR">
+        <input type="text" class="form-control" idConference="usernameR" placeholder="Enter username" name="usernameR">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="passwordR">Password:</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="passwordR" placeholder="Enter password" name="passwordR">
+        <input type="password" class="form-control" idConference="passwordR" placeholder="Enter password" name="passwordR">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="selectPosition">Select your position:</label>
        <div class="col-sm-10">
-	  <select class="form-control" id="selectPosition">
+	  <select class="form-control" idConference="selectPosition">
         <option value="speaker">Speaker</option>
         <option value="listener">Listener</option>
         <option value="programCommitteeMember">Program Committee Member</option>
@@ -81,7 +81,7 @@
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitRegister" type="button" class="btn btn-default" value="Submit">
+        <input idConference="btnSubmitRegister" type="button" class="btn btn-default" value="Submit">
       </div>
     </div>
   </form>
@@ -90,22 +90,22 @@
 <!--form for login-->
 
 <div class="container">
-  <form id="formLogin" class="form-horizontal"  style="display:none;" method="post" action="">
+  <form idConference="formLogin" class="form-horizontal"  style="display:none;" method="post" action="">
     <div class="form-group">
       <label class="control-label col-sm-2" for="username">Username:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+        <input type="text" class="form-control" idConference="username" placeholder="Enter username" name="username">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="password">Password:</label>
       <div class="col-sm-10">          
-        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+        <input type="password" class="form-control" idConference="password" placeholder="Enter password" name="password">
       </div>
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitLogin" type="button" class="btn btn-default" value="Submit">
+        <input idConference="btnSubmitLogin" type="button" class="btn btn-default" value="Submit">
       </div>
     </div>
   </form>

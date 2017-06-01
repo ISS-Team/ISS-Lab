@@ -9,7 +9,7 @@ import java.util.Set;
 public class ResearchPaper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idResearchPaper;
     private String title;
     private String abstractPaper;
     private String pathFile;
@@ -47,20 +47,20 @@ public class ResearchPaper {
     }
 
     public ResearchPaper(int id, String title, User author) {
-        this.id = id;
+        this.idResearchPaper = id;
         this.title = title;
 //        this.author=author;
     }
 
     public ResearchPaper(int id, String title, String abstractPaper, User author) {
-        this.id = id;
+        this.idResearchPaper = id;
         this.title = title;
         this.abstractPaper = abstractPaper;
 //        this.author=author;
     }
 
-    public int getId() {
-        return id;
+    public int getIdResearchPaper() {
+        return idResearchPaper;
     }
 
     public String getTitle() {
