@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,15 +43,14 @@ public class ResearchPaperController {
     }
 
     @GetMapping("/getall")
-    public List<ResearchPaper> getResearchPapers() {
-        List<ResearchPaper> papers = researchPaperRepository.getAll();
-        if (papers != null) {
-            return papers;
-        } else {
-            return new ArrayList<ResearchPaper>();
-        }
+    public List<ResearchPaper> getAll() {
+        return researchPaperRepository.getAll();
     }
 
-
-
+    @GetMapping("/getaccepted")
+    public List<ResearchPaper> getAllAccepted() {
+        List<ResearchPaper> papers = researchPaperRepository.getAll();
+        papers.removeIf(paper -> !paper.isAccepted());
+        return papers;
+    }
 }

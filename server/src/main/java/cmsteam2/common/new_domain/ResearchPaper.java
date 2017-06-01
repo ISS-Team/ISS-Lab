@@ -98,6 +98,14 @@ public class ResearchPaper {
     public Set<String> getKeywords() {
         return keywords;
     }
+
+    public boolean isAccepted() {
+        int sum = 0;
+        for (Review r : reviews) {
+            sum += r.getQualifier().weight;
+        }
+        return sum > 0;
+    }
 }
 
 
