@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Reviewer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idReviewer;
+    private int id_Reviewer;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Username")
@@ -19,12 +19,12 @@ public class Reviewer {
 
     private StatusReviewer statusReviewer;
 
-    public int getIdReviewer() {
-        return idReviewer;
+    public int getId_Reviewer() {
+        return id_Reviewer;
     }
 
-    public void setIdReviewer(int idReviewer) {
-        this.idReviewer = idReviewer;
+    public void setId_Reviewer(int id_Reviewer) {
+        this.id_Reviewer = id_Reviewer;
     }
 
     public User getUser() {

@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idParticipant;
+    private int id_Participant;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username")
     private User user;
@@ -45,11 +45,11 @@ public class Participant {
         this.user = user;
     }
 
-    public int getIdParticipant() {
-        return idParticipant;
+    public int getId_Participant() {
+        return id_Participant;
     }
 
-    public void setIdParticipant(int idParticipant) {
-        this.idParticipant = idParticipant;
+    public void setId_Participant(int id_Participant) {
+        this.id_Participant = id_Participant;
     }
 }

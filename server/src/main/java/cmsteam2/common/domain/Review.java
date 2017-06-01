@@ -10,7 +10,7 @@ import java.util.List;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idReview;
+    private int Id_Review;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User reviewer;

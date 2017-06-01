@@ -9,7 +9,7 @@ import java.util.Set;
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idSession;
+    private int id_Session;
     private String title;
     private long startTime;
     private long duration;
@@ -27,12 +27,12 @@ public class Session {
         this.title = title;
     }
 
-    public int getIdSession() {
-        return idSession;
+    public int getId_Session() {
+        return id_Session;
     }
 
-    public void setIdSession(int idSession) {
-        this.idSession = idSession;
+    public void setId_Session(int id_Session) {
+        this.id_Session = id_Session;
     }
 
     public String getTitle() {
