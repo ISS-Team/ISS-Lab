@@ -5,23 +5,22 @@ $(document).ready(function () {
     console.log("ready");
     $("#Login").click(function () {
         $("#generalInformations").hide();
-        $("#formRegister").css("display", "none");
-        $("#formLogin").css("display", "block");
-
+        $("#formRegister").hide();
+        $("#formLogin").show();
     });
+
     $("#Register").click(function () {
-
         $("#generalInformations").hide();
-        $("#formLogin").css("display", "none");
-        $("#formRegister").css("display", "block");
-
-
+        $("#formLogin").hide();
+        $("#formRegister").show();
     });
+
     $("#About").click(function () {
-        $("#formLogin").css("display", "none");
-        $("#formRegister").css("display", "none");
+        $("#formLogin").hide();
+        $("#formRegister").hide();
         $("#generalInformations").show();
     });
+
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
         var lastName = $("#lastNameR").val();
@@ -47,12 +46,13 @@ $(document).ready(function () {
             dataType: "json",
             data: JSON.stringify(forRegister),
             success: function (res) {
-                alert("Success");
-                console.log(res);
+                $("#generalInformations").hide();
+                $("#formRegister").hide();
+                $("#formLogin").show();
             },
 
             error: function (res) {
-                alert("Eroare");
+                alert("Eroare la inregistrare");
             }
         });
 //    var xhr = new XMLHttpRequest();

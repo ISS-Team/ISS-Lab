@@ -1,8 +1,8 @@
 package cmsteam2.common.domain;
 
 public enum StatusReviewer {
-    AcceptedToReview,
-    Reviewing,
-    FinishedToReview,
-    Reviewed
+    ACCEPTED_TO_REVIEW,
+    REVIEWING,
+    FINISHED_TO_REVIEW,
+    REVIEWED
 }

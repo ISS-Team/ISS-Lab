@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/researchPapers")
+@RequestMapping("/conferences/{id}/papers")
 public class ResearchPaperController {
 
     private ResearchPaperRepository researchPaperRepository;
@@ -43,7 +43,7 @@ public class ResearchPaperController {
             return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/getResearchPaper")
+    @GetMapping("/getall")
     public List<ResearchPaper> getResearchPapers() {
         List<ResearchPaper> papers = researchPaperRepository.getAll();
         if (papers != null) {
@@ -52,6 +52,7 @@ public class ResearchPaperController {
             return new ArrayList<ResearchPaper>();
         }
     }
+    
 
 
 }

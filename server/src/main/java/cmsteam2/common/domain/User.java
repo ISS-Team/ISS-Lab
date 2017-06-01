@@ -20,15 +20,14 @@ public class User {
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Participant> sesiuni = new HashSet<>();
+    private Set<Participant> sessions = new HashSet<>();
 
     /**
      * Permission level. The higher the more permission the user has.
      */
     private int permissionLevel;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String name, String password, String email, boolean isActivated, Permission permission) {
         this.username = name;
@@ -46,12 +45,12 @@ public class User {
         this.permissionLevel = perm.level;
     }
 
-    public Set<Participant> getSesiuni() {
-        return sesiuni;
+    public Set<Participant> getSessions() {
+        return sessions;
     }
 
-    public void setSesiuni(Set<Participant> sesiuni) {
-        this.sesiuni = sesiuni;
+    public void setSessions(Set<Participant> sessions) {
+        this.sessions = sessions;
     }
 
     public void addResearchPaper(ResearchPaper researchPaper) {
