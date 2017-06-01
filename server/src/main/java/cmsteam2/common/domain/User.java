@@ -1,5 +1,7 @@
 package cmsteam2.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,22 +15,15 @@ public class User {
     private String email;
     private boolean isActivated;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Reviewer> Reviewers = new HashSet<>();
-
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<ResearchPaper> researchPapers = new HashSet<>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Participant> sesiuni = new HashSet<>();
 
     /**
      * Permission level. The higher the more permission the user has.
      */
     private int permissionLevel;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String name, String password, String email, boolean isActivated, Permission permission) {
         this.username = name;
@@ -46,16 +41,21 @@ public class User {
         this.permissionLevel = perm.level;
     }
 
-    public Set<Participant> getSesiuni() {
-        return sesiuni;
-    }
-
-    public void setSesiuni(Set<Participant> sesiuni) {
-        this.sesiuni = sesiuni;
-    }
-
     public void addResearchPaper(ResearchPaper researchPaper) {
         researchPapers.add(researchPaper);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @JsonValue
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -67,18 +67,6 @@ public class User {
                 ", isActivated=" + isActivated +
                 ", permissionLevel=" + permissionLevel +
                 '}';
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public enum Permission {

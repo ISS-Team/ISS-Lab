@@ -7,11 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/researchPapers")
+@RequestMapping("/conferences/{id}/papers")
+@Transactional
 public class ResearchPaperController {
 
     private ResearchPaperRepository researchPaperRepository;
@@ -21,7 +22,7 @@ public class ResearchPaperController {
     }
 
     private boolean checkPaper(ResearchPaper paper) {
-        return ((paper.getMetaData() != null) && !(paper.getAbstractPaper().equals("")));
+        return (paper.getTopics().size() != 0 && paper.getKeywords().size() != 0 && !(paper.getAbstractPaper().equals("")));
     }
 
     @PostMapping
@@ -43,15 +44,15 @@ public class ResearchPaperController {
             return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/getResearchPaper")
-    public List<ResearchPaper> getResearchPapers() {
-        List<ResearchPaper> papers = researchPaperRepository.getAll();
-        if (papers != null) {
-            return papers;
-        } else {
-            return new ArrayList<ResearchPaper>();
-        }
+    @GetMapping("/getall")
+    public List<ResearchPaper> getAll(@PathVariable int id) {
+        return researchPaperRepository.getAll(id);
     }
 
-
+    @GetMapping("/getaccepted")
+    public List<ResearchPaper> getAllAccepted(@PathVariable int id) {
+        List<ResearchPaper> papers = researchPaperRepository.getAll(id);
+        papers.removeIf(paper -> !paper.isAccepted());
+        return papers;
+    }
 }

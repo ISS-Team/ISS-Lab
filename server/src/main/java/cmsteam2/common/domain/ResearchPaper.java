@@ -1,5 +1,8 @@
 package cmsteam2.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,49 +17,42 @@ public class ResearchPaper {
     private String abstractPaper;
     private String pathFile;
 
-    public String getAbstractPaper() {
-        return abstractPaper;
-    }
+    @ManyToOne
+    private User author;
 
-    public void setAbstractPaper(String abstractPaper) {
-        this.abstractPaper = abstractPaper;
-    }
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Topics", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "topics")
+    private Set<String> topics = new HashSet<>();
 
-    public MetaData getMetaData() {
-        return metaData;
-    }
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "Keywords", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "keywords")
+    private Set<String> keywords = new HashSet<>();
 
-    public void setMetaData(MetaData metaData) {
-        this.metaData = metaData;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "frn_ResearchPaper_Id")
-    private MetaData metaData;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper", fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "researchPaper")
-    private Set<Reviewer> revieweri = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
+    private Set<User> reviewers = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonProperty("conference_id")
     private Conference conference;
 
-    public ResearchPaper() {
-    }
+    public ResearchPaper() {}
 
     public ResearchPaper(int id, String title, User author) {
         this.id = id;
         this.title = title;
-//        this.author=author;
+        this.author=author;
     }
 
     public ResearchPaper(int id, String title, String abstractPaper, User author) {
         this.id = id;
         this.title = title;
         this.abstractPaper = abstractPaper;
-//        this.author=author;
+        this.author=author;
     }
 
     public int getId() {
@@ -71,35 +67,54 @@ public class ResearchPaper {
         return abstractPaper;
     }
 
-
     public void addReview(Review review) {
         this.reviews.add(review);
     }
-
 
     public Set<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
+    public Set<User> getReviewers() {
+        return reviewers;
     }
 
-    public Set<Reviewer> getRevieweri() {
-        return revieweri;
+    public String getAbstractPaper() {
+        return abstractPaper;
     }
 
-    public void setRevieweri(Set<Reviewer> revieweri) {
-        this.revieweri = revieweri;
+    public void setAbstractPaper(String abstractPaper) {
+        this.abstractPaper = abstractPaper;
     }
 
-//    public User getAuthor() {
-//        return author;
-//    }
-//
-//    public void setAuthor(User author) {
-//        this.author = author;
-//    }
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Set<String> getTopics() {
+        return topics;
+    }
+
+    public Set<String> getKeywords() {
+        return keywords;
+    }
+
+    public Conference getConference() {
+        return conference;
+    }
+
+    @JsonIgnore
+    public boolean isAccepted() {
+        int sum = 0;
+        for (Review r : reviews) {
+            sum += r.getQualifier().weight;
+        }
+        return sum > 0;
+    }
 }
 
 

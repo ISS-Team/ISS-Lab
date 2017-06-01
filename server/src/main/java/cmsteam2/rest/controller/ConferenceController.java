@@ -3,7 +3,6 @@ package cmsteam2.rest.controller;
 import cmsteam2.backend.ConferenceRepository;
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.common.domain.Conference;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class ConferenceController {
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody Conference conference) {
         conferenceRepository.save(conference);
-        return ResponseEntity.status(HttpStatus.OK).body("{\"id\": " + conference.getId() + "}");
+        return ResponseEntity.ok("{\"id\": " + conference.getId() + "}");
     }
 
     @PostMapping("/update")
