@@ -2,7 +2,7 @@ package cmsteam2.rest.controller;
 
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
-import cmsteam2.common.domain.ResearchPaper;
+import cmsteam2.common.new_domain.ResearchPaper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class ResearchPaperController {
     }
 
     private boolean checkPaper(ResearchPaper paper) {
-        return ((paper.getMetaData() != null) && !(paper.getAbstractPaper().equals("")));
+        return (paper.getTopics().size() != 0 && paper.getKeywords().size() != 0 && !(paper.getAbstractPaper().equals("")));
     }
 
     @PostMapping
@@ -52,7 +52,7 @@ public class ResearchPaperController {
             return new ArrayList<ResearchPaper>();
         }
     }
-    
+
 
 
 }
