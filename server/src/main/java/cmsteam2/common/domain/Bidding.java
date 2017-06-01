@@ -5,38 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Bidding")
-@IdClass(Bidding.PK.class)
 public class Bidding implements Serializable {
-
-    public static class PK implements Serializable {
-        private String user;
-
-        public String getUser() {
-            return user;
-        }
-
-        public int getPaper() {
-            return paper;
-        }
-
-        public void setUser(String user) {
-            this.user = user;
-        }
-
-        public void setPaper(int paper) {
-            this.paper = paper;
-        }
-
-        private int paper;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setPaper(ResearchPaper paper) {
-        this.paper = paper;
-    }
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
@@ -52,6 +21,14 @@ public class Bidding implements Serializable {
     private Status status;
 
     public Bidding() {}
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setPaper(ResearchPaper paper) {
+        this.paper = paper;
+    }
 
     public User getUser() {
         return user;
@@ -70,9 +47,15 @@ public class Bidding implements Serializable {
     }
 
     public enum Status {
-        ACCEPTED,
-        NEUTRAL,
-        REJECTED;
+        ACCEPTED(1),
+        NEUTRAL(0),
+        REJECTED(-1);
+
+        public int weight;
+
+        Status(int weight) {
+            this.weight = weight;
+        }
     }
 
 }

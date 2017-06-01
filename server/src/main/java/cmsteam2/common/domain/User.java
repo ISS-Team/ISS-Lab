@@ -66,6 +66,10 @@ public class User {
         return email;
     }
 
+    public Set<Bidding> getBiddings() {
+        return biddings;
+    }
+
     @Override
     public String toString() {
         return "User{" +

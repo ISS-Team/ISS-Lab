@@ -1,5 +1,6 @@
 package cmsteam2.backend;
 
+import cmsteam2.common.domain.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -62,4 +63,14 @@ public class GenericRepository <T> {
         }
         return properties;
     }
+
+    public User getUser(String username) {
+        try (Session s = sessionFactory.openSession()) {
+            return s.createQuery("from User U where id like '" + username + "'", User.class).uniqueResult();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }

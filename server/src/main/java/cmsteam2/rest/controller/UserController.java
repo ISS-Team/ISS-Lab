@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.SessionScope;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 
 @RestController
@@ -25,10 +28,11 @@ public class UserController {
 
     @PostMapping
     @RequestMapping("/login")
-    public ResponseEntity login(@RequestBody User user) {
+    public ResponseEntity login(@RequestBody User user, HttpSession session) {
 //        System.out.println(user);
         String password = usersRepository.getPassword(user.getUsername());
         if (user.getPassword().equals(password)) {
+            session.setAttribute("username", user.getUsername());
             return ResponseEntity.ok().body("{}");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

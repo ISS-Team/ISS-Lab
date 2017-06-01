@@ -13,6 +13,9 @@ public class Conference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    private int reviewersPerPaper;
+
     private String title;
     private String theme;
     private Date date;
@@ -21,7 +24,6 @@ public class Conference {
     private Date deadlineReview;
     private Date startTime;
     private Date endTime;
-
     @OneToMany
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
@@ -116,5 +118,13 @@ public class Conference {
 
     public void setDeadlineReview(Date deadlineReview) {
         this.deadlineReview = deadlineReview;
+    }
+
+    public int getReviewersPerPaper() {
+        return reviewersPerPaper;
+    }
+
+    public void setReviewersPerPaper(int reviewersPerPaper) {
+        this.reviewersPerPaper = reviewersPerPaper;
     }
 }
