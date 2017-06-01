@@ -1,5 +1,9 @@
 package cmsteam2.common.new_domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +17,8 @@ public class Review {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonProperty("reviewer_username")
+    @JsonIgnoreProperties({"researchPapers"})
     private User reviewer;
     private Date date;
 
@@ -20,12 +26,13 @@ public class Review {
     private Qualifier qualifier;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "review")
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Recommendations", joinColumns = @JoinColumn(name = "id_Recommendations"))
     @Column(name = "recommendations")
     private List<String> recommendations = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private ResearchPaper reviewedPaper;
 
     public Review() {}

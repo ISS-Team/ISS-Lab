@@ -1,5 +1,8 @@
 package cmsteam2.common.new_domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
@@ -47,6 +50,7 @@ public class Conference {
         sessions.add(s);
     }
 
+    @JsonValue
     public int getId() {
         return id;
     }

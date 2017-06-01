@@ -14,10 +14,10 @@ public class ResearchPaperRepository extends GenericRepository<ResearchPaper> {
         super(props);
     }
 
-    public List<ResearchPaper> getAll() {
+    public List<ResearchPaper> getAll(int conferenceId) {
         List<ResearchPaper> researchPapers = null;
         try (Session session = sessionFactory.openSession()) {
-            researchPapers = session.createQuery("from ResearchPaper ", ResearchPaper.class).list();
+            researchPapers = session.createQuery("from ResearchPaper RP where RP.conference.id = " + conferenceId, ResearchPaper.class).list();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

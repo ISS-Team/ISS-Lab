@@ -1,5 +1,10 @@
 package cmsteam2.common.new_domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,23 +22,24 @@ public class ResearchPaper {
     @ManyToOne
     private User author;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Topics", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "topics")
     private Set<String> topics = new HashSet<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Keywords", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "keywords")
     private Set<String> keywords = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper", fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
     private Set<User> reviewers = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonProperty("conference_id")
     private Conference conference;
 
     public ResearchPaper() {}
@@ -99,6 +105,11 @@ public class ResearchPaper {
         return keywords;
     }
 
+    public Conference getConference() {
+        return conference;
+    }
+
+    @JsonIgnore
     public boolean isAccepted() {
         int sum = 0;
         for (Review r : reviews) {

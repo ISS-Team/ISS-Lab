@@ -2,15 +2,21 @@ package cmsteam2.rest.controller;
 
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
+import cmsteam2.common.new_domain.Conference;
 import cmsteam2.common.new_domain.ResearchPaper;
+import org.hibernate.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
+
+import static cmsteam2.middleware.Main.sessionFactory;
 
 @RestController
 @RequestMapping("/conferences/{id}/papers")
+@Transactional
 public class ResearchPaperController {
 
     private ResearchPaperRepository researchPaperRepository;
@@ -43,13 +49,13 @@ public class ResearchPaperController {
     }
 
     @GetMapping("/getall")
-    public List<ResearchPaper> getAll() {
-        return researchPaperRepository.getAll();
+    public List<ResearchPaper> getAll(@PathVariable int id) {
+        return researchPaperRepository.getAll(id);
     }
 
     @GetMapping("/getaccepted")
-    public List<ResearchPaper> getAllAccepted() {
-        List<ResearchPaper> papers = researchPaperRepository.getAll();
+    public List<ResearchPaper> getAllAccepted(@PathVariable int id) {
+        List<ResearchPaper> papers = researchPaperRepository.getAll(id);
         papers.removeIf(paper -> !paper.isAccepted());
         return papers;
     }
