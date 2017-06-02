@@ -1,5 +1,6 @@
 package cmsteam2.rest.controller;
 
+import cmsteam2.backend.BiddingRepository;
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
 import cmsteam2.common.domain.Bidding;
@@ -24,9 +25,11 @@ import java.util.Random;
 public class ResearchPaperController {
 
     private ResearchPaperRepository researchPaperRepository;
+    private BiddingRepository biddingRepository;
 
     public ResearchPaperController() {
         researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps());
+        biddingRepository=new BiddingRepository(GenericRepository.loadProps());
     }
 
     private boolean checkPaper(ResearchPaper paper) {
@@ -85,21 +88,32 @@ public class ResearchPaperController {
     @GetMapping("/getreviewers/{paperId}")
     public List<User> getReviewers(@PathVariable int paperId) {
         ResearchPaper paper = researchPaperRepository.get(paperId);
+        List<Bidding> allBidding=biddingRepository.getAllByResearchPaperId(paperId);
         List<User> result = new ArrayList<>();
-        List<Bidding> reviewers = new ArrayList<>();
-        for (Bidding bid : paper.getBidders()) {
+        List<Bidding> reviewers =new ArrayList<>();
+        for (Bidding bid : allBidding) {
             if (bid.getStatus() != Bidding.Status.REJECTED) {
                 reviewers.add(bid);
             }
         }
         if (reviewers.size() == 0) {
             Random random = new Random(1);
-            User victim = ((Bidding) paper.getBidders().toArray()[random.nextInt(paper.getBidders().size())]).getUser();
+//           User victim = ((Bidding) paper.getBidders().toArray()[random.nextInt(paper.getBidders().size())]).getUser();
+            User victim=((Bidding)allBidding.toArray()[random.nextInt(allBidding.size())]).getUser();
             result.add(victim);
         } else {
-            reviewers.sort(Comparator.comparingInt(u -> u.getStatus().weight));
-            for (Bidding b : reviewers.subList(0, paper.getConference().getReviewersPerPaper())) {
-                result.add(b.getUser());
+            if(reviewers.size()> paper.getConference().getReviewersPerPaper()){
+                reviewers.sort(Comparator.comparingInt(u -> u.getStatus().weight));
+                for (Bidding b : reviewers.subList(0, paper.getConference().getReviewersPerPaper())) {
+                    result.add(b.getUser());
+                }
+            }
+            else{
+                for (Bidding b:reviewers
+                     ) {
+                    result.add(b.getUser());
+
+                }
             }
         }
         return result;
