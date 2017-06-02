@@ -1,8 +1,5 @@
 package cmsteam2.common.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +13,7 @@ public class User {
     private String email;
     private boolean isActivated;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
     @OneToMany(mappedBy = "paper", fetch = FetchType.EAGER)
@@ -53,7 +50,6 @@ public class User {
         return password;
     }
 
-    @JsonValue
     public String getUsername() {
         return username;
     }
@@ -68,6 +64,18 @@ public class User {
 
     public Set<Bidding> getBiddings() {
         return biddings;
+    }
+
+    public boolean isActivated() {
+        return isActivated;
+    }
+
+    public Set<ResearchPaper> getResearchPapers() {
+        return researchPapers;
+    }
+
+    public int getPermissionLevel() {
+        return permissionLevel;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package cmsteam2.common.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,6 +17,7 @@ public class ResearchPaper {
     private String pathFile;
 
     @ManyToOne
+    @JsonIgnoreProperties({"researchPapers", "biddings", "password", "email", "isActivated"})
     private User author;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -36,11 +36,11 @@ public class ResearchPaper {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewedPaper", fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
-    private Set<User> reviewers = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
+//    @JsonIgnoreProperties({"researchPapers", "biddings", "password", "email", "activated"})
+//    private Set<User> reviewers = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty("conference_id")
     private Conference conference;
 
     public ResearchPaper() {}
@@ -78,9 +78,9 @@ public class ResearchPaper {
         return reviews;
     }
 
-    public Set<User> getReviewers() {
-        return reviewers;
-    }
+//    public Set<User> getReviewers() {
+//        return reviewers;
+//    }
 
     public String getAbstractPaper() {
         return abstractPaper;

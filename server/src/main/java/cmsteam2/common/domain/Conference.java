@@ -15,7 +15,6 @@ public class Conference {
     private int id;
 
     private int reviewersPerPaper;
-
     private String title;
     private String theme;
     private Date date;
@@ -51,7 +50,6 @@ public class Conference {
         sessions.add(s);
     }
 
-    @JsonValue
     public int getId() {
         return id;
     }

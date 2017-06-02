@@ -4,6 +4,7 @@ import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.UsersRepository;
 import cmsteam2.common.domain.User;
 import cmsteam2.middleware.Main;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,14 +29,14 @@ public class UserController {
 
     @PostMapping
     @RequestMapping("/login")
-    public ResponseEntity login(@RequestBody User user, HttpSession session) {
+    public User login(@RequestBody User user, HttpSession session) {
 //        System.out.println(user);
-        String password = usersRepository.getPassword(user.getUsername());
-        if (user.getPassword().equals(password)) {
-            session.setAttribute("username", user.getUsername());
-            return ResponseEntity.ok().body("{}");
+        User actualUser = usersRepository.login(user);
+        if (actualUser != null) {
+            session.setAttribute("username", actualUser.getUsername());
+            return actualUser;
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return null;
         }
     }
 

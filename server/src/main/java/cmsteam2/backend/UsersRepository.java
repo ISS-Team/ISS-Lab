@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Properties;
 
@@ -55,28 +56,14 @@ public class UsersRepository extends GenericRepository<User> {
         return parola;
     }
 
-/*    public String login(User user){
-        Connection connection = getConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from firmatransport.curse where username=?");
-            preparedStatement.setInt(1, integer);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                int id = resultSet.getInt("idcursa");
-                String destinatie = resultSet.getString("destinatie");
-                Timestamp data_ora = resultSet.getTimestamp("data_ora");
-                int locuriDisponibile = resultSet.getInt("locuri_disponibile");
-                int oficiu = resultSet.getInt("oficiu");
-                return new Cursa(id,destinatie,data_ora,locuriDisponibile,oficiu);
-            }
-            else {
-                System.out.println("Nu exista in baza de date");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public User login(User user) {
+        try (Session s = sessionFactory.openSession()) {
+            Transaction tx = s.beginTransaction();
+            User result = s.createQuery("from User U where U.username like '" + user.getUsername() + "' and U.password like '" + user.getPassword() + "'", User.class).uniqueResult();
+            tx.commit();
+            return result;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return null;
-
-    }*/
+    }
 }
