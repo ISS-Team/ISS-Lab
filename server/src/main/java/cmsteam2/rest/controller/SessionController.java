@@ -58,7 +58,7 @@ public class SessionController {
 //        }
         researchPapers.sort(Comparator.comparingInt(u -> u.researchPaperWeight()));
         long startTime=conference.getStartTime().getTime();
-        long copieStartTime=startTime;
+        long copyStartTime=startTime;
         long endTime=conference.getEndTime().getTime();
 
 //        int contorPararel=1;
@@ -66,13 +66,13 @@ public class SessionController {
         for(ResearchPaper researchPaper:researchPapers){
             Session session=new Session();
             session.setConference(conference);
-            session.setDuration(60*1000*30);//30 de minute
+            session.setDuration(60*1000*30);//30 minute
             session.setStartTime(startTime);
             session.setTitle(researchPaper.getTitle());
             sessionRepository.save(session);
-            startTime = startTime + 60 * 1000 * 30;//+30 de min;
-            if(startTime==endTime)
-                startTime=copieStartTime;
+            startTime = startTime + 60 * 1000 * 30;//+30 min;
+            if(startTime>=(endTime-60 * 1000 *30+1))//to not pass the entTime(not even with a ms)
+                startTime=copyStartTime;
 
 //            if(pararel!=1){
 //                if(contorCate<cate){
@@ -119,7 +119,7 @@ public class SessionController {
 
         researchPapers.sort(Comparator.comparingInt(u -> u.researchPaperWeight()));
         long startTime=conference.getStartTime().getTime();
-        long copieStartTime=startTime;
+        long copyStartTime=startTime;
         long endTime=conference.getEndTime().getTime();
         for(ResearchPaper researchPaper:researchPapers){
             Session session=new Session();
@@ -129,8 +129,8 @@ public class SessionController {
             session.setTitle(researchPaper.getTitle());
             sessionRepository.save(session);
             startTime = startTime + 60 * 1000 * interval;
-            if(startTime>=endTime)
-                startTime=copieStartTime;
+            if(startTime>=(endTime-60 * 1000 *interval+1))//to not pass the entTime
+                startTime=copyStartTime;
         }
 
     }
