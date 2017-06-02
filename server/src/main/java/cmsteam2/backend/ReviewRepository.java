@@ -20,4 +20,14 @@ public class ReviewRepository extends GenericRepository<Review> {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Review> getAllReviewForUser(String username) {
+        List<Review> reviews = null;
+        try (org.hibernate.Session session = sessionFactory.openSession()) {
+            reviews = session.createQuery("From Review where reviewer.username ='" + username + "'", Review.class).list();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return reviews;
+    }
 }

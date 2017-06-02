@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,6 +46,18 @@ public class ReviewController {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+    @GetMapping("/getReviewsIncomplete/{username}")
+    public List<Review> getAllReviewIncomplete(@PathVariable String username) {
+        System.out.println(username);
+        List<Review> reviews = new ArrayList<>();
+        for (Review review : reviewRepository.getAllReviewForUser(username)) {
+            if (review.getQualifier() == null) {
+                reviews.add(review);
+            }
+
+        }
+        return reviews;
     }
 
     @GetMapping("/getall")

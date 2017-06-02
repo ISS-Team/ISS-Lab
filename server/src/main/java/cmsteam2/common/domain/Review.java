@@ -73,7 +73,12 @@ public class Review {
         this.date = date;
     }
 
+<<<<<<< HEAD
+    public void setReviewedPaper(ResearchPaper reviewedPaper) {
+        this.reviewedPaper = reviewedPaper;
+=======
     public void setReviewedPaper(ResearchPaper paper) {
         this.reviewedPaper = paper;
+>>>>>>> 8edcbc5fe29f3237134c74edcb42b00d3c259d65
     }
 }
