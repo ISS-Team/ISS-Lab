@@ -2,110 +2,108 @@
  * Created by Afterwind on 5/31/2017.
  */
 $(document).ready(function () {
-	$(function(){
-		$(".datepicker").datetimepicker({ timepicker: false, format: 'Y-m-d' });
-        $(".datetimepicker").datetimepicker({ timepicker: true, format: "c" });
-	});
+    $(function () {
+        $(".datepicker").datetimepicker({timepicker: false, format: 'Y-m-d'});
+        $(".datetimepicker").datetimepicker({timepicker: true, format: "c"});
+    });
     console.log("ready");
-		//show sessions
-		$("tr").click(function(){		
-			var id_conference=$(this).find("*:first-child").html();
-			//$("#generalInformations").hide();
-			$.ajax({
-				url: "/conferences/"+id_conference+"/sessions/getall",
-				type: "GET",
-				
-				success: function (data) {
-					alert("Success");
-					console.log(data);
-			//$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
-					var tr;
-					for (var i = 0; i < data.length; i++) {
-						tr = $('<tr/>');
-						tr.append("<td style='display:none'>" + data[i].id+ "</td>");
-						tr.append("<td>" + data[i].title+ "</td>");
-						tr.append("<td>" + data[i].startTime + "</td>");
-						tr.append("<td>" + data[i].duration + "</td>");
-					//	tr.append("<td>"+ <button type="button">Participa</button> +"</td>");
-						//paper
-						$.ajax({
-								url: "/conferences/"+data[i].id+"/sessions/getall",   //schimbat
-								type: "GET",
-							success: function (dataPaper) {
-								alert("Success");
-								console.log(dataPaper);
-								for (var i = 0; i < dataPaper.length; i++) {
-									tr.append("<td>" + dataPaper[i].title+ "</td>");
-									tr.append("<td>" + dataPaper[i].theme + "</td>");
-									tr.append("<td>" + dataPaper[i].date + "</td>");
-								}
-							},
-							error: function(res1) {
-								alert("Eroare "+res1);
-							}
-						});
+    //show sessions
+    $("tr").click(function () {
+        var id_conference = $(this).find("*:first-child").html();
+        //$("#generalInformations").hide();
+        $.ajax({
+            url: "/conferences/" + id_conference + "/sessions/getall",
+            type: "GET",
 
-						$("#sessionInfo").append(tr);
-						
-						}
-					},
-				error: function(res) {
-					alert("Eroare "+res);
-				}	
-			});
-		});
-		
-	//se incarca automat la deschiderea paginii
-	
-	$("#About").click(function(){  
-		$("#formLogin").css("display","none");
-		$("#formRegister").css("display","none");
-		$("#generalInformations").show();
+            success: function (data) {
+                alert("Success");
+                console.log(data);
+                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
+                var tr;
+                for (var i = 0; i < data.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td style='display:none'>" + data[i].id + "</td>");
+                    tr.append("<td>" + data[i].title + "</td>");
+                    tr.append("<td>" + data[i].startTime + "</td>");
+                    tr.append("<td>" + data[i].duration + "</td>");
+                    //	tr.append("<td>"+ <button type="button">Participa</button> +"</td>");
+                    //paper
+                    $.ajax({
+                        url: "/conferences/" + data[i].id + "/sessions/getall",   //schimbat
+                        type: "GET",
+                        success: function (dataPaper) {
+                            alert("Success");
+                            console.log(dataPaper);
+                            for (var i = 0; i < dataPaper.length; i++) {
+                                tr.append("<td>" + dataPaper[i].title + "</td>");
+                                tr.append("<td>" + dataPaper[i].theme + "</td>");
+                                tr.append("<td>" + dataPaper[i].date + "</td>");
+                            }
+                        },
+                        error: function (res1) {
+                            alert("Eroare " + res1);
+                        }
+                    });
 
-		//apel populare
-		$.ajax({
-        url: "/users/register", //schimbat
-        success: function (data) {
-            alert("Success");
-            console.log(data);
-			//$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
-				var tr;
-				for (var i = 0; i < data.length; i++) {
-				tr = $('<tr/>');
-				tr.append("<td style='display:none' id='idConference'>" + data[i].id+ "</td>");
-				tr.append("<td>" + data[i].title+ "</td>");
-				tr.append("<td>" + data[i].theme + "</td>");
-				tr.append("<td>" + data[i].date + "</td>");
-				tr.append("<td>" + data[i].deadLineAbstractInfo + "</td>");
-				tr.append("<td>" + data[i].deadLineFullPaper + "</td>");
-				tr.append("<td>" + data[i].deadLineReview + "</td>");
-				tr.append("<td>" + data[i].startTime + "</td>");
-				tr.append("<td>" + data[i].endTime + "</td>");
-				$("#tableGeneralInformations").append(tr);
-			}
-        },
-		error: function(res) {
-            alert("Eroare "+res);
-        }
-		});
+                    $("#sessionInfo").append(tr);
 
-	});
-});
-	
+                }
+            },
+            error: function (res) {
+                alert("Eroare " + res);
+            }
+        });
+    });
+
+    //se incarca automat la deschiderea paginii
+
+    $("#About").click(function () {
+        $("#formLogin").css("display", "none");
+        $("#formRegister").css("display", "none");
+        $("#generalInformations").show();
+
+        //apel populare
+        $.ajax({
+            url: "/conferences/getall", //schimbat
+            success: function (data) {
+                alert("Success");
+                console.log(data);
+                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
+                var tr;
+                for (var i = 0; i < data.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td style='display:none' id='idConference'>" + data[i].id + "</td>");
+                    tr.append("<td>" + data[i].title + "</td>");
+                    tr.append("<td>" + data[i].theme + "</td>");
+                    tr.append("<td>" + data[i].date + "</td>");
+                    tr.append("<td>" + data[i].deadLineAbstractInfo + "</td>");
+                    tr.append("<td>" + data[i].deadLineFullPaper + "</td>");
+                    tr.append("<td>" + data[i].deadLineReview + "</td>");
+                    tr.append("<td>" + data[i].startTime + "</td>");
+                    tr.append("<td>" + data[i].endTime + "</td>");
+                    $("#tableGeneralInformations").append(tr);
+                }
+            },
+            error: function (res) {
+                alert("Eroare " + res);
+            }
+        });
+
+    });
+
     $("#Login").click(function () {
         $("#generalInformations").hide();
         $("#formRegister").hide();
-		$("#tableGeneralInformations").hide();
+        $("#tableGeneralInformations").hide();
         $("#formLogin").show();
     });
     $("#Register").click(function () {
         $("#generalInformations").hide();
         $("#formLogin").hide();
-		$("#tableGeneralInformations").hide();
+        $("#tableGeneralInformations").hide();
         $("#formRegister").show();
     });
-	
-	
+
 
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
@@ -166,10 +164,11 @@ $(document).ready(function () {
             dataType: "json",
 
             success: function (res) {
-				//trebuie modificat in functie de permisie
-                if(res.permissionLevel==0 || res.permissionLevel==1)
-				{$("#navBar").append(" <li><a id='UploadConference' onclick='uploadinfo()' href='#'>Upload Conference</a></li>");
-					$("#Login").css('display','none');}
+                //trebuie modificat in functie de permisie
+                if (res.permissionLevel == 0 || res.permissionLevel == 1) {
+                    $("#navBar").append(" <li><a id='UploadConference' onclick='uploadinfo()' href='#'>Upload Conference</a></li>");
+                    $("#Login").css('display', 'none');
+                }
                 //console.log(res);
             },
 
@@ -183,7 +182,7 @@ $(document).ready(function () {
 //	    xhr.send(JSON.stringify(forLogin));
 //		alert("Datele au fost trimise");
     });
-	    $("#btnSubmitUploadConference").click(function () {
+    $("#btnSubmitUploadConference").click(function () {
         var title = $("#Title").val();
         var theme = $("#Theme").val();
         var revPerPaper = $("#RevPerPaper").val();
@@ -196,7 +195,7 @@ $(document).ready(function () {
 
         var forUploadConference = {
             "reviewersPerPaper": revPerPaper,
-			"title": title,
+            "title": title,
             "theme": theme,
             "date": date,
             "deadlineAbstractInfo": deadlineAbstractInfo,
@@ -223,10 +222,10 @@ $(document).ready(function () {
     });
 });
 
-function uploadinfo(){
-	 $("#generalInformations").hide();
-        $("#formRegister").hide();
-        $("#formLogin").hide();
-		$("#tableGeneralInformations").hide();
-        $("#formConference").show();
+function uploadinfo() {
+    $("#generalInformations").hide();
+    $("#formRegister").hide();
+    $("#formLogin").hide();
+    $("#tableGeneralInformations").hide();
+    $("#formConference").show();
 };
