@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style/main.css">
+  <link rel="stylesheet" href="style/jquery.datetimepicker.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="script/jquery.datetimepicker.full.js"></script>
   <script src="sha256.js"> </script>
   </head>
 <body>
@@ -19,7 +21,7 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Conference Mangement System</a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul id ="navBar" class="nav navbar-nav">
       <li><a id="About" href="#">About</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -76,6 +78,7 @@
         <option value="speaker">Speaker</option>
         <option value="listener">Listener</option>
         <option value="programCommitteeMember">Program Committee Member</option>
+		<option value="chair">Chair</option>
       </select>
 	  </div>
     </div>
@@ -110,7 +113,76 @@
     </div>
   </form>
 </div>
-
+<!--form for upload a conference-->
+<div class="container">
+  <form id="formConference" class="form-horizontal" style="display:none" method="post">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="title">Title:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="Title" placeholder="Enter a title for the conference" name="Title">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="theme">Theme:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="Theme" placeholder="Enter a theme for the conference" name="Theme">
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="revPerPaper">Number of Reviewers Per Paper:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="RevPerPaper" placeholder="Enter the number of reviewers per paper" name="RevPerPaper">
+      </div>
+    </div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="date">Date:</label>
+		<div class="col-sm-10">
+			<input  class="datepicker" type="text" id="Date" name="Date" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="deadlineAbstractInfo">Deadline Upload Abstract Info:</label>
+		<div class="col-sm-10">
+			<input  class="datepicker" type="text" id="DeadlineAbstractInfo" name="DeadlineAbstractInfo" />
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="deadlineFullPaper">Deadline Upload Full Paper:</label>
+		<div class="col-sm-10">   
+			<input class="datepicker" type="text" id="DeadlineFullPaper" name="DeadlineFullPaper">
+		</div>	
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="deadlineReview">Deadline Review:</label>
+		<div class="col-sm-10">   
+			<input class="datepicker" type="text" id=" DeadlineReview" name=" DeadlineReview">
+		</div>	
+	</div>
+	 
+	 <div class="form-group">
+		<label class="control-label col-sm-2" for="firstDay">First day of conference:</label>
+		<div class="col-sm-10">   
+			<input class="datetimepicker" type="text" id="FirstDay" name="FirstDay">
+		</div>	
+	</div>
+	 <div class="form-group">
+		<label class="control-label col-sm-2" for="lastDay">Last day of conference:</label>
+		<div class="col-sm-10">   
+			<input class="datetimepicker" type="text" id="LastDay" name="LastDay">
+		</div>			
+	</div>
+	
+	
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <input id="btnSubmitUploadConference" type="button" class="btn btn-default" value="Submit">
+      </div>
+    </div>
+	 
+</form>
+</div>        
 <!-- about conf -->
 
 <div id="generalInformations" class="container">

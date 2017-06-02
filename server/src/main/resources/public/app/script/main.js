@@ -2,6 +2,11 @@
  * Created by Afterwind on 5/31/2017.
  */
 $(document).ready(function () {
+	$(function(){
+		$(".datepicker").datetimepicker({timepicker:false,
+										format:'d.m.Y'});
+		 $(".datetimepicker").datetimepicker();
+	});
     console.log("ready");
 
     $("tr").click(function() {
@@ -44,18 +49,20 @@ $(document).ready(function () {
     $("#Login").click(function () {
         $("#generalInformations").hide();
         $("#formRegister").hide();
+		$("#tableGeneralInformations").hide();
         $("#formLogin").show();
     });
-
     $("#Register").click(function () {
         $("#generalInformations").hide();
         $("#formLogin").hide();
+		$("#tableGeneralInformations").hide();
         $("#formRegister").show();
     });
 
     $("#About").click(function () {
         $("#formLogin").hide();
         $("#formRegister").hide();
+		 $("#formConference").hide();
         $("#generalInformations").show();
 
         $.ajax({
@@ -149,8 +156,11 @@ $(document).ready(function () {
             dataType: "json",
 
             success: function (res) {
-                alert("Success");
-                console.log(res);
+				//trebuie modificat in functie de permisie
+                if(res.permissionLevel==0 || res.permissionLevel==1)
+				{$("#navBar").append(" <li><a id='UploadConference' onclick='uploadinfo()' href='#'>Upload Conference</a></li>");
+					$("#Login").css('display','none');}
+                //console.log(res);
             },
 
             error: function (res) {
@@ -163,4 +173,50 @@ $(document).ready(function () {
 //	    xhr.send(JSON.stringify(forLogin));
 //		alert("Datele au fost trimise");
     });
+	    $("#btnSubmitUploadConference").click(function () {
+        var title = $("#Title").val();
+        var theme = $("#Theme").val();
+        var revPerPaper = $("#RevPerPaper").val();
+        var date = $("#Date").val();
+        var deadlineAbstractInfo = $("#DeadlineAbstractInfo").val();
+        var deadlineFullPaper = $("#DeadlineFullPaper").val();
+        var deadlineReview = $("#DeadlineReview").val();
+        var firstDay = $("#FirstDay").val();
+        var lastDay = $("#LastDay").val();
+
+        var forUploadConference = {
+            "reviewersPerPaper": revPerPaper,
+			"title": title,
+            "theme": theme,
+            "date": date,
+            "deadlineAbstractInfo": deadlineAbstractInfo,
+            "deadlineFullPaper": deadlineFullPaper,
+            "deadlineReview": deadlineReview,
+            "startTime": firstDay,
+            "endTime": lastDay,
+        };
+
+        $.ajax({
+            url: "/conferences/create",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(forUploadConference),
+            success: function (res) {
+                alert("Success!")
+            },
+
+            error: function (res) {
+                alert("Eroare la incarcare");
+            }
+        });
+    });
 });
+
+function uploadinfo(){
+	 $("#generalInformations").hide();
+        $("#formRegister").hide();
+        $("#formLogin").hide();
+		$("#tableGeneralInformations").hide();
+        $("#formConference").show();
+};
