@@ -23,7 +23,7 @@
         <mapping class="cmsteam2.common.domain.Session"/>
         <mapping class="cmsteam2.common.domain.User"/>
         <mapping class="cmsteam2.common.domain.ResearchPaper"/>
-        <mapping class="cmsteam2.common.domain.Bidding"/>
+         <mapping class="cmsteam2.common.domain.Bidding"/>
         <mapping class="cmsteam2.common.domain.Participation"/>
         <!--<mapping clacmsteam2.common.domParticipationpant"/>-->
         <!--<mapping clacmsteam2.common.domain.Reviewer"/>-->

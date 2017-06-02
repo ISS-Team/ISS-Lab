@@ -30,4 +30,13 @@ public class ReviewRepository extends GenericRepository<Review> {
         }
         return reviews;
     }
+
+    public Review get(String username, int paperId) {
+        try (org.hibernate.Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Review where reviewer.username like '" + username + "' and reviewedPaper.id = " + paperId, Review.class).uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

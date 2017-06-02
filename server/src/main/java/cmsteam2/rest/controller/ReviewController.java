@@ -4,6 +4,7 @@ import cmsteam2.backend.BiddingRepository;
 import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
 import cmsteam2.backend.ReviewRepository;
+import cmsteam2.common.domain.Bidding;
 import cmsteam2.common.domain.Qualifier;
 import cmsteam2.common.domain.Review;
 import org.json.JSONException;
@@ -35,14 +36,12 @@ public class ReviewController {
     public void review(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
-            Review review = new Review();
+            Review review = reviewRepository.get(username, paperId);
             Date date = new Date(json.getInt("date"));
             Qualifier q = Qualifier.valueOf(json.getString("qualifier"));
             review.setDate(date);
             review.setQualifier(q);
-            review.setReviewer(reviewRepository.getUser(username));
-            review.setReviewedPaper(researchPaperRepository.get(paperId));
-            reviewRepository.save(review);
+            reviewRepository.update(review);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
