@@ -47,15 +47,13 @@ public class ReviewController {
             throw new RuntimeException(e);
         }
     }
-    @GetMapping("/getReviewsIncomplete/{username}")
-    public List<Review> getAllReviewIncomplete(@PathVariable String username) {
-        System.out.println(username);
+    @GetMapping("/getincomplete")
+    public List<Review> getAllReviewIncomplete(@SessionAttribute("username") String username) {
         List<Review> reviews = new ArrayList<>();
-        for (Review review : reviewRepository.getAllReviewForUser(username)) {
-            if (review.getQualifier() == null) {
+        for (Review review : reviewRepository.get(username)) {
+            if (review.getDate().getTime() == -1) {
                 reviews.add(review);
             }
-
         }
         return reviews;
     }

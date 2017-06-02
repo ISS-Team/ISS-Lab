@@ -21,10 +21,10 @@ public class ReviewRepository extends GenericRepository<Review> {
         }
     }
 
-    public List<Review> getAllReviewForUser(String username) {
+    public List<Review> get(String username) {
         List<Review> reviews = null;
         try (org.hibernate.Session session = sessionFactory.openSession()) {
-            reviews = session.createQuery("From Review where reviewer.username ='" + username + "'", Review.class).list();
+            reviews = session.createQuery("from Review where reviewer.username like '" + username + "'", Review.class).list();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
