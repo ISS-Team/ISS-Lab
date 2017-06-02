@@ -1,5 +1,9 @@
 package cmsteam2.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,11 +14,13 @@ public class Bidding implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="username", referencedColumnName = "username")
+    @JsonIgnoreProperties({"biddings", "researchPapers", "password", "email"})
     private User user;
 
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="paper_id", referencedColumnName = "id")
+    @JsonIgnoreProperties({"bidders", "keywords", "topics", "conference", "reviews"})
     private ResearchPaper paper;
 
     @Enumerated(EnumType.STRING)

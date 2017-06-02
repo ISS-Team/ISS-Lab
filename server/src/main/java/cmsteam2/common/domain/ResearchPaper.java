@@ -20,7 +20,7 @@ public class ResearchPaper {
     @JsonIgnoreProperties({"researchPapers", "biddings", "password", "email", "isActivated"})
     private User author;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "paper", fetch = FetchType.EAGER)
     private Set<Bidding> bidders = new HashSet<>();
 
     @ElementCollection(fetch = FetchType.EAGER)

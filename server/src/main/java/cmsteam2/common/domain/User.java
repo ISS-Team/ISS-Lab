@@ -16,7 +16,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
-    @OneToMany(mappedBy = "paper", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Bidding> biddings = new HashSet<>();
 
     /**

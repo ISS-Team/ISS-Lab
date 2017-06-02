@@ -29,7 +29,7 @@ public class ResearchPaperController {
 
     public ResearchPaperController() {
         researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps());
-        biddingRepository=new BiddingRepository(GenericRepository.loadProps());
+        biddingRepository = new BiddingRepository(GenericRepository.loadProps());
     }
 
     private boolean checkPaper(ResearchPaper paper) {
@@ -88,9 +88,9 @@ public class ResearchPaperController {
     @GetMapping("/getreviewers/{paperId}")
     public List<User> getReviewers(@PathVariable int paperId) {
         ResearchPaper paper = researchPaperRepository.get(paperId);
-        List<Bidding> allBidding=biddingRepository.getAllByResearchPaperId(paperId);
+        List<Bidding> allBidding = biddingRepository.getAllByResearchPaperId(paperId);
         List<User> result = new ArrayList<>();
-        List<Bidding> reviewers =new ArrayList<>();
+        List<Bidding> reviewers = new ArrayList<>();
         for (Bidding bid : allBidding) {
             if (bid.getStatus() != Bidding.Status.REJECTED) {
                 reviewers.add(bid);
@@ -99,20 +99,18 @@ public class ResearchPaperController {
         if (reviewers.size() == 0) {
             Random random = new Random(1);
 //           User victim = ((Bidding) paper.getBidders().toArray()[random.nextInt(paper.getBidders().size())]).getUser();
-            User victim=((Bidding)allBidding.toArray()[random.nextInt(allBidding.size())]).getUser();
+            int rand = random.nextInt(allBidding.size());
+            User victim = ((Bidding) allBidding.toArray()[rand]).getUser();
             result.add(victim);
         } else {
-            if(reviewers.size()> paper.getConference().getReviewersPerPaper()){
+            if (reviewers.size() > paper.getConference().getReviewersPerPaper()) {
                 reviewers.sort(Comparator.comparingInt(u -> u.getStatus().weight));
                 for (Bidding b : reviewers.subList(0, paper.getConference().getReviewersPerPaper())) {
                     result.add(b.getUser());
                 }
-            }
-            else{
-                for (Bidding b:reviewers
-                     ) {
+            } else {
+                for (Bidding b : reviewers) {
                     result.add(b.getUser());
-
                 }
             }
         }
