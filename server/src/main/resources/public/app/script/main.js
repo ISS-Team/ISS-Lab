@@ -165,7 +165,7 @@ $(document).ready(function () {
 
             success: function (res) {
                 //trebuie modificat in functie de permisie
-                if (res.permissionLevel == 0 || res.permissionLevel == 1) {
+                if (res.permissionLevel === 0 || res.permissionLevel === 1) {
                     $("#navBar").append(" <li><a id='UploadConference' onclick='uploadinfo()' href='#'>Upload Conference</a></li>");
                     $("#Login").css('display', 'none');
                 }
@@ -202,7 +202,7 @@ $(document).ready(function () {
             "deadlineFullPaper": deadlineFullPaper,
             "deadlineReview": deadlineReview,
             "startTime": firstDay,
-            "endTime": lastDay,
+            "endTime": lastDay
         };
 
         $.ajax({
@@ -228,4 +228,4 @@ function uploadinfo() {
     $("#formLogin").hide();
     $("#tableGeneralInformations").hide();
     $("#formConference").show();
-};
+}
