@@ -46,7 +46,6 @@ $(document).ready(function () {
                     });
 
                     $("#sessionInfo").append(tr);
-
                 }
             },
             error: function (res) {
@@ -58,8 +57,10 @@ $(document).ready(function () {
     //se incarca automat la deschiderea paginii
 
     $("#About").click(function () {
-        $("#formLogin").css("display", "none");
-        $("#formRegister").css("display", "none");
+        $("#formLogin").hide();
+        $("#formRegister").hide();
+        $("#tableGeneralInformations").hide();
+        $("#formConference").hide();
         $("#generalInformations").show();
 
         //apel populare
@@ -72,7 +73,7 @@ $(document).ready(function () {
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $('<tr/>');
-                    tr.append("<td style='display:none' id='idConference'>" + data[i].id + "</td>");
+                    tr.append("<td style='display:block' id='idConference'>" + data[i].id + "</td>");
                     tr.append("<td>" + data[i].title + "</td>");
                     tr.append("<td>" + data[i].theme + "</td>");
                     tr.append("<td>" + data[i].date + "</td>");
@@ -95,12 +96,14 @@ $(document).ready(function () {
         $("#generalInformations").hide();
         $("#formRegister").hide();
         $("#tableGeneralInformations").hide();
+        $("#formConference").hide();
         $("#formLogin").show();
     });
     $("#Register").click(function () {
         $("#generalInformations").hide();
         $("#formLogin").hide();
         $("#tableGeneralInformations").hide();
+        $("#formConference").hide();
         $("#formRegister").show();
     });
 
