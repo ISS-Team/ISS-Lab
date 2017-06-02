@@ -19,6 +19,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Bidding> biddings = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Participation> sessions = new HashSet<>();
+
     /**
      * Permission level. The higher the more permission the user has.
      */
@@ -76,6 +79,10 @@ public class User {
 
     public int getPermissionLevel() {
         return permissionLevel;
+    }
+
+    public Set<Participation> getSessions() {
+        return sessions;
     }
 
     @Override
