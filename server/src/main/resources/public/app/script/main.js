@@ -7,44 +7,91 @@ $(document).ready(function () {
         $(".datetimepicker").datetimepicker({ timepicker: true, format: "c" });
 	});
     console.log("ready");
+		//show sessions
+		$("tr").click(function(){		
+			var id_conference=$(this).find("*:first-child").html();
+			//$("#generalInformations").hide();
+			$.ajax({
+				url: "/conferences/"+id_conference+"/sessions/getall",
+				type: "GET",
+				
+				success: function (data) {
+					alert("Success");
+					console.log(data);
+			//$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
+					var tr;
+					for (var i = 0; i < data.length; i++) {
+						tr = $('<tr/>');
+						tr.append("<td style='display:none'>" + data[i].id+ "</td>");
+						tr.append("<td>" + data[i].title+ "</td>");
+						tr.append("<td>" + data[i].startTime + "</td>");
+						tr.append("<td>" + data[i].duration + "</td>");
+					//	tr.append("<td>"+ <button type="button">Participa</button> +"</td>");
+						//paper
+						$.ajax({
+								url: "/conferences/"+data[i].id+"/sessions/getall",   //schimbat
+								type: "GET",
+							success: function (dataPaper) {
+								alert("Success");
+								console.log(dataPaper);
+								for (var i = 0; i < dataPaper.length; i++) {
+									tr.append("<td>" + dataPaper[i].title+ "</td>");
+									tr.append("<td>" + dataPaper[i].theme + "</td>");
+									tr.append("<td>" + dataPaper[i].date + "</td>");
+								}
+							},
+							error: function(res1) {
+								alert("Eroare "+res1);
+							}
+						});
 
-    $("tr").click(function() {
+						$("#sessionInfo").append(tr);
+						
+						}
+					},
+				error: function(res) {
+					alert("Eroare "+res);
+				}	
+			});
+		});
+		
+	//se incarca automat la deschiderea paginii
+	
+	$("#About").click(function(){  
+		$("#formLogin").css("display","none");
+		$("#formRegister").css("display","none");
+		$("#generalInformations").show();
 
-        <!-- var table, rows, switching, i, x, y, shouldswitch,vector1={},vector2={}; -->
-        <!-- table=$("#tablegeneralinformations")[0];  -->
-        <!-- rows=$("tr"); -->
-        <!-- for (i = 1; i < (rows.length)-1; i++) { -->
-        <!-- x=rows[i].getelementsbytagname("td")[1].innerhtml; -->
-        <!-- alert(x); -->
-        <!-- } -->
-        var id_conference = $(this).find("*:first-child").html();
-        $.ajax({
-            url: "/conferences/" + id_conference + "/sessions/getall",
-            type: "GET",
-            //contentType: "application/json",
-            // dataType: "json",
-            // data: JSON.stringify(id_conference),
-            success: function (data) {
-                alert("Success");
-                console.log(data);
-                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
-                var tr;
-                for (var i = 0; i < data.length; i++) {
-                    tr = $('<tr/>');
-                    //tr.append("<td style='display:none'>" + data[i].id+ "</td>");
-                    tr.append("<td>" + data[i].title + "</td>");
-                    tr.append("<td>" + data[i].startTime + "</td>");
-                    tr.append("<td>" + data[i].duration + "</td>");
-                    $("#sessionInfo").append(tr);
-                }
-            },
-            error: function (res) {
-                alert("Eroare");
-            }
+		//apel populare
+		$.ajax({
+        url: "/users/register", //schimbat
+        success: function (data) {
+            alert("Success");
+            console.log(data);
+			//$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
+				var tr;
+				for (var i = 0; i < data.length; i++) {
+				tr = $('<tr/>');
+				tr.append("<td style='display:none' id='idConference'>" + data[i].id+ "</td>");
+				tr.append("<td>" + data[i].title+ "</td>");
+				tr.append("<td>" + data[i].theme + "</td>");
+				tr.append("<td>" + data[i].date + "</td>");
+				tr.append("<td>" + data[i].deadLineAbstractInfo + "</td>");
+				tr.append("<td>" + data[i].deadLineFullPaper + "</td>");
+				tr.append("<td>" + data[i].deadLineReview + "</td>");
+				tr.append("<td>" + data[i].startTime + "</td>");
+				tr.append("<td>" + data[i].endTime + "</td>");
+				$("#tableGeneralInformations").append(tr);
+			}
+        },
+		error: function(res) {
+            alert("Eroare "+res);
+        }
+		});
 
-
-        });
-    });
+	});
+});
+	
     $("#Login").click(function () {
         $("#generalInformations").hide();
         $("#formRegister").hide();
@@ -57,44 +104,8 @@ $(document).ready(function () {
 		$("#tableGeneralInformations").hide();
         $("#formRegister").show();
     });
-
-    $("#About").click(function () {
-        $("#formLogin").hide();
-        $("#formRegister").hide();
-		 $("#formConference").hide();
-        $("#generalInformations").show();
-
-        $.ajax({
-
-            url: "/users/register",
-            type: "GET",
-            //   contentType: "application/json",
-            //  dataType: "json",
-            // data: JSON.stringify(forRegister),
-            success: function (data) {
-                alert("Success");
-                console.log(data);
-                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
-                var tr;
-                for (var i = 0; i < data.length; i++) {
-                    tr = $('<tr/>');
-                    tr.append("<td style='display:none' id='idConference'>" + data[i].id + "</td>");
-                    tr.append("<td>" + data[i].title + "</td>");
-                    tr.append("<td>" + data[i].theme + "</td>");
-                    tr.append("<td>" + data[i].date + "</td>");
-                    tr.append("<td>" + data[i].deadLineAbstractInfo + "</td>");
-                    tr.append("<td>" + data[i].deadLineFullPaper + "</td>");
-                    tr.append("<td>" + data[i].deadLineReview + "</td>");
-                    tr.append("<td>" + data[i].startTime + "</td>");
-                    tr.append("<td>" + data[i].endTime + "</td>");
-                    $("#tableGeneralInformations").append(tr);
-                }
-            },
-            error: function (res) {
-                alert("Eroare");
-            }
-        });
-    });
+	
+	
 
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
