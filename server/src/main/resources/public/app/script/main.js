@@ -3,9 +3,8 @@
  */
 $(document).ready(function () {
 	$(function(){
-		$(".datepicker").datetimepicker({timepicker:false,
-										format:'d.m.Y'});
-		 $(".datetimepicker").datetimepicker();
+		$(".datepicker").datetimepicker({ timepicker: false, format: 'Y-m-d' });
+        $(".datetimepicker").datetimepicker({ timepicker: true, format: "c" });
 	});
     console.log("ready");
 
