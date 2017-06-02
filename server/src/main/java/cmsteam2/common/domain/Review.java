@@ -73,4 +73,8 @@ public class Review {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public void setReviewedPaper(ResearchPaper reviewedPaper) {
+        this.reviewedPaper = reviewedPaper;
+    }
 }

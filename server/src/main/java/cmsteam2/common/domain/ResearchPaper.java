@@ -122,6 +122,10 @@ public class ResearchPaper {
         }
         return sum > 0;
     }
+
+    public void setConference(Conference conference) {
+        this.conference = conference;
+    }
 }
 
 
