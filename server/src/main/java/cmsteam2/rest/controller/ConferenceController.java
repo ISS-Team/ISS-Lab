@@ -15,9 +15,9 @@ public class ConferenceController {
     private ConferenceRepository conferenceRepository = new ConferenceRepository(GenericRepository.loadProps());
 
     @PostMapping("/create")
-    public ResponseEntity create(@RequestBody Conference conference) {
+    public Conference create(@RequestBody Conference conference) {
         conferenceRepository.save(conference);
-        return ResponseEntity.ok("{\"id\": " + conference.getId() + "}");
+        return conference;
     }
 
     @PostMapping("/update")

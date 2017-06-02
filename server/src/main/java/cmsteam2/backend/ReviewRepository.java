@@ -29,5 +29,5 @@ public class ReviewRepository extends GenericRepository<Review> {
         }
         return reviews;
     }
-
 }
+

@@ -24,7 +24,8 @@
         <mapping class="cmsteam2.common.domain.User"/>
         <mapping class="cmsteam2.common.domain.ResearchPaper"/>
         <mapping class="cmsteam2.common.domain.Bidding"/>
-        <!--<mapping clacmsteam2.common.domain.Participant"/>-->
+        <mapping class="cmsteam2.common.domain.Participation"/>
+        <!--<mapping clacmsteam2.common.domParticipationpant"/>-->
         <!--<mapping clacmsteam2.common.domain.Reviewer"/>-->
         <!--<mapping clacmsteam2.common.domain.MetaData"/>-->
     </session-factory>

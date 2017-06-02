@@ -1,6 +1,7 @@
 package cmsteam2.backend;
 
 import cmsteam2.common.domain.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Properties;
@@ -12,14 +13,14 @@ public class SessionRepository extends GenericRepository<Session> {
         super(props);
     }
 
-    public List<Session> GetAllByConference(int conferenceId) {
+    public List<Session> getAllByConference(int conferenceId) {
         List<Session> sessions = null;
         try (org.hibernate.Session session = sessionFactory.openSession()) {
-            sessions = session.createQuery("From Session where Session.conference.id = " + conferenceId, Session.class).list();
+            Query<Session> q = session.createQuery("from Session S where S.conference.id = " + conferenceId, Session.class);
+            sessions = q.list();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return sessions;
-
     }
 }

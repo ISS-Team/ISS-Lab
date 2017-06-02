@@ -1,12 +1,13 @@
 package cmsteam2.common.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "Session")
-public class Session {
+public class Session implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,18 +15,17 @@ public class Session {
     private long startTime;
     private long duration;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_Conference")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_Conference", referencedColumnName = "id")
     private Conference conference;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "username")
-    private Set<User> participants = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session", fetch = FetchType.EAGER)
+    private Set<Participation> participants = new HashSet<>();
 
-    public Session(String title, long startTime, long duration) {
-        this.duration = duration;
-        this.startTime = startTime;
-        this.title = title;
-    }
+    @OneToOne(fetch = FetchType.EAGER)
+    private ResearchPaper paper;
+
+    public Session() {}
 
     public int getId() {
         return id;
@@ -67,7 +67,11 @@ public class Session {
         this.conference = conference;
     }
 
-    public Set<User> getParticipants() {
+    public Set<Participation> getParticipants() {
         return participants;
+    }
+
+    public ResearchPaper getPaper() {
+        return paper;
     }
 }
