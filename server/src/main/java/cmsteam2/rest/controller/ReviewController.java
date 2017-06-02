@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.util.List;
 
 @RestController
 @Transactional
-@RequestMapping("/conferences/{conferenceId}/papers/{paperId}")
+@RequestMapping("/conferences/{conferenceId}/papers/{paperId}/reviews")
 public class ReviewController {
 
     private ResearchPaperRepository researchPaperRepository;
@@ -44,5 +45,10 @@ public class ReviewController {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/getall")
+    public List<Review> getAll(@PathVariable int paperId) {
+        return reviewRepository.getAll(paperId);
     }
 }

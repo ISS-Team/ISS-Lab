@@ -17,8 +17,7 @@ public class Review {
     private int id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonProperty("reviewer_username")
-    @JsonIgnoreProperties({"researchPapers"})
+    @JsonIgnoreProperties({"researchPapers", "sessions", "biddings"})
     private User reviewer;
     private Date date;
 
