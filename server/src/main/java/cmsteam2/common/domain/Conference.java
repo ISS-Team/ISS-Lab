@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,8 +22,8 @@ public class Conference {
     private Date deadlineAbstractInfo;
     private Date deadlineFullPaper;
     private Date deadlineReview;
-    private Date startTime;
-    private Date endTime;
+    private Time startTime;
+    private Time endTime;
     @OneToMany
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
@@ -78,19 +79,19 @@ public class Conference {
         this.date = date;
     }
 
-    public Date getStartTime() {
+    public Time getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Time getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
 

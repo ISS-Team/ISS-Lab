@@ -28,4 +28,19 @@ public class ConferenceRepository extends GenericRepository<Conference> {
             throw new RuntimeException(ex);
         }
     }
+    public Conference getById(int id){
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            Conference conference = session.createQuery("from Conference where id="+id, Conference.class).getSingleResult();
+            session.close();
+            return conference;
+        } catch (Exception ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw new RuntimeException(ex);
+        }
+
+    }
 }

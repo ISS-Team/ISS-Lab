@@ -26,6 +26,7 @@ public class ResearchPaperRepository extends GenericRepository<ResearchPaper> {
         return researchPapers;
     }
 
+
     public void bid(int conferenceId, String username, int paperId, Bidding.Status status) {
         try (Session session = sessionFactory.openSession()) {
             ResearchPaper paper = session.createQuery("from ResearchPaper RP where id = " + paperId, ResearchPaper.class).uniqueResult();
