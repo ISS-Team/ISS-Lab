@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
-@RequestMapping("/conferences/{id}/papers")
+@RequestMapping("/conferences/{conferenceId}/papers")
 @Transactional
 public class ResearchPaperController {
 
@@ -56,22 +56,22 @@ public class ResearchPaperController {
     }
 
     @GetMapping("/getall")
-    public List<ResearchPaper> getAll(@PathVariable int id) {
-        return researchPaperRepository.getAll(id);
+    public List<ResearchPaper> getAll(@PathVariable int conferenceId) {
+        return researchPaperRepository.getAll(conferenceId);
     }
 
     @GetMapping("/getaccepted")
-    public List<ResearchPaper> getAllAccepted(@PathVariable int id) {
-        List<ResearchPaper> papers = researchPaperRepository.getAll(id);
+    public List<ResearchPaper> getAllAccepted(@PathVariable int conferenceId) {
+        List<ResearchPaper> papers = researchPaperRepository.getAll(conferenceId);
         papers.removeIf(paper -> !paper.isAccepted());
         return papers;
     }
 
     @PostMapping("/bid/{paperId}")
-    public void bid(@PathVariable int paperId, @PathVariable int id, HttpEntity<String> body, @SessionAttribute("username") String username) {
+    public void bid(@PathVariable int paperId, @PathVariable int conferenceId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
-            researchPaperRepository.bid(id, username, paperId, Bidding.Status.valueOf(json.getString("status")));
+            researchPaperRepository.bid(conferenceId, username, paperId, Bidding.Status.valueOf(json.getString("status")));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

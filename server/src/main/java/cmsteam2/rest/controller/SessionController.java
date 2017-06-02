@@ -17,7 +17,7 @@ public class SessionController {
 
     private SessionRepository sessionRepository = new SessionRepository(GenericRepository.loadProps());
 
-    @GetMapping("/getAll")
+    @GetMapping("/getall")
     public List<Session> getAll(@RequestParam int conferenceId) {
         List<Session> sessions = sessionRepository.GetAllByConference(conferenceId);
         if (sessions != null) {
