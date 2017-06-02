@@ -1,241 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Conference Management System</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style/main.css">
-  <link rel="stylesheet" href="style/jquery.datetimepicker.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="script/jquery.datetimepicker.full.js"></script>
-  <script src="sha256.js"> </script>
-  </head>
+    <title>Conference Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/jquery.datetimepicker.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="script/jquery.datetimepicker.full.js"></script>
+    <script src="sha256.js"></script>
+</head>
 <body>
 
 <!--Navigation bar-->
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Conference Mangement System</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Conference Mangement System</a>
+        </div>
+        <ul id="navBar" class="nav navbar-nav">
+            <li><a id="About" href="#">About</a></li>
+            <li><a id="ShowConferences" href="#">Show Conferences</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
     </div>
-    <ul id ="navBar" class="nav navbar-nav">
-      <li><a id="About" href="#">About</a></li>
-      <li><a id="ShowConferences" href="#">Show Conferences</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-      <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
 </nav>
-
-<!--div for general informations such as deadline, the name of the conference-->
-
-<div id="generalInformations" class="container">
-  <h3>General informations about the conference.</h3>
-</div>
 
 <!--form for register-->
 
 <div class="container">
-  <form id="formRegister" class="form-horizontal"  style="display:none;" method="post" action="">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="firstNameR">First name:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name" name="firstNameR">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="lastNameR">Last name:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name" name="lastNameR">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="emailR">Email:</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="emailR" placeholder="Enter your email" name="emailR">
-      </div>
-    </div>
-	<div class="form-group">
-      <label class="control-label col-sm-2" for="usernameR">Username:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="usernameR" placeholder="Enter username" name="usernameR">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="passwordR">Password:</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="passwordR" placeholder="Enter password" name="passwordR">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="selectPosition">Select your position:</label>
-       <div class="col-sm-10">
-	  <select class="form-control" id="selectPosition">
-        <option value="speaker">Speaker</option>
-        <option value="listener">Listener</option>
-        <option value="programCommitteeMember">Program Committee Member</option>
-		<option value="chair">Chair</option>
-      </select>
-	  </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitRegister" type="button" class="btn btn-default" value="Submit">
-      </div>
-    </div>
-  </form>
+    <form id="formRegister" class="form-horizontal" style="display:none;" method="post" action="">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="firstNameR">First name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name" name="firstNameR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lastNameR">Last name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name" name="lastNameR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="emailR">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="emailR" placeholder="Enter your email" name="emailR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="usernameR">Username:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="usernameR" placeholder="Enter username" name="usernameR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="passwordR">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="passwordR" placeholder="Enter password" name="passwordR">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="selectPosition">Select your position:</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="selectPosition">
+                    <option value="speaker">Speaker</option>
+                    <option value="listener">Listener</option>
+                    <option value="programCommitteeMember">Program Committee Member</option>
+                    <option value="chair">Chair</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input id="btnSubmitRegister" type="button" class="btn btn-default" value="Submit">
+            </div>
+        </div>
+    </form>
 </div>
 
 <!--form for login-->
 
 <div class="container">
-  <form id="formLogin" class="form-horizontal"  style="display:none;" method="post" action="">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="username">Username:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="password">Password:</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitLogin" type="button" class="btn btn-default" value="Submit">
-      </div>
-    </div>
-  </form>
+    <form id="formLogin" class="form-horizontal" style="display:none;" method="post" action="">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input id="btnSubmitLogin" type="button" class="btn btn-default" value="Submit">
+            </div>
+        </div>
+    </form>
 </div>
 <!--form for upload a conference-->
 <div class="container">
-  <form id="formConference" class="form-horizontal" style="display:none" method="post">
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="title">Title:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="Title" placeholder="Enter a title for the conference" name="Title">
-      </div>
-    </div>
-	<div class="form-group">
-      <label class="control-label col-sm-2" for="theme">Theme:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="Theme" placeholder="Enter a theme for the conference" name="Theme">
-      </div>
-    </div>
-	<div class="form-group">
-      <label class="control-label col-sm-2" for="revPerPaper">Number of Reviewers Per Paper:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="RevPerPaper" placeholder="Enter the number of reviewers per paper" name="RevPerPaper">
-      </div>
-    </div>
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="date">Date:</label>
-		<div class="col-sm-10">
-			<input  class="datepicker" type="text" id="Date" name="Date" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="deadlineAbstractInfo">Deadline Upload Abstract Info:</label>
-		<div class="col-sm-10">
-			<input  class="datepicker" type="text" id="DeadlineAbstractInfo" name="DeadlineAbstractInfo" />
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="deadlineFullPaper">Deadline Upload Full Paper:</label>
-		<div class="col-sm-10">   
-			<input class="datepicker" type="text" id="DeadlineFullPaper" name="DeadlineFullPaper">
-		</div>	
-	</div>
-	
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="deadlineReview">Deadline Review:</label>
-		<div class="col-sm-10">   
-			<input class="datepicker" type="text" id=" DeadlineReview" name=" DeadlineReview">
-		</div>	
-	</div>
-	 
-	 <div class="form-group">
-		<label class="control-label col-sm-2" for="firstDay">First day of conference:</label>
-		<div class="col-sm-10">   
-			<input class="datetimepicker" type="text" id="FirstDay" name="FirstDay">
-		</div>	
-	</div>
-	 <div class="form-group">
-		<label class="control-label col-sm-2" for="lastDay">Last day of conference:</label>
-		<div class="col-sm-10">   
-			<input class="datetimepicker" type="text" id="LastDay" name="LastDay">
-		</div>			
-	</div>
-	
-	
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <input id="btnSubmitUploadConference" type="button" class="btn btn-default" value="Submit">
-      </div>
-    </div>
-	 
-</form>
-</div>        
+    <form id="formConference" class="form-horizontal" style="display:none" method="post">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="title">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Title" placeholder="Enter a title for the conference" name="Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="theme">Theme:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Theme" placeholder="Enter a theme for the conference" name="Theme">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="revPerPaper">Number of Reviewers Per Paper:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="RevPerPaper" placeholder="Enter the number of reviewers per paper" name="RevPerPaper">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="date">Date:</label>
+            <div class="col-sm-10">
+                <input class="datepicker" type="text" id="Date" name="Date"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="deadlineAbstractInfo">Deadline Upload Abstract Info:</label>
+            <div class="col-sm-10">
+                <input class="datepicker" type="text" id="DeadlineAbstractInfo" name="DeadlineAbstractInfo"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="deadlineFullPaper">Deadline Upload Full Paper:</label>
+            <div class="col-sm-10">
+                <input class="datepicker" type="text" id="DeadlineFullPaper" name="DeadlineFullPaper">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="deadlineReview">Deadline Review:</label>
+            <div class="col-sm-10">
+                <input class="datepicker" type="text" id="DeadlineReview" name=" DeadlineReview">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="firstDay">First day of conference:</label>
+            <div class="col-sm-10">
+                <input class="datetimepicker" type="text" id="FirstDay" name="FirstDay">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lastDay">Last day of conference:</label>
+            <div class="col-sm-10">
+                <input class="datetimepicker" type="text" id="LastDay" name="LastDay">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input id="btnSubmitUploadConference" type="button" class="btn btn-default" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
 <!-- about conf -->
 
-	<link rel="stylesheet" href="showConferencesStyle.css">
-	<!-- about conferences -->
-	<div id="generalInformations" class="container">
-		<h2></h2>           
-		<table id="tableGeneralInformations" class="table table-bordered">
-			<thead>
-			  <tr>
-				<th style="display:none;" rowspan="2" id="idConference">Id</th>
-				<th rowspan="2">Conference</th>
-				<th rowspan="2" >Theme</th>
-				<th rowspan="2">Date</th>
-				<th  colspan="3" >Deadline
-				</th>
-				
-				<th rowspan="2">Start time</th>
-				<th rowspan="2">End time</th>
-			  </tr>
-			  <th> 
-					Abstract
-			  </th>
-			   <th> 
-					Full
-			  </th>
-			   <th> 
-					Review
-			  </th>
-			 
-			</thead>
-	  </table>
+<link rel="stylesheet" href="showConferencesStyle.css">
+<!-- about conferences -->
+<div id="generalInformations" class="container">
+    <h3>General informations about the conference.</h3>
+    <table id="tableGeneralInformations" class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="display:none;" rowspan="2" id="idConference">Id</th>
+            <th rowspan="2">Conference</th>
+            <th rowspan="2">Theme</th>
+            <th rowspan="2">Date</th>
+            <th colspan="3">Deadline</th>
+            <th rowspan="2">Start time</th>
+            <th rowspan="2">End time</th>
+        </tr>
+        <tr>
+            <th>Abstract</th>
+            <th>Full</th>
+            <th>Review</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 <!--about sessions -->
 <div id="sesInformations" class="container">
-           
-  <table  id="sessionInfo" class="table table-bordered">
-    <thead>
-      <tr>
-	  	<th style="display:none;" rowspan="2" id="idSession">Id</th>
-        <th rowspan="2">Session</th>
-		<th rowspan="2">Speaker</th>
-        <th rowspan="2" >Start time</th> 
-		<th rowspan="2" >Title of the paper</th> 
-		<th rowspan="2" >Type of the paper</th> 
-		<th rowspan="2" >Path of the paper</th> 
-		<th rowspan="2"> Go</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
- 
+
+    <table id="sessionInfo" class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="display:none;" rowspan="2" id="idSession">Id</th>
+            <th rowspan="2">Session</th>
+            <th rowspan="2">Speaker</th>
+            <th rowspan="2">Start time</th>
+            <th rowspan="2">Title of the paper</th>
+            <th rowspan="2">Type of the paper</th>
+            <th rowspan="2">Path of the paper</th>
+            <th rowspan="2"> Go</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
 </div>
 
 <script src="script/main.js"></script>
