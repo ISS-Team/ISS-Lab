@@ -169,6 +169,53 @@
         </div>
     </form>
 </div>
+<!-- Form for uploading a paper -->
+<div id="formUploadPaper" class="container hidden-box">
+	<form class="form-horizontal"  method="post" action="">
+		<div class="form-group">
+			<label class="control-label col-sm-2" style="display:none;" for="username">Id:</label>
+			<div class="col-sm-10">
+				<input type="text" style="display:none;" class="form-control" id="idUploadPaper" name="idUploadPaper">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="titleUploadPaper">Title:</label>
+			<div class="col-sm-10">          
+				<input type="text" class="form-control" id="titleUploadPaper" placeholder="Enter a title" name="titleUploadPaper">
+			</div>
+		</div>
+	    <div class="form-group">
+			<label class="control-label col-sm-2" for="abstractPaper">Abstract Paper:</label>
+			<div class="col-sm-10">          
+				<input type="text" class="form-control" id="abstractPaper" placeholder="Enter a summary about the paper" name="abstractPaper">
+			</div>
+		</div>	
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="topics">Topics:</label>
+			<div class="col-sm-10">          
+				<input type="text" class="form-control" id="topics" placeholder="Enter one or more topics, separated by ' , ' " name="topics">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="keywords">Keywords:</label>
+			<div class="col-sm-10">          
+				<input type="text" class="form-control" id="keywords" placeholder="Enter one or more keywords, separated by ' , '" name="keywords">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pathUploadPaper">Path:</label>
+			<div class="col-sm-10">          
+				<input type="text" class="form-control" id="pathUploadPaper" placeholder="Enter the path" name="pathUploadPaper">
+			</div>
+		</div>
+		<div class="form-group">        
+			<div class="col-sm-offset-2 col-sm-10">
+				<input id="btnUploadPaper" type="button" class="btn btn-default" value="Add">
+			</div>
+		</div>
+	</form>
+</div>
+	
 
 <!-- about conferences -->
 <div id="generalInformations" class="container hidden-box">
@@ -211,6 +258,23 @@
         <tbody></tbody>
     </table>
 </div>
+
+<!--List of submitted papers for that conference -->
+<div id="confpapers" class="container hidden-box">
+    <h2></h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-3">Title</th>
+            <th class="col-md-8"> Review Option</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <input type="button" value="Submit">
+</div>
+
 <script src="script/main.js"></script>
 </body>
 </html>

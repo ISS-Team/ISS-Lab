@@ -1,9 +1,6 @@
 package cmsteam2.rest.controller;
 
-import cmsteam2.backend.BiddingRepository;
-import cmsteam2.backend.GenericRepository;
-import cmsteam2.backend.ResearchPaperRepository;
-import cmsteam2.backend.ReviewRepository;
+import cmsteam2.backend.*;
 import cmsteam2.common.domain.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +24,13 @@ public class ResearchPaperController {
     private ResearchPaperRepository researchPaperRepository;
     private BiddingRepository biddingRepository;
     private ReviewRepository reviewRepository;
+    private ConferenceRepository conferenceRepository;
 
     public ResearchPaperController() {
         researchPaperRepository = new ResearchPaperRepository(GenericRepository.loadProps());
         biddingRepository = new BiddingRepository(GenericRepository.loadProps());
         reviewRepository = new ReviewRepository(GenericRepository.loadProps());
+        conferenceRepository = new ConferenceRepository(GenericRepository.loadProps());
     }
 
     private boolean checkPaper(ResearchPaper paper) {
@@ -40,12 +39,14 @@ public class ResearchPaperController {
 
     @PostMapping
     @RequestMapping("/save")
-    public ResponseEntity save(@RequestBody ResearchPaper paper) {
+    public ResponseEntity save(@PathVariable int conferenceId, @RequestBody ResearchPaper paper, @SessionAttribute("username") String username) {
         if (checkPaper(paper)) {
+            paper.setAuthor(researchPaperRepository.getUser(username));
+            paper.setConference(conferenceRepository.getById(conferenceId));
             researchPaperRepository.save(paper);
-            return new ResponseEntity(HttpStatus.OK);
+            return ResponseEntity.ok("{}");
         } else {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
@@ -70,10 +71,10 @@ public class ResearchPaperController {
     }
 
     @PostMapping("/bid/{paperId}")
-    public void bid(@PathVariable int paperId, @PathVariable int conferenceId, HttpEntity<String> body, @SessionAttribute("username") String username) {
+    public void bid(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
-            researchPaperRepository.bid(conferenceId, username, paperId, Bidding.Status.valueOf(json.getString("status")));
+            researchPaperRepository.bid(username, paperId, Bidding.Status.valueOf(json.getString("status")));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -86,6 +87,17 @@ public class ResearchPaperController {
 //        papers.removeIf(paper -> user.getBiddings().stream().anyMatch(bid -> bid.getPaper().getId() == paper.getId() && bid.getStatus() == Bidding.Status.REJECTED));
 //        return null;
 //    }
+
+    @GetMapping("/getincomplete")
+    public List<Review> getAllReviewIncomplete(@SessionAttribute("username") String username) {
+        List<Review> reviews = new ArrayList<>();
+        for (Review review : reviewRepository.get(username)) {
+            if (review.getDate().getTime() == -1) {
+                reviews.add(review);
+            }
+        }
+        return reviews;
+    }
 
     @GetMapping("/getreviewers/{paperId}")
     public List<User> getReviewers(@PathVariable int paperId) {

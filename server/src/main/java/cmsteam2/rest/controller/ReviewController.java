@@ -46,16 +46,7 @@ public class ReviewController {
             throw new RuntimeException(e);
         }
     }
-    @GetMapping("/getincomplete")
-    public List<Review> getAllReviewIncomplete(@SessionAttribute("username") String username) {
-        List<Review> reviews = new ArrayList<>();
-        for (Review review : reviewRepository.get(username)) {
-            if (review.getDate().getTime() == -1) {
-                reviews.add(review);
-            }
-        }
-        return reviews;
-    }
+
 
     @GetMapping("/getall")
     public List<Review> getAll(@PathVariable int paperId) {
