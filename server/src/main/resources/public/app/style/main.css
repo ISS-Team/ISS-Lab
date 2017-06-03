@@ -18,7 +18,3 @@ td, th {
 .hidden-box.shown {
     display: block !important;
 }
-
-#sesInformations{
-    visibility:hidden;
-}

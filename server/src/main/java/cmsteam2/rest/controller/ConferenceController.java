@@ -31,5 +31,8 @@ public class ConferenceController {
         return conferenceRepository.getAll();
     }
 
-
+    @GetMapping("/{conferenceId}")
+    public Conference get(@PathVariable int conferenceId) {
+        return conferenceRepository.getById(conferenceId);
+    }
 }

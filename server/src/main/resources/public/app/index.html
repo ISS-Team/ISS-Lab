@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="script/jquery.datetimepicker.full.js"></script>
+    <script src="script/moment/moment.js"></script>
     <link rel="stylesheet" href="style/main.css">
     <script src="sha256.js"></script>
 </head>
@@ -175,7 +176,6 @@
     <table id="tableGeneralInformations" class="table table-bordered table-selectable">
         <thead>
         <tr>
-            <th style="display:none;" rowspan="2" id="idConference">Id</th>
             <th rowspan="2">ID</th>
             <th rowspan="2">Title</th>
             <th rowspan="2">Theme</th>
@@ -193,18 +193,19 @@
     </table>
 </div>
 <!--about sessions -->
-<div id="sesInformations" class="container hidden-box">
+<div id="conferenceInformation" class="container hidden-box">
+    <div id="conferenceInfo"></div>
     <table id="sessionInfo" class="table table-bordered">
         <thead>
         <tr>
-            <th style="display:none;" rowspan="2" id="idSession">Id</th>
+            <th rowspan="2" id="idSession">Id</th>
             <th rowspan="2">Session</th>
             <th rowspan="2">Speaker</th>
             <th rowspan="2">Start time</th>
             <th rowspan="2">Title of the paper</th>
-            <th rowspan="2">Type of the paper</th>
-            <th rowspan="2">Path of the paper</th>
-            <th rowspan="2"> Go</th>
+            <th rowspan="2">Topics</th>
+            <th rowspan="2">Keywords</th>
+            <th rowspan="2">Go</th>
         </tr>
         </thead>
         <tbody></tbody>

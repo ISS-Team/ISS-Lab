@@ -37,8 +37,6 @@ public class ResearchPaper {
     private Set<Review> reviews = new HashSet<>();
 
 //    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "username", fetch = FetchType.EAGER)
-//    @JsonIgnoreProperties({"researchPapers", "biddings", "password", "email", "activated"})
-//    private Set<User> reviewers = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Conference conference;
@@ -79,8 +77,6 @@ public class ResearchPaper {
     }
 
 //    public Set<User> getReviewers() {
-//        return reviewers;
-//    }
 
     public String getAbstractPaper() {
         return abstractPaper;
@@ -112,6 +108,10 @@ public class ResearchPaper {
 
     public Set<Bidding> getBidders() {
         return bidders;
+    }
+
+    public String getPathFile() {
+        return pathFile;
     }
 
     @JsonIgnore

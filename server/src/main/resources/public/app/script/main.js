@@ -6,54 +6,6 @@ $(document).ready(function () {
         $(".datepicker").datetimepicker({timepicker: false, format: 'Y-m-d'});
         $(".datetimepicker").datetimepicker({timepicker: true, format: "c"});
     });
-    console.log("ready");
-    //show sessions
-    $("tr").click(function () {
-        var id_conference = $(this).find("*:first-child").html();
-        //$("#generalInformations").hide();
-        $.ajax({
-            url: "/conferences/" + id_conference + "/sessions/getall",
-            type: "GET",
-
-            success: function (data) {
-                alert("Success");
-                console.log(data);
-                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
-                var tr;
-                for (var i = 0; i < data.length; i++) {
-                    tr = $('<tr/>');
-                    tr.append("<td style='display:none'>" + data[i].id + "</td>");
-                    tr.append("<td>" + data[i].title + "</td>");
-                    tr.append("<td>" + data[i].startTime + "</td>");
-                    tr.append("<td>" + data[i].duration + "</td>");
-                    //	tr.append("<td>"+ <button type="button">Participa</button> +"</td>");
-                    //paper
-                    $.ajax({
-                        url: "/conferences/" + data[i].id + "/sessions/getall",   //schimbat
-                        type: "GET",
-                        success: function (dataPaper) {
-                            alert("Success");
-                            console.log(dataPaper);
-                            for (var i = 0; i < dataPaper.length; i++) {
-                                tr.append("<td>" + dataPaper[i].title + "</td>");
-                                tr.append("<td>" + dataPaper[i].theme + "</td>");
-                                tr.append("<td>" + dataPaper[i].date + "</td>");
-                            }
-                        },
-                        error: function (res1) {
-                            alert("Eroare " + res1);
-                        }
-                    });
-
-                    $("#sessionInfo").append(tr);
-                }
-            },
-            error: function (res) {
-                alert("Eroare " + res);
-            }
-        });
-    });
-
     //se incarca automat la deschiderea paginii
 
     $("#About").click(function () {
@@ -67,7 +19,7 @@ $(document).ready(function () {
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $('<tr/>');
-                    tr.append("<td id='idConference'>" + data[i].id + "</td>");
+                    tr.append("<td class='id'>" + data[i].id + "</td>");
                     tr.append("<td>" + data[i].title + "</td>");
                     tr.append("<td>" + data[i].theme + "</td>");
                     tr.append("<td>" + data[i].deadlineAbstractInfo + "</td>");
@@ -75,6 +27,9 @@ $(document).ready(function () {
                     tr.append("<td>" + data[i].deadlineReview + "</td>");
                     tr.append("<td>" + data[i].startTime + "</td>");
                     tr.append("<td>" + data[i].endTime + "</td>");
+                    tr.click(function(ev) {
+                        showConferenceInformation(getParent($(ev.target), "tr"));
+                    });
                     $("#tableGeneralInformations > tbody").append(tr);
                 }
             },
@@ -215,4 +170,51 @@ function show(id) {
     if (id !== undefined) {
         $(id).addClass("shown");
     }
+}
+
+function showConferenceInformation(row) {
+    var info = $("#conferenceInformation").find("#conferenceInfo");
+    var conference_id = row.find(".id").html();
+    $.ajax({
+        url: "/conferences/" + conference_id,
+        type: "GET",
+        success: function(res) {
+            info.empty();
+            info.append($("<h2>" + res.title + "</h2>"));
+            info.append($("<h4>Theme: " + res.theme + "</h4>"));
+            info.append($("<span>" + res.startTime + " - " + res.endTime + "</span>"));
+        }
+    });
+    $.ajax({
+        url: "/conferences/" + conference_id + "/sessions/getall",
+        type: "GET",
+
+        success: function (data) {
+            var tr;
+            $("#sessionInfo").find("tbody").empty();
+            for (var i = 0; i < data.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>" + data[i].id + "</td>");
+                tr.append("<td>" + data[i].title + "</td>");
+                tr.append("<td>" + data[i].startTime + "</td>");
+                tr.append("<td>" + data[i].duration + "</td>");
+                tr.append("<td>" + data[i].paper.title + "</td>");
+                tr.append("<td>" + data[i].paper.topics.join(',') + "</td>");
+                tr.append("<td>" + data[i].paper.keywords.join(',') + "</td>");
+                $("#sessionInfo").find("tbody").append(tr);
+            }
+        }
+    });
+    show("#conferenceInformation")
+}
+
+function getParent(node, selector) {
+    while (!node.is("body")) {
+        if (node.is(selector)) {
+            return node;
+        } else {
+            node = node.parent();
+        }
+    }
+    return null;
 }
