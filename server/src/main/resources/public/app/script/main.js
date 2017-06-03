@@ -163,6 +163,36 @@ $(document).ready(function () {
             }
         });
     });
+	
+	$("#btnUploadPaper").click(function() {
+		var title=$("#titleUploadPaper").val();
+		var abstractPaper=$("#abstractPaper").val();
+		var topics=$("#topics").val().split(',');	
+		var keywords=$("#keywords").val().split(',');
+		var path=$("#pathUploadPaper").val();					
+		var forUploadPaper = {
+			"title":title,
+			"abstractPaper":abstractPaper,
+			"topics":topics,
+			"keywords":keywords,
+			"path":path
+			};
+				
+		$.ajax({
+			url: "/conferences/{conferenceId}/papers/save",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(forUploadPaper),
+			dataType: "json",
+			success: function (res) {
+				alert("Added with success");
+				console.log(res);
+				},
+			error: function(res) {
+				alert("Error at adding");
+				}
+		});
+	});
 });
 
 function show(id) {
