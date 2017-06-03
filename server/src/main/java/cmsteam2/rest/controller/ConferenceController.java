@@ -30,4 +30,6 @@ public class ConferenceController {
     public List<Conference> getAll() {
         return conferenceRepository.getAll();
     }
+
+
 }

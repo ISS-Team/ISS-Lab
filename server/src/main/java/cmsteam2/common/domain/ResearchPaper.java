@@ -122,6 +122,14 @@ public class ResearchPaper {
         }
         return sum > 0;
     }
+    @JsonIgnore
+    public int researchPaperWeight() {
+        int sum = 0;
+        for (Review r : reviews) {
+            sum += r.getQualifier().weight;
+        }
+        return sum;
+    }
 
     public void setConference(Conference conference) {
         this.conference = conference;
