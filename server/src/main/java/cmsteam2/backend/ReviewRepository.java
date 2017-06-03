@@ -21,6 +21,14 @@ public class ReviewRepository extends GenericRepository<Review> {
         }
     }
 
+    public List<Review> getAllByConference(int conferenceId) {
+        try (Session s = sessionFactory.openSession()) {
+            return s.createQuery("from Review R where R.reviewedPaper.conference.id = " + conferenceId, Review.class).list();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Review> get(String username) {
         List<Review> reviews = null;
         try (org.hibernate.Session session = sessionFactory.openSession()) {

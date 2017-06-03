@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public ResponseEntity review(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
+    public ResponseEntity review(@PathVariable int paperId, @PathVariable int conferenceId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
             Review review = reviewRepository.get(username, paperId);
@@ -43,15 +44,32 @@ public class ReviewController {
             review.setDate(date);
             review.setQualifier(q);
             reviewRepository.update(review);
+            verifyFinished(conferenceId);
             return ResponseEntity.ok("{}");
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
 
-
     @GetMapping("/getall")
     public List<Review> getAll(@PathVariable int paperId) {
         return reviewRepository.getAll(paperId);
+    }
+
+    private void verifyFinished(int conference) {
+        List<Review> reviews = reviewRepository.getAllByConference(conference);
+        boolean isFinished = true;
+        for (Review r : reviews) {
+            if (r.getDate().getTime() == -1) {
+                isFinished = false;
+            }
+        }
+        if (isFinished) {
+            try {
+                SessionController.instance.makeSessionsVersion2(conference);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

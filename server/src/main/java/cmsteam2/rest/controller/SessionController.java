@@ -5,6 +5,7 @@ import cmsteam2.backend.GenericRepository;
 import cmsteam2.backend.ResearchPaperRepository;
 import cmsteam2.backend.SessionRepository;
 import cmsteam2.common.domain.Conference;
+import cmsteam2.common.domain.Participation;
 import cmsteam2.common.domain.ResearchPaper;
 import cmsteam2.common.domain.Session;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import static cmsteam2.middleware.Main.sessionFactory;
@@ -23,12 +25,24 @@ import static cmsteam2.middleware.Main.sessionFactory;
 @RequestMapping("/conferences/{conferenceId}/sessions")
 public class SessionController {
 
+    public static SessionController instance;
+
     private SessionRepository sessionRepository = new SessionRepository(GenericRepository.loadProps());
     private ResearchPaperRepository researchPaperRepository=new ResearchPaperRepository(GenericRepository.loadProps());
     private ConferenceRepository conferenceRepository=new ConferenceRepository(GenericRepository.loadProps());
+
+    public SessionController() {
+        instance = this;
+    }
+
     @GetMapping("/getall")
     public List<Session> getAll(@PathVariable int conferenceId) {
         return sessionRepository.getAllByConference(conferenceId);
+    }
+
+    @GetMapping("/participate/{sessionId}")
+    public void participate(@PathVariable int sessionId, @SessionAttribute("username") String username) {
+        sessionRepository.participate(sessionId, username, Participation.Status.LISTENER);
     }
 
 
@@ -58,11 +72,7 @@ public class SessionController {
 //        session.getTransaction().commit();
 //        session.close();
 
-        for (ResearchPaper researchPaper:researchPapers) {
-            if(!researchPaper.isAccepted())
-                researchPapers.remove(researchPaper);
-
-        }
+        researchPapers.removeIf(researchPaper -> !researchPaper.isAccepted());
 
         long minDizpozitie=timeInMinuteOfConference(conference.getStartTime(),conference.getEndTime());
         researchPapers.sort(Comparator.comparingInt(u -> u.researchPaperWeight()));
@@ -91,11 +101,8 @@ public class SessionController {
 //        Time time=Time.valueOf("00:00:00");
 //        conference.setStartTime(time);
 //        conference.setEndTime(Time.valueOf("0:30:00"));
-        for (ResearchPaper researchPaper:researchPapers) {
-            if(!researchPaper.isAccepted())
-                researchPapers.remove(researchPaper);
+        researchPapers.removeIf(researchPaper -> !researchPaper.isAccepted());
 
-        }
         long totalMinutes=timeInMinuteOfConference(conference.getStartTime(),conference.getEndTime());
         int interval;//the duration for a session
         if(totalMinutes/researchPapers.size()>=15)//setting the duration
@@ -113,6 +120,8 @@ public class SessionController {
             session.setDuration(60*1000*interval);
             session.setStartTime(startTime);
             session.setTitle(researchPaper.getTitle());
+            session.setPaper(researchPaper);
+
             sessionRepository.save(session);
             startTime = startTime + 60 * 1000 * interval;
             if(startTime>=(endTime-60 * 1000 *interval+1))//to not pass the entTime

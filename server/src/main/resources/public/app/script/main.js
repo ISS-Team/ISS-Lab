@@ -312,13 +312,31 @@ function showConferenceInformation(row) {
             $("#sessionInfo").find("tbody").empty();
             for (var i = 0; i < data.length; i++) {
                 tr = $('<tr/>');
-                tr.append("<td>" + data[i].id + "</td>");
+                tr.append("<td class='id'>" + data[i].id + "</td>");
                 tr.append("<td>" + data[i].title + "</td>");
                 tr.append("<td>" + data[i].startTime + "</td>");
                 tr.append("<td>" + data[i].duration + "</td>");
                 tr.append("<td>" + data[i].paper.title + "</td>");
                 tr.append("<td>" + data[i].paper.topics.join(',') + "</td>");
                 tr.append("<td>" + data[i].paper.keywords.join(',') + "</td>");
+                var participateButton = $("<input type='button' value='Participate'>");
+                participateButton.click(function () {
+                    var btn = $(this);
+                    var sessionId = getParent(btn, "tr").find(".id").html();
+                     $.ajax({
+                         url: "/conferences/" + conferenceId + "/sessions/participate/" + sessionId,
+                         type: "GET",
+                         success: function() {
+                             btn.prop("disabled", "disabled");
+                         },
+                         error: function () {
+                             alert("Failed to process request...");
+                         }
+                     });
+                });
+                var participateTd = $("<td></td>");
+                participateTd.append(participateButton);
+                tr.append(participateTd);
                 $("#sessionInfo").find("tbody").append(tr);
             }
         }

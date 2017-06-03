@@ -74,4 +74,8 @@ public class Session implements Serializable {
     public ResearchPaper getPaper() {
         return paper;
     }
+
+    public void setPaper(ResearchPaper paper) {
+        this.paper = paper;
+    }
 }
