@@ -22,11 +22,11 @@ $(document).ready(function () {
                     tr.append("<td class='id'>" + data[i].id + "</td>");
                     tr.append("<td>" + data[i].title + "</td>");
                     tr.append("<td>" + data[i].theme + "</td>");
-                    tr.append("<td>" + data[i].deadlineAbstractInfo + "</td>");
-                    tr.append("<td>" + data[i].deadlineFullPaper + "</td>");
-                    tr.append("<td>" + data[i].deadlineReview + "</td>");
-                    tr.append("<td>" + data[i].startTime + "</td>");
-                    tr.append("<td>" + data[i].endTime + "</td>");
+                    tr.append("<td>" + moment(data[i].deadlineAbstractInfo).format("LL") + "</td>");
+                    tr.append("<td>" + moment(data[i].deadlineFullPaper).format("LL") + "</td>");
+                    tr.append("<td>" + moment(data[i].deadlineReview).format("LL") + "</td>");
+                    tr.append("<td>" + moment(data[i].startTime).format("LLL") + "</td>");
+                    tr.append("<td>" + moment(data[i].endTime).format("LLL") + "</td>");
                     tr.click(function (ev) {
                         showConferenceInformation(getParent($(ev.target), "tr"));
                     });
@@ -162,12 +162,6 @@ $(document).ready(function () {
                 alert("Eroare la inregistrare");
             }
         });
-//    var xhr = new XMLHttpRequest();
-
-//       xhr.open("post", "myurl", true);
-//	    xhr.send(JSON.stringify(forRegister));
-//		alert("Datele au fost trimise");
-
     });
     $("#btnSubmitLogin").click(function () {
 
@@ -192,18 +186,12 @@ $(document).ready(function () {
                     $(".hidden-by-login").removeClass("hidden-by-login");
                     show();
                 }
-                //console.log(res);
             },
 
             error: function (res) {
                 alert("Eroare");
             }
         });
-//    var xhr = new XMLHttpRequest();
-//       xhr.open("post", "/users/login", true);
-
-//	    xhr.send(JSON.stringify(forLogin));
-//		alert("Datele au fost trimise");
     });
     $("#btnSubmitUploadConference").click(function () {
         var title = $("#Title").val();
@@ -312,7 +300,7 @@ function showConferenceInformation(row) {
             info.empty();
             info.append($("<h2>" + res.title + "</h2>"));
             info.append($("<h4>Theme: " + res.theme + "</h4>"));
-            info.append($("<span>" + res.startTime + " - " + res.endTime + "</span>"));
+            info.append($("<span> From <strong>" + moment(res.startTime).format("LLL") + "</strong> until <strong>" + moment(res.endTime).format("LLL") + "</strong></span>"));
         }
     });
     $.ajax({
@@ -339,9 +327,8 @@ function showConferenceInformation(row) {
 }
 
 function showPaperInformation() {
-    var conference_id = window.selectedConferenceId;
     $.ajax({
-        url: "/conferences/" + conference_id + "/papers/getall",
+        url: "/conferences/" + window.selectedConferenceId + "/papers/getall",
         type: "GET",
 
         success: function (data) {
