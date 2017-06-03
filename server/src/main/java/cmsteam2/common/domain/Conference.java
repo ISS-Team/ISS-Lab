@@ -1,10 +1,7 @@
 package cmsteam2.common.domain;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,12 +15,11 @@ public class Conference {
     private int reviewersPerPaper;
     private String title;
     private String theme;
-    private Date date;
     private Date deadlineAbstractInfo;
     private Date deadlineFullPaper;
     private Date deadlineReview;
-    private Time startTime;
-    private Time endTime;
+    private java.util.Date startTime;
+    private java.util.Date endTime;
     @OneToMany
     private Set<ResearchPaper> researchPapers = new HashSet<>();
 
@@ -32,16 +28,14 @@ public class Conference {
 
     public Conference() {}
 
-    public Conference(String title, String theme, Date date) {
+    public Conference(String title, String theme) {
         this.title = title;
         this.theme = theme;
-        this.date = date;
     }
 
-    public Conference(String title, String theme, Date date, Date deadlineAbstractInfo, Date deadlineFullPaper, Date deadlineReview) {
+    public Conference(String title, String theme, Date deadlineAbstractInfo, Date deadlineFullPaper, Date deadlineReview) {
         this.title = title;
         this.theme = theme;
-        this.date = date;
         this.deadlineAbstractInfo = deadlineAbstractInfo;
         this.deadlineFullPaper = deadlineFullPaper;
         this.deadlineReview = deadlineReview;
@@ -71,27 +65,19 @@ public class Conference {
         this.theme = theme;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getStartTime() {
+    public java.util.Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(java.util.Date startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public java.util.Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(java.util.Date endTime) {
         this.endTime = endTime;
     }
 

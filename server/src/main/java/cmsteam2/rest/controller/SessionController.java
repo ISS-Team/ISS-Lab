@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.List;
+
+import static cmsteam2.middleware.Main.sessionFactory;
 
 @RestController
 @RequestMapping("/conferences/{conferenceId}/sessions")
@@ -36,33 +39,37 @@ public class SessionController {
      */
 
     @GetMapping("/version1")
-    public void makeSessionsVersion1(@PathVariable int conferenceId) {
+    public void makeSessionsVersion1(@PathVariable int conferenceId) throws ParseException {
         List<ResearchPaper> researchPapers=researchPaperRepository.getAll(conferenceId);
         Conference conference=conferenceRepository.getById(conferenceId);
 //        Time time=Time.valueOf("00:00:00");
 //        conference.setStartTime(time);
 //        conference.setEndTime(Time.valueOf("1:00:00"));
+//        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        java.util.Date testDate=dateFormat.parse("2017-10-12 12:00:00");
+//        java.util.Date endDate=dateFormat.parse("2017-10-12 18:00:00");
+//        System.out.println(testDate);
+//        System.out.println(testDate.toString());
+//        conference.setStartTime(testDate);
+//        conference.setEndTime(endDate);
+//        org.hibernate.Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        session.update(conference);
+//        session.getTransaction().commit();
+//        session.close();
+
         for (ResearchPaper researchPaper:researchPapers) {
             if(!researchPaper.isAccepted())
                 researchPapers.remove(researchPaper);
 
         }
+
         long minDizpozitie=timeInMinuteOfConference(conference.getStartTime(),conference.getEndTime());
-//        int pararel=1;
-//        int cate=0;
-//        if(minDizpozitie/30<researchPapers.size()){
-//            System.out.println((int)Math.ceil(researchPapers.size()/(minDizpozitie/30)));
-//            System.out.println(researchPapers.size()/(minDizpozitie/30));
-//            pararel=(int)Math.ceil(researchPapers.size()/(minDizpozitie/30))+1;
-//            cate=(int)(researchPapers.size()-minDizpozitie/30);
-//        }
         researchPapers.sort(Comparator.comparingInt(u -> u.researchPaperWeight()));
         long startTime=conference.getStartTime().getTime();
         long copyStartTime=startTime;
         long endTime=conference.getEndTime().getTime();
 
-//        int contorPararel=1;
-//        int contorCate=0;
         for(ResearchPaper researchPaper:researchPapers){
             Session session=new Session();
             session.setConference(conference);
@@ -73,31 +80,10 @@ public class SessionController {
             startTime = startTime + 60 * 1000 * 30;//+30 min;
             if(startTime>=(endTime-60 * 1000 *30+1))//to not pass the entTime(not even with a ms)
                 startTime=copyStartTime;
-
-//            if(pararel!=1){
-//                if(contorCate<cate){
-//                    if(contorPararel<pararel)
-//                    {
-//                        contorPararel++;
-//                    }
-//                    else {
-//                        contorPararel=1;
-//                        contorCate++;
-//                        startTime=startTime+60*1000*30;//+30 de min;
-//                    }
-//                }
-//                else {
-//                    startTime = startTime + 60 * 1000 * 30;//+30 de min;
-//                }
-//
-//            }
-//            else
-//            {
-//                startTime = startTime + 60 * 1000 * 30;//+30 de min;
-//            }
         }
 
     }
+
     @GetMapping("/version2")
     public void makeSessionsVersion2(@PathVariable int conferenceId) throws ParseException {
         List<ResearchPaper> researchPapers=researchPaperRepository.getAll(conferenceId);
@@ -134,9 +120,10 @@ public class SessionController {
         }
 
     }
-    public long timeInMinuteOfConference(Time start,Time end){
+    public long timeInMinuteOfConference(java.util.Date start, java.util.Date end){
         long diff=end.getTime()-start.getTime();
         diff=diff/(1000*60);
+        System.out.println(diff);
         return diff;
     }
 }
