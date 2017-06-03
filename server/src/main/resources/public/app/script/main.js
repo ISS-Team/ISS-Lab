@@ -52,6 +52,10 @@ $(document).ready(function () {
         show("#formConference");
     });
 
+    $("#PaperInformation").click(function () {
+        showPaperInformation();
+    });
+
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
         var lastName = $("#lastNameR").val();
@@ -178,7 +182,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: "/conferences/" + window.selectedConferenceId +"/papers/save",
+            url: "/conferences/" + window.selectedConferenceId + "/papers/save",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(forUploadPaper),
@@ -205,6 +209,7 @@ function show(id) {
 function showConferenceInformation(row) {
     var info = $("#conferenceInformation").find("#conferenceInfo");
     var conferenceId = row.find(".id").html();
+    window.selectedConferenceId = conferenceId;
     $.ajax({
         url: "/conferences/" + conferenceId,
         type: "GET",
@@ -254,8 +259,7 @@ function showConferenceInformation(row) {
                 });
             });
             var uploadButton = $("<input type='button' value='Upload paper'>");
-            uploadButton.click(function() {
-                window.selectedConferenceId = conferenceId;
+            uploadButton.click(function () {
                 show("#formUploadPaper");
             });
             info.append(uploadButton);
@@ -283,6 +287,45 @@ function showConferenceInformation(row) {
         }
     });
     show("#conferenceInformation");
+}
+
+function showPaperInformation() {
+    var conference_id = window.selectedConferenceId;
+    $.ajax({
+        url: "/conferences/" + conference_id + "/papers/getall",
+        type: "GET",
+
+        success: function (data) {
+            $("#papersInfoTable").find("tbody").empty();
+            for (var i = 0; i < data.length; i++) {
+                var tr = $('<tr/>');
+                tr.append("<td id='paper" + data[i].id + "'>" + data[i].id + "</td>");
+                tr.append("<td>" + data[i].title + "</td>");
+                tr.append("<td>" + data[i].abstractPaper + "</td>");
+                tr.append("<td>" + data[i].pathFile + "</td>");
+                tr.append("<td>" + data[i].author.username + "</td>");
+                if (data[i].reviews.length === 0) {
+                    tr.append("<td>" + "uploaded" + "</td>");
+                }
+                else {
+                    var incompleteReviews = 0;
+                    for (var j = 0; j < data[i].reviews.length; j++) {
+                        if (data[i].reviews[j].date === -1) {
+                            incompleteReviews++;
+                        }
+                    }
+                    if (incompleteReviews > 0) {
+                        tr.append("<td>" + "reviewing" + "</td>");
+                    }
+                    else {
+                        tr.append("<td>" + "reviewed" + "</td>");
+                    }
+                }
+                $("#papersInfoTable").find("tbody").append(tr);
+            }
+        }
+    });
+    show("#papersInformation");
 }
 
 function getParent(node, selector) {

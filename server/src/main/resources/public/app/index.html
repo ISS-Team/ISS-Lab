@@ -26,6 +26,7 @@
             <li><a id="About" href="#">About</a></li>
             <li><a id="ShowConferences" href="#">Show Conferences</a></li>
             <li class="hidden-button"><a id='UploadConference' href='#'>Upload Conference</a></li>
+            <li class="hidden-button"><a id='PaperInformation' href='#'>Paper Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
@@ -273,6 +274,24 @@
         <tbody></tbody>
     </table>
     <input type="button" value="Submit">
+</div>
+
+<!-- papers -->
+<div id="papersInformation" class="container hidden-box">
+    <div id="papersInfo"></div>
+    <table id="papersInfoTable" class="table table-bordered">
+        <thead>
+        <tr>
+            <th rowspan="2">ID</th>
+            <th rowspan="2">Title</th>
+            <th rowspan="2">Type</th>
+            <th rowspan="2">Path</th>
+            <th rowspan="2">Author</th>
+            <th rowspan="2">Acceped</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </div>
 
 <script src="script/main.js"></script>

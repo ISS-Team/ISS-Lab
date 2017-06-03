@@ -31,7 +31,7 @@ public class Review {
     private List<String> recommendations = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonIgnoreProperties({"bidders", "keywords", "reviews", "topics", "conference"})
     private ResearchPaper reviewedPaper;
 
     public Review() {}
