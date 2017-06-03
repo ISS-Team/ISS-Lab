@@ -10,6 +10,7 @@ import cmsteam2.common.domain.Review;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -33,7 +34,7 @@ public class ReviewController {
     }
 
     @PostMapping("/review")
-    public void review(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
+    public ResponseEntity review(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
             Review review = reviewRepository.get(username, paperId);
@@ -42,6 +43,7 @@ public class ReviewController {
             review.setDate(date);
             review.setQualifier(q);
             reviewRepository.update(review);
+            return ResponseEntity.ok("{}");
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

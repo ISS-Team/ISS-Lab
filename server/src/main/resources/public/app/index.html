@@ -24,11 +24,15 @@
         </div>
         <ul id="navBar" class="nav navbar-nav">
             <li><a id="About" href="#">About</a></li>
-            <li><a id="ShowConferences" href="#">Show Conferences</a></li>
-            <li class="hidden-button"><a id='UploadConference' href='#'>Upload Conference</a></li>
-            <li class="hidden-button"><a id='PaperInformation' href='#'>Paper Information</a></li>
+            <li class="hidden-by-login"><a id='UploadConference' href='#'>Upload Conference</a></li>
+            <li class="hidden-by-login hidden-by-conference"><a id='PaperInformation' href='#'>Paper Information</a>
+            </li>
+            <li class="hidden-by-login hidden-by-conference"><a id='UploadPaper' href='#'>Upload paper</a></li>
+            <li class="hidden-by-login hidden-by-conference"><a id='BiddingPhase' href='#'>Bidding</a></li>
+            <li class="hidden-by-login hidden-by-conference"><a id='ReviewingPhase' href='#'>Review</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="hidden-by-conference conference-name"></a></li>
             <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
             <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
@@ -42,13 +46,15 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="firstNameR">First name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name" name="firstNameR">
+                <input type="text" class="form-control" id="firstNameR" placeholder="Enter your first name"
+                       name="firstNameR">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="lastNameR">Last name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name" name="lastNameR">
+                <input type="text" class="form-control" id="lastNameR" placeholder="Enter your last name"
+                       name="lastNameR">
             </div>
         </div>
         <div class="form-group">
@@ -66,7 +72,8 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="passwordR">Password:</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="passwordR" placeholder="Enter password" name="passwordR">
+                <input type="password" class="form-control" id="passwordR" placeholder="Enter password"
+                       name="passwordR">
             </div>
         </div>
         <div class="form-group">
@@ -111,25 +118,29 @@
         </div>
     </form>
 </div>
+
 <!--form for upload a conference-->
 <div id="formConference" class="container hidden-box">
     <form class="form-horizontal" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" for="title">Title:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Title" placeholder="Enter a title for the conference" name="Title">
+                <input type="text" class="form-control" id="Title" placeholder="Enter a title for the conference"
+                       name="Title">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="theme">Theme:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="Theme" placeholder="Enter a theme for the conference" name="Theme">
+                <input type="text" class="form-control" id="Theme" placeholder="Enter a theme for the conference"
+                       name="Theme">
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="revPerPaper">Number of Reviewers Per Paper:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="RevPerPaper" placeholder="Enter the number of reviewers per paper" name="RevPerPaper">
+                <input type="text" class="form-control" id="RevPerPaper"
+                       placeholder="Enter the number of reviewers per paper" name="RevPerPaper">
             </div>
         </div>
         <div class="form-group">
@@ -172,55 +183,60 @@
 </div>
 <!-- Form for uploading a paper -->
 <div id="formUploadPaper" class="container hidden-box">
-	<form class="form-horizontal"  method="post" action="">
-		<div class="form-group">
-			<label class="control-label col-sm-2" style="display:none;" for="username">Id:</label>
-			<div class="col-sm-10">
-				<input type="text" style="display:none;" class="form-control" id="idUploadPaper" name="idUploadPaper">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="titleUploadPaper">Title:</label>
-			<div class="col-sm-10">          
-				<input type="text" class="form-control" id="titleUploadPaper" placeholder="Enter a title" name="titleUploadPaper">
-			</div>
-		</div>
-	    <div class="form-group">
-			<label class="control-label col-sm-2" for="abstractPaper">Abstract Paper:</label>
-			<div class="col-sm-10">          
-				<input type="text" class="form-control" id="abstractPaper" placeholder="Enter a summary about the paper" name="abstractPaper">
-			</div>
-		</div>	
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="topics">Topics:</label>
-			<div class="col-sm-10">          
-				<input type="text" class="form-control" id="topics" placeholder="Enter one or more topics, separated by ' , ' " name="topics">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="keywords">Keywords:</label>
-			<div class="col-sm-10">          
-				<input type="text" class="form-control" id="keywords" placeholder="Enter one or more keywords, separated by ' , '" name="keywords">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="pathUploadPaper">Path:</label>
-			<div class="col-sm-10">          
-				<input type="text" class="form-control" id="pathUploadPaper" placeholder="Enter the path" name="pathUploadPaper">
-			</div>
-		</div>
-		<div class="form-group">        
-			<div class="col-sm-offset-2 col-sm-10">
-				<input id="btnUploadPaper" type="button" class="btn btn-default" value="Add">
-			</div>
-		</div>
-	</form>
+    <form class="form-horizontal" method="post" action="">
+        <div class="form-group">
+            <label class="control-label col-sm-2" style="display:none;" for="username">Id:</label>
+            <div class="col-sm-10">
+                <input type="text" style="display:none;" class="form-control" id="idUploadPaper" name="idUploadPaper">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="titleUploadPaper">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="titleUploadPaper" placeholder="Enter a title"
+                       name="titleUploadPaper">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="abstractPaper">Abstract Paper:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="abstractPaper" placeholder="Enter a summary about the paper"
+                       name="abstractPaper">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="topics">Topics:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="topics"
+                       placeholder="Enter one or more topics, separated by ' , ' " name="topics">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="keywords">Keywords:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="keywords"
+                       placeholder="Enter one or more keywords, separated by ' , '" name="keywords">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pathUploadPaper">Path:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="pathUploadPaper" placeholder="Enter the path"
+                       name="pathUploadPaper">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input id="btnUploadPaper" type="button" class="btn btn-default" value="Add">
+            </div>
+        </div>
+    </form>
 </div>
-	
+
 
 <!-- about conferences -->
 <div id="generalInformations" class="container hidden-box">
-    <h3>General informations about the conference.</h3>
+    <h3>General informations about the conferences:</h3>
     <table id="tableGeneralInformations" class="table table-bordered table-selectable">
         <thead>
         <tr>
@@ -261,7 +277,7 @@
 </div>
 
 <!--List of submitted papers for that conference -->
-<div id="confpapers" class="container hidden-box">
+<div id="biddingPapers" class="container hidden-box">
     <h2></h2>
     <table class="table table-bordered">
         <thead>
@@ -294,6 +310,26 @@
     </table>
 </div>
 
-<script src="script/main.js"></script>
+<!-- paper reviews -->
+<div id="reviewingPapers" class="container hidden-box">
+    <div class="form-group">
+        <table id="tableOfPapersR" class="table table-bordered">
+            <thead>
+            <tr>
+                <th style="display:none;" rowspan="2" id="idConference">Id</th>
+                <th rowspan="2">ID</th>
+                <th rowspan="2">Title</th>
+                <th rowspan="2">Review</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br><br>
+        <div class="col-xs-12 text-center">
+            <button type="button" class="btn btn-default" id="reviewSubmit">Submit your Reviews</button>
+        </div>
+    </div>
+    <script src="script/main.js"></script>
+</div>
 </body>
 </html>

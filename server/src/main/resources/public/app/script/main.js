@@ -56,6 +56,80 @@ $(document).ready(function () {
         showPaperInformation();
     });
 
+    $("#UploadPaper").click(function () {
+        show("#formUploadPaper");
+    });
+
+    $("#BiddingPhase").click(function () {
+        show("#biddingPapers");
+        $("#biddingPapers").find("tbody").empty();
+        $.ajax({
+            url: "/conferences/" + window.selectedConferenceId + "/papers/getall",
+            type: "GET",
+            success: function (res) {
+                for (var i = 0; i < res.length; i++) {
+                    var paper = res[i];
+                    var tr = $("<tr></tr>");
+                    tr.append($("<td>" + paper.id + "</td>"));
+                    tr.append($("<td>" + paper.title + "</td>"));
+                    var td = $("<td></td>");
+                    var radioReject = $("<label class='radio-inline'><input type='radio' value='REJECTED' name='optradio" + paper.id + "'>Reject</label>");
+                    var radioNeutral = $("<label class='radio-inline'><input type='radio' checked='checked' value='NEUTRAL' name='optradio" + paper.id + "'>Neutral</label>");
+                    var radioAccept = $("<label class='radio-inline'><input type='radio' value='ACCEPTED' name='optradio" + paper.id + "'>Accept</label>");
+                    td.append(radioReject);
+                    td.append(radioNeutral);
+                    td.append(radioAccept);
+                    tr.append(td);
+                    $("#biddingPapers").find("tbody").append(tr);
+                }
+            }
+        });
+        $("#biddingPapers").find("input[type='button']").click(function () {
+            $.each($("#biddingPapers").find("tbody tr"), function (i, val) {
+                var paperId = $(this).find("td:first-child").html();
+                var status = $(this).find("input:checked").val();
+                $.ajax({
+                    url: "/conferences/" + window.selectedConferenceId + "/papers/bid/" + paperId,
+                    type: "POST",
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify({status: status})
+                });
+            });
+        });
+    });
+
+    $("#ReviewingPhase").click(function () {
+        show("#reviewingPapers");
+        $("#tableOfPapersR").find("tbody").empty();
+        $.ajax({
+            url: "/conferences/" + window.selectedConferenceId + "/papers/getincomplete",
+            type: "GET",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var tr = $('<tr/>');
+                    tr.append("<td class='id'>" + data[i].reviewedPaper.id + "</td>");
+                    tr.append("<td>" + data[i].reviewedPaper.title + "</td>");
+                    tr.append("<td> <div class='col-xs-6 selectContainer'> " +
+                        "<select class='form-control' name='review" + data[i].id + "'> " +
+                        "<option value='STRONG_ACCEPT'>Strong Accept</option> " +
+                        "<option value='ACCEPT'>Accept</option> " +
+                        "<option value='WEAK_ACCEPT'>Weak Accept</option> " +
+                        "<option value='BORDERLINE'>Borderline</option> " +
+                        "<option value='WEAK_REJECT'>Weak Reject</option> " +
+                        "<option value='REJECT'>Reject</option> " +
+                        "<option value='STRONG_REJECT'>Strong Reject</option> " +
+                        "</select> " +
+                        "</div> </td>");
+                    $("#tableOfPapersR").find("tbody").append(tr);
+                }
+            },
+            error: function (res) {
+                alert("Eroare");
+            }
+        });
+    });
+
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
         var lastName = $("#lastNameR").val();
@@ -115,7 +189,7 @@ $(document).ready(function () {
             success: function (res) {
                 //trebuie modificat in functie de permisie
                 if (res.permissionLevel === 0 || res.permissionLevel === 1) {
-                    $(".hidden-button").removeClass("hidden-button");
+                    $(".hidden-by-login").removeClass("hidden-by-login");
                     show();
                 }
                 //console.log(res);
@@ -197,6 +271,25 @@ $(document).ready(function () {
         });
     });
 
+    $("#reviewSubmit").click(function () {
+        var date = Math.round((new Date()).getTime() / 1000);
+        $.each($("#reviewingPapers").find("tbody tr"), function() {
+            var paperId = $(this).find(".id").html();
+            var qualifier = $(this).find("select").val();
+            var reviewInfo = { "date": date, "qualifier": qualifier };
+            $.ajax({
+                url: "/conferences/" + window.selectedConferenceId + "/papers/" + paperId + "/reviews/review",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(reviewInfo),
+                success: function () {},
+                error: function () {
+                    alert("Eroare la recenzie hartie");
+                }
+            })
+        });
+    });
 });
 
 function show(id) {
@@ -210,60 +303,16 @@ function showConferenceInformation(row) {
     var info = $("#conferenceInformation").find("#conferenceInfo");
     var conferenceId = row.find(".id").html();
     window.selectedConferenceId = conferenceId;
+    $(".hidden-by-conference").removeClass("hidden-by-conference");
     $.ajax({
         url: "/conferences/" + conferenceId,
         type: "GET",
         success: function (res) {
+            $(".conference-name").html("Conf: " + res.title + " (" + res.id + ")");
             info.empty();
             info.append($("<h2>" + res.title + "</h2>"));
             info.append($("<h4>Theme: " + res.theme + "</h4>"));
             info.append($("<span>" + res.startTime + " - " + res.endTime + "</span>"));
-            var biddingButton = $("<input type='button' value='Bidding'>");
-            biddingButton.click(function () {
-                $("#confpapers").find("tbody").empty();
-                show("#confpapers");
-                $.ajax({
-                    url: "/conferences/" + conferenceId + "/papers/getall",
-                    type: "GET",
-                    success: function (res) {
-                        for (var i = 0; i < res.length; i++) {
-                            var paper = res[i];
-                            var tr = $("<tr></tr>");
-                            tr.append($("<td>" + paper.id + "</td>"));
-                            tr.append($("<td>" + paper.title + "</td>"));
-                            var td = $("<td></td>");
-                            var radioReject = $("<label class='radio-inline'><input type='radio' value='REJECTED' name='optradio" + paper.id + "'>Reject</label>");
-                            var radioNeutral = $("<label class='radio-inline'><input type='radio' value='NEUTRAL' name='optradio" + paper.id + "'>Neutral</label>");
-                            var radioAccept = $("<label class='radio-inline'><input type='radio' value='ACCEPTED' name='optradio" + paper.id + "'>Accept</label>");
-                            td.append(radioReject);
-                            td.append(radioNeutral);
-                            td.append(radioAccept);
-                            tr.append(td);
-                            $("#confpapers").find("tbody").append(tr);
-                        }
-                    }
-                });
-                $("#confpapers").find("input[type='button']").click(function () {
-                    $.each($("#confpapers").find("tbody tr"), function (i, val) {
-                        var paperId = $(this).find("td:first-child").html();
-                        var status = $(this).find("input:checked").val();
-                        $.ajax({
-                            url: "/conferences/" + conferenceId + "/papers/bid/" + paperId,
-                            type: "POST",
-                            contentType: "application/json",
-                            dataType: "json",
-                            data: JSON.stringify({status: status})
-                        });
-                    });
-
-                });
-            });
-            var uploadButton = $("<input type='button' value='Upload paper'>");
-            uploadButton.click(function () {
-                show("#formUploadPaper");
-            });
-            info.append(uploadButton);
-            info.append(biddingButton);
         }
     });
     $.ajax({

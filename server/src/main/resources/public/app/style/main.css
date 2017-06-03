@@ -11,7 +11,9 @@ td, th {
     background: #a4cbff;
 }
 
-.hidden-box, .hidden-button {
+.hidden-box,
+.hidden-by-login,
+.hidden-by-conference {
     display: none !important;
 }
 
