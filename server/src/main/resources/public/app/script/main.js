@@ -59,30 +59,27 @@ $(document).ready(function () {
     $("#About").click(function () {
         $("#formLogin").hide();
         $("#formRegister").hide();
-        $("#tableGeneralInformations").hide();
-        $("#formConference").hide();
         $("#generalInformations").show();
+        $("#formConference").hide();
 
         //apel populare
         $.ajax({
             url: "/conferences/getall", //schimbat
             success: function (data) {
-                alert("Success");
-                console.log(data);
-                //$each(res.id,res.title,res.theme,res.date,res.deadLineAbstractInfo,res.deadLineFullPaper,res.deadLineReview,res.startTime,res.endTime){
+                $("#tableGeneralInformations > tbody").empty();
                 var tr;
                 for (var i = 0; i < data.length; i++) {
                     tr = $('<tr/>');
-                    tr.append("<td style='display:block' id='idConference'>" + data[i].id + "</td>");
+                    tr.append("<td id='idConference'>" + data[i].id + "</td>");
                     tr.append("<td>" + data[i].title + "</td>");
                     tr.append("<td>" + data[i].theme + "</td>");
                     tr.append("<td>" + data[i].date + "</td>");
-                    tr.append("<td>" + data[i].deadLineAbstractInfo + "</td>");
-                    tr.append("<td>" + data[i].deadLineFullPaper + "</td>");
-                    tr.append("<td>" + data[i].deadLineReview + "</td>");
+                    tr.append("<td>" + data[i].deadlineAbstractInfo + "</td>");
+                    tr.append("<td>" + data[i].deadlineFullPaper + "</td>");
+                    tr.append("<td>" + data[i].deadlineReview + "</td>");
                     tr.append("<td>" + data[i].startTime + "</td>");
                     tr.append("<td>" + data[i].endTime + "</td>");
-                    $("#tableGeneralInformations").append(tr);
+                    $("#tableGeneralInformations > tbody").append(tr);
                 }
             },
             error: function (res) {
@@ -95,14 +92,12 @@ $(document).ready(function () {
     $("#Login").click(function () {
         $("#generalInformations").hide();
         $("#formRegister").hide();
-        $("#tableGeneralInformations").hide();
         $("#formConference").hide();
         $("#formLogin").show();
     });
     $("#Register").click(function () {
         $("#generalInformations").hide();
         $("#formLogin").hide();
-        $("#tableGeneralInformations").hide();
         $("#formConference").hide();
         $("#formRegister").show();
     });
@@ -229,6 +224,5 @@ function uploadinfo() {
     $("#generalInformations").hide();
     $("#formRegister").hide();
     $("#formLogin").hide();
-    $("#tableGeneralInformations").hide();
     $("#formConference").show();
 }
