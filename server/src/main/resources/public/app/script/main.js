@@ -163,36 +163,36 @@ $(document).ready(function () {
             }
         });
     });
-	
-	$("#btnUploadPaper").click(function() {
-		var title=$("#titleUploadPaper").val();
-		var abstractPaper=$("#abstractPaper").val();
-		var topics=$("#topics").val().split(',');	
-		var keywords=$("#keywords").val().split(',');
-		var path=$("#pathUploadPaper").val();					
-		var forUploadPaper = {
-			"title":title,
-			"abstractPaper":abstractPaper,
-			"topics":topics,
-			"keywords":keywords,
-			"path":path
-			};
-				
-		$.ajax({
-			url: "/conferences/{conferenceId}/papers/save",
-			type: "POST",
-			contentType: "application/json",
-			data: JSON.stringify(forUploadPaper),
-			dataType: "json",
-			success: function (res) {
-				alert("Added with success");
-				console.log(res);
-				},
-			error: function(res) {
-				alert("Error at adding");
-				}
-		});
-	});
+    $("#btnUploadPaper").click(function () {
+        var title = $("#titleUploadPaper").val();
+        var abstractPaper = $("#abstractPaper").val();
+        var topics = $("#topics").val().split(',');
+        var keywords = $("#keywords").val().split(',');
+        var path = $("#pathUploadPaper").val();
+        var forUploadPaper = {
+            "title": title,
+            "abstractPaper": abstractPaper,
+            "topics": topics,
+            "keywords": keywords,
+            "pathFile": path
+        };
+
+        $.ajax({
+            url: "/conferences/" + window.selectedConferenceId +"/papers/save",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(forUploadPaper),
+            dataType: "json",
+            success: function (res) {
+                alert("Added with success");
+                console.log(res);
+            },
+            error: function (res) {
+                alert("Error at adding");
+            }
+        });
+    });
+
 });
 
 function show(id) {
@@ -214,13 +214,13 @@ function showConferenceInformation(row) {
             info.append($("<h4>Theme: " + res.theme + "</h4>"));
             info.append($("<span>" + res.startTime + " - " + res.endTime + "</span>"));
             var biddingButton = $("<input type='button' value='Bidding'>");
-            biddingButton.click(function() {
+            biddingButton.click(function () {
                 $("#confpapers").find("tbody").empty();
                 show("#confpapers");
                 $.ajax({
                     url: "/conferences/" + conferenceId + "/papers/getall",
                     type: "GET",
-                    success: function(res) {
+                    success: function (res) {
                         for (var i = 0; i < res.length; i++) {
                             var paper = res[i];
                             var tr = $("<tr></tr>");
@@ -238,8 +238,8 @@ function showConferenceInformation(row) {
                         }
                     }
                 });
-                $("#confpapers").find("input[type='button']").click(function() {
-                    $.each($("#confpapers").find("tbody tr"), function(i, val) {
+                $("#confpapers").find("input[type='button']").click(function () {
+                    $.each($("#confpapers").find("tbody tr"), function (i, val) {
                         var paperId = $(this).find("td:first-child").html();
                         var status = $(this).find("input:checked").val();
                         $.ajax({
@@ -247,12 +247,18 @@ function showConferenceInformation(row) {
                             type: "POST",
                             contentType: "application/json",
                             dataType: "json",
-                            data: JSON.stringify({ status: status })
+                            data: JSON.stringify({status: status})
                         });
                     });
 
                 });
             });
+            var uploadButton = $("<input type='button' value='Upload paper'>");
+            uploadButton.click(function() {
+                window.selectedConferenceId = conferenceId;
+                show("#formUploadPaper");
+            });
+            info.append(uploadButton);
             info.append(biddingButton);
         }
     });
