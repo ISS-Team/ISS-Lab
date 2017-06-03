@@ -1,11 +1,22 @@
-.table > thead > tr > th{
+td, th {
     vertical-align: middle;
     text-align:center;
 }
 
-.table > tbody > tr > td{
-    vertical-align: middle;
-    text-align:center;
+.table-selectable tbody tr {
+    cursor: pointer;
+}
+
+.table-selectable tbody tr:hover {
+    background: #a4cbff;
+}
+
+.hidden-box, .hidden-button {
+    display: none !important;
+}
+
+.hidden-box.shown {
+    display: block !important;
 }
 
 #sesInformations{

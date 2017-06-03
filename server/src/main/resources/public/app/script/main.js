@@ -57,10 +57,7 @@ $(document).ready(function () {
     //se incarca automat la deschiderea paginii
 
     $("#About").click(function () {
-        $("#formLogin").hide();
-        $("#formRegister").hide();
-        $("#generalInformations").show();
-        $("#formConference").hide();
+        show("#generalInformations");
 
         //apel populare
         $.ajax({
@@ -73,7 +70,6 @@ $(document).ready(function () {
                     tr.append("<td id='idConference'>" + data[i].id + "</td>");
                     tr.append("<td>" + data[i].title + "</td>");
                     tr.append("<td>" + data[i].theme + "</td>");
-                    tr.append("<td>" + data[i].date + "</td>");
                     tr.append("<td>" + data[i].deadlineAbstractInfo + "</td>");
                     tr.append("<td>" + data[i].deadlineFullPaper + "</td>");
                     tr.append("<td>" + data[i].deadlineReview + "</td>");
@@ -90,18 +86,16 @@ $(document).ready(function () {
     });
 
     $("#Login").click(function () {
-        $("#generalInformations").hide();
-        $("#formRegister").hide();
-        $("#formConference").hide();
-        $("#formLogin").show();
-    });
-    $("#Register").click(function () {
-        $("#generalInformations").hide();
-        $("#formLogin").hide();
-        $("#formConference").hide();
-        $("#formRegister").show();
+        show("#formLogin");
     });
 
+    $("#Register").click(function () {
+        show("#formRegister");
+    });
+
+    $("#UploadConference").click(function() {
+        show("#formConference");
+    });
 
     $("#btnSubmitRegister").click(function () {
         var firstName = $("#firstNameR").val();
@@ -128,9 +122,7 @@ $(document).ready(function () {
             dataType: "json",
             data: JSON.stringify(forRegister),
             success: function (res) {
-                $("#generalInformations").hide();
-                $("#formRegister").hide();
-                $("#formLogin").show();
+                show("#formLogin");
             },
 
             error: function (res) {
@@ -164,8 +156,8 @@ $(document).ready(function () {
             success: function (res) {
                 //trebuie modificat in functie de permisie
                 if (res.permissionLevel === 0 || res.permissionLevel === 1) {
-                    $("#navBar").append(" <li><a id='UploadConference' onclick='uploadinfo()' href='#'>Upload Conference</a></li>");
-                    $("#Login").css('display', 'none');
+                    $(".hidden-button").removeClass("hidden-button");
+                    show();
                 }
                 //console.log(res);
             },
@@ -184,7 +176,6 @@ $(document).ready(function () {
         var title = $("#Title").val();
         var theme = $("#Theme").val();
         var revPerPaper = $("#RevPerPaper").val();
-        var date = $("#Date").val();
         var deadlineAbstractInfo = $("#DeadlineAbstractInfo").val();
         var deadlineFullPaper = $("#DeadlineFullPaper").val();
         var deadlineReview = $("#DeadlineReview").val();
@@ -195,7 +186,6 @@ $(document).ready(function () {
             "reviewersPerPaper": revPerPaper,
             "title": title,
             "theme": theme,
-            "date": date,
             "deadlineAbstractInfo": deadlineAbstractInfo,
             "deadlineFullPaper": deadlineFullPaper,
             "deadlineReview": deadlineReview,
@@ -220,9 +210,9 @@ $(document).ready(function () {
     });
 });
 
-function uploadinfo() {
-    $("#generalInformations").hide();
-    $("#formRegister").hide();
-    $("#formLogin").hide();
-    $("#formConference").show();
+function show(id) {
+    $(".hidden-box").removeClass("shown");
+    if (id !== undefined) {
+        $(id).addClass("shown");
+    }
 }
