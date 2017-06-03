@@ -27,7 +27,7 @@ $(document).ready(function () {
                     tr.append("<td>" + data[i].deadlineReview + "</td>");
                     tr.append("<td>" + data[i].startTime + "</td>");
                     tr.append("<td>" + data[i].endTime + "</td>");
-                    tr.click(function(ev) {
+                    tr.click(function (ev) {
                         showConferenceInformation(getParent($(ev.target), "tr"));
                     });
                     $("#tableGeneralInformations > tbody").append(tr);
@@ -48,7 +48,7 @@ $(document).ready(function () {
         show("#formRegister");
     });
 
-    $("#UploadConference").click(function() {
+    $("#UploadConference").click(function () {
         show("#formConference");
     });
 
@@ -174,19 +174,60 @@ function show(id) {
 
 function showConferenceInformation(row) {
     var info = $("#conferenceInformation").find("#conferenceInfo");
-    var conference_id = row.find(".id").html();
+    var conferenceId = row.find(".id").html();
     $.ajax({
-        url: "/conferences/" + conference_id,
+        url: "/conferences/" + conferenceId,
         type: "GET",
-        success: function(res) {
+        success: function (res) {
             info.empty();
             info.append($("<h2>" + res.title + "</h2>"));
             info.append($("<h4>Theme: " + res.theme + "</h4>"));
             info.append($("<span>" + res.startTime + " - " + res.endTime + "</span>"));
+            var biddingButton = $("<input type='button' value='Bidding'>");
+            biddingButton.click(function() {
+                $("#confpapers").find("tbody").empty();
+                show("#confpapers");
+                $.ajax({
+                    url: "/conferences/" + conferenceId + "/papers/getall",
+                    type: "GET",
+                    success: function(res) {
+                        for (var i = 0; i < res.length; i++) {
+                            var paper = res[i];
+                            var tr = $("<tr></tr>");
+                            tr.append($("<td>" + paper.id + "</td>"));
+                            tr.append($("<td>" + paper.title + "</td>"));
+                            var td = $("<td></td>");
+                            var radioReject = $("<label class='radio-inline'><input type='radio' value='REJECTED' name='optradio" + paper.id + "'>Reject</label>");
+                            var radioNeutral = $("<label class='radio-inline'><input type='radio' value='NEUTRAL' name='optradio" + paper.id + "'>Neutral</label>");
+                            var radioAccept = $("<label class='radio-inline'><input type='radio' value='ACCEPTED' name='optradio" + paper.id + "'>Accept</label>");
+                            td.append(radioReject);
+                            td.append(radioNeutral);
+                            td.append(radioAccept);
+                            tr.append(td);
+                            $("#confpapers").find("tbody").append(tr);
+                        }
+                    }
+                });
+                $("#confpapers").find("input[type='button']").click(function() {
+                    $.each($("#confpapers").find("tbody tr"), function(i, val) {
+                        var paperId = $(this).find("td:first-child").html();
+                        var status = $(this).find("input:checked").val();
+                        $.ajax({
+                            url: "/conferences/" + conferenceId + "/papers/bid/" + paperId,
+                            type: "POST",
+                            contentType: "application/json",
+                            dataType: "json",
+                            data: JSON.stringify({ status: status })
+                        });
+                    });
+
+                });
+            });
+            info.append(biddingButton);
         }
     });
     $.ajax({
-        url: "/conferences/" + conference_id + "/sessions/getall",
+        url: "/conferences/" + conferenceId + "/sessions/getall",
         type: "GET",
 
         success: function (data) {
@@ -205,7 +246,7 @@ function showConferenceInformation(row) {
             }
         }
     });
-    show("#conferenceInformation")
+    show("#conferenceInformation");
 }
 
 function getParent(node, selector) {

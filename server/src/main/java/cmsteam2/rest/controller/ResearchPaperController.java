@@ -70,10 +70,10 @@ public class ResearchPaperController {
     }
 
     @PostMapping("/bid/{paperId}")
-    public void bid(@PathVariable int paperId, @PathVariable int conferenceId, HttpEntity<String> body, @SessionAttribute("username") String username) {
+    public void bid(@PathVariable int paperId, HttpEntity<String> body, @SessionAttribute("username") String username) {
         try {
             JSONObject json = new JSONObject(body.getBody());
-            researchPaperRepository.bid(conferenceId, username, paperId, Bidding.Status.valueOf(json.getString("status")));
+            researchPaperRepository.bid(username, paperId, Bidding.Status.valueOf(json.getString("status")));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -86,6 +86,17 @@ public class ResearchPaperController {
 //        papers.removeIf(paper -> user.getBiddings().stream().anyMatch(bid -> bid.getPaper().getId() == paper.getId() && bid.getStatus() == Bidding.Status.REJECTED));
 //        return null;
 //    }
+
+    @GetMapping("/getincomplete")
+    public List<Review> getAllReviewIncomplete(@SessionAttribute("username") String username) {
+        List<Review> reviews = new ArrayList<>();
+        for (Review review : reviewRepository.get(username)) {
+            if (review.getDate().getTime() == -1) {
+                reviews.add(review);
+            }
+        }
+        return reviews;
+    }
 
     @GetMapping("/getreviewers/{paperId}")
     public List<User> getReviewers(@PathVariable int paperId) {
