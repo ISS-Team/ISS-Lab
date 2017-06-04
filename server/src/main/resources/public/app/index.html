@@ -23,18 +23,18 @@
             <a class="navbar-brand" href="#">Conference Mangement System</a>
         </div>
         <ul id="navBar" class="nav navbar-nav">
-            <li><a id="About" href="#">About</a></li>
-            <li class="hidden-by-login"><a id='UploadConference' href='#'>Upload Conference</a></li>
-            <li class="hidden-by-login hidden-by-conference"><a id='PaperInformation' href='#'>Paper Information</a>
+            <li class="hidden-by-login-listener"><a id="About" href="#">About</a></li>
+            <li class="hidden-by-login-chair"><a id='UploadConference' href='#'>Upload Conference</a></li>
+            <li class="hidden-by-login-member hidden-by-conference"><a id='PaperInformation' href='#'>Paper Information</a>
             </li>
-            <li class="hidden-by-login hidden-by-conference"><a id='UploadPaper' href='#'>Upload paper</a></li>
-            <li class="hidden-by-login hidden-by-conference"><a id='BiddingPhase' href='#'>Bidding</a></li>
-            <li class="hidden-by-login hidden-by-conference"><a id='ReviewingPhase' href='#'>Review</a></li>
+            <li class="hidden-by-login-author hidden-by-conference"><a id='UploadPaper' href='#'>Upload paper</a></li>
+            <li class="hidden-by-login-member hidden-by-conference"><a id='BiddingPhase' href='#'>Bidding</a></li>
+            <li class="hidden-by-login-member hidden-by-conference"><a id='ReviewingPhase' href='#'>Review</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="hidden-by-conference conference-name"></a></li>
-            <li><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-            <li><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class="hidden-by-logged-in shown"><a href="#" class="hidden-by-conference conference-name"></a></li>
+            <li class="hidden-by-logged-in shown"><a id="Register" href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            <li class="hidden-by-logged-in shown"><a id="Login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
     </div>
 </nav>
@@ -80,10 +80,10 @@
             <label class="control-label col-sm-2" for="selectPosition">Select your position:</label>
             <div class="col-sm-10">
                 <select class="form-control" id="selectPosition">
-                    <option value="speaker">Speaker</option>
-                    <option value="listener">Listener</option>
-                    <option value="programCommitteeMember">Program Committee Member</option>
-                    <option value="chair">Chair</option>
+                    <option value="LISTENER">Listener</option>
+                    <option value="AUTHOR">Author</option>
+                    <option value="MEMBER">Program Committee Member</option>
+                    <option value="CHAIR">Chair</option>
                 </select>
             </div>
         </div>

@@ -61,7 +61,7 @@ public class ReviewController {
         boolean isFinished = true;
         for (Review r : reviews) {
             if (r.getDate().getTime() == -1) {
-                isFinished = false;
+                isFinished =         false;
             }
         }
         if (isFinished) {

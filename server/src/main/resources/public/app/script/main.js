@@ -145,7 +145,7 @@ $(document).ready(function () {
             "email": email,
             "username": username,
             "password": password,
-            "position": position
+            "permissionLevel": position
         };
 
         $.ajax({
@@ -181,11 +181,18 @@ $(document).ready(function () {
             dataType: "json",
 
             success: function (res) {
-                //trebuie modificat in functie de permisie
-                if (res.permissionLevel === 0 || res.permissionLevel === 1) {
-                    $(".hidden-by-login").removeClass("hidden-by-login");
-                    show();
+                $(".hidden-by-login-listener").removeClass("hidden-by-login-listener");
+                $(".hidden-by-logged-in").removeClass("shown");
+                if (res.permissionLevel >= 1) {
+                    $(".hidden-by-login-author").removeClass("hidden-by-login-author");
                 }
+                if (res.permissionLevel >= 2) {
+                    $(".hidden-by-login-member").removeClass("hidden-by-login-member");
+                }
+                if (res.permissionLevel >= 3) {
+                    $(".hidden-by-login-chair").removeClass("hidden-by-login-chair");
+                }
+                show();
             },
 
             error: function (res) {

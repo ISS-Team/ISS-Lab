@@ -32,7 +32,7 @@ public class UserController {
     public User login(@RequestBody User user, HttpSession session) {
 //        System.out.println(user);
         User actualUser = usersRepository.login(user);
-        if (actualUser != null) {
+        if (actualUser != null && actualUser.isActivated()) {
             session.setAttribute("username", actualUser.getUsername());
             return actualUser;
         } else {

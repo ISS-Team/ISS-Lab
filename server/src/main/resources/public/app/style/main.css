@@ -12,11 +12,16 @@ td, th {
 }
 
 .hidden-box,
-.hidden-by-login,
-.hidden-by-conference {
+.hidden-by-login-listener,
+.hidden-by-login-author,
+.hidden-by-login-member,
+.hidden-by-login-chair,
+.hidden-by-conference,
+.hidden-by-logged-in {
     display: none !important;
 }
 
+.hidden-by-logged-in.shown,
 .hidden-box.shown {
     display: block !important;
 }
