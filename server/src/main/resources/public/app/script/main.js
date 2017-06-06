@@ -96,6 +96,7 @@ $(document).ready(function () {
                     data: JSON.stringify({status: status})
                 });
             });
+            alert("Success");
         });
     });
 
@@ -278,14 +279,13 @@ $(document).ready(function () {
                 contentType: "application/json",
                 dataType: "json",
                 data: JSON.stringify(reviewInfo),
-                success: function () {
-                    alert("Success");
-                },
+                success: function () {},
                 error: function () {
                     alert("Eroare la recenzie hartie");
                 }
             })
         });
+        alert("Success");
     });
 });
 
@@ -323,8 +323,8 @@ function showConferenceInformation(row) {
                 tr = $('<tr/>');
                 tr.append("<td class='id'>" + data[i].id + "</td>");
                 tr.append("<td>" + data[i].title + "</td>");
-                tr.append("<td>" + data[i].startTime + "</td>");
-                tr.append("<td>" + data[i].duration + "</td>");
+                tr.append("<td>" + moment(data[i].startTime).format("LLL") + "</td>");
+                tr.append("<td>" + moment(data[i].duration).format("hh:mm:ss") + "</td>");
                 tr.append("<td>" + data[i].paper.title + "</td>");
                 tr.append("<td>" + data[i].paper.topics.join(',') + "</td>");
                 tr.append("<td>" + data[i].paper.keywords.join(',') + "</td>");
