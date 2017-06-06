@@ -1172,9 +1172,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 246,
+											"left": 225,
 											"top": 104,
-											"width": 78.04443359375,
+											"width": 120.70703125,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -1184,7 +1184,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "1 : conectare",
+											"text": "1 : apasa buton login",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1682,9 +1682,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 525,
+											"left": 483,
 											"top": 272,
-											"width": 150.31884765625,
+											"width": 235.54248046875,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -1694,7 +1694,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "4 : handleLogin(userData)",
+											"text": "4 : login(user:User, session:HttpSession)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1788,7 +1788,7 @@
 											"left": 727,
 											"top": 288,
 											"width": 14,
-											"height": 164,
+											"height": 167,
 											"autoResize": false
 										}
 									],
@@ -1864,7 +1864,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "5 : Login(userData)",
+											"text": "5 : login(user:User)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2034,7 +2034,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "6 : verificareDateLogin",
+											"text": "6 : select user",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2204,7 +2204,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "7 : raspunsVerificare",
+											"text": "7 : user-ul exista",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2374,7 +2374,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "8 : raspunsVerificare",
+											"text": "8 : user-ul exista",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2468,7 +2468,7 @@
 											"left": 734,
 											"top": 393,
 											"width": 14,
-											"height": 29,
+											"height": 59,
 											"autoResize": false
 										}
 									],
@@ -2506,6 +2506,176 @@
 								},
 								{
 									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFce+FcAhij/ck=",
+									"_parent": {
+										"$ref": "AAAAAAFbw+dDirY8Oqk="
+									},
+									"model": {
+										"$ref": "AAAAAAFce+FcARiirb8="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFce+FcAhikGJo=",
+											"_parent": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"model": {
+												"$ref": "AAAAAAFce+FcARiirb8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 714,
+											"top": 403,
+											"width": 145.9326171875,
+											"height": 13,
+											"autoResize": false,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"edgePosition": 1,
+											"underline": false,
+											"text": "9 : isActivated(user:User)",
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": false
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFce+FcAhilTx0=",
+											"_parent": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"model": {
+												"$ref": "AAAAAAFce+FcARiirb8="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 801,
+											"top": 403,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"edgePosition": 1,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": false
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFce+FcAhimC9k=",
+											"_parent": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"model": {
+												"$ref": "AAAAAAFce+FcARiirb8="
+											},
+											"visible": false,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 767,
+											"top": 404,
+											"width": 0,
+											"height": 13,
+											"autoResize": false,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"edgePosition": 1,
+											"underline": false,
+											"horizontalAlignment": 2,
+											"verticalAlignment": 5,
+											"wordWrap": false
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFce+FcAhinwkg=",
+											"_parent": {
+												"$ref": "AAAAAAFce+FcAhij/ck="
+											},
+											"model": {
+												"$ref": "AAAAAAFce+FcARiirb8="
+											},
+											"visible": true,
+											"enabled": true,
+											"lineColor": "#000000",
+											"fillColor": "#ffffff",
+											"fontColor": "#000000",
+											"font": "Arial;13;0",
+											"showShadow": true,
+											"containerChangeable": false,
+											"containerExtending": false,
+											"left": 741,
+											"top": 420,
+											"width": 14,
+											"height": 29,
+											"autoResize": false
+										}
+									],
+									"visible": true,
+									"enabled": true,
+									"lineColor": "#000000",
+									"fillColor": "#ffffff",
+									"fontColor": "#000000",
+									"font": "Arial;13;0",
+									"showShadow": true,
+									"containerChangeable": false,
+									"containerExtending": false,
+									"head": {
+										"$ref": "AAAAAAFbw+ixebZ1Rdk="
+									},
+									"tail": {
+										"$ref": "AAAAAAFbw+ixebZ1Rdk="
+									},
+									"lineStyle": 0,
+									"points": "747:400;777:400;777:420;754:420",
+									"nameLabel": {
+										"$ref": "AAAAAAFce+FcAhikGJo="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFce+FcAhilTx0="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFce+FcAhimC9k="
+									},
+									"activation": {
+										"$ref": "AAAAAAFce+FcAhinwkg="
+									},
+									"showProperty": true,
+									"showType": true
+								},
+								{
+									"_type": "UMLSeqMessageView",
 									"_id": "AAAAAAFb5CEuvoV2uhw=",
 									"_parent": {
 										"$ref": "AAAAAAFbw+dDirY8Oqk="
@@ -2532,19 +2702,19 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 549,
-											"top": 406,
-											"width": 108.41162109375,
+											"left": 520,
+											"top": 400,
+											"width": 167.62890625,
 											"height": 13,
 											"autoResize": false,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": 1.325820016610593,
+											"distance": 4.123105625617661,
 											"hostEdge": {
 												"$ref": "AAAAAAFb5CEuvoV2uhw="
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "9 : handleRaspuns",
+											"text": "10 : user-ul exista si e activat",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2702,9 +2872,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 246,
+											"left": 245,
 											"top": 399,
-											"width": 93.9326171875,
+											"width": 94,
 											"height": 13,
 											"autoResize": false,
 											"alpha": -1.3597036764990795,
@@ -2714,7 +2884,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "10 : notificaUser",
+											"text": "11 : success",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2859,7 +3029,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "conectare",
+							"name": "apasa buton login",
 							"source": {
 								"$ref": "AAAAAAFbw+hverZOk0E="
 							},
@@ -2910,7 +3080,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "handleLogin",
+							"name": "login",
 							"source": {
 								"$ref": "AAAAAAFbxAU1JZI6nO8="
 							},
@@ -2919,7 +3089,7 @@
 							},
 							"visibility": "public",
 							"messageSort": "synchCall",
-							"arguments": "userData",
+							"arguments": "user:User, session:HttpSession",
 							"isConcurrentIteration": false
 						},
 						{
@@ -2928,7 +3098,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "Login",
+							"name": "login",
 							"source": {
 								"$ref": "AAAAAAFbw+ixeLZuwvc="
 							},
@@ -2937,7 +3107,7 @@
 							},
 							"visibility": "public",
 							"messageSort": "synchCall",
-							"arguments": "userData",
+							"arguments": "user:User",
 							"isConcurrentIteration": false
 						},
 						{
@@ -2946,7 +3116,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "verificareDateLogin",
+							"name": "select user",
 							"source": {
 								"$ref": "AAAAAAFb5Bdaj4Krk8o="
 							},
@@ -2963,7 +3133,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "raspunsVerificare",
+							"name": "user-ul exista",
 							"source": {
 								"$ref": "AAAAAAFb5BgmQYLOws4="
 							},
@@ -2980,7 +3150,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "raspunsVerificare",
+							"name": "user-ul exista",
 							"source": {
 								"$ref": "AAAAAAFb5Bdaj4Krk8o="
 							},
@@ -2993,11 +3163,29 @@
 						},
 						{
 							"_type": "UMLMessage",
+							"_id": "AAAAAAFce+FcARiirb8=",
+							"_parent": {
+								"$ref": "AAAAAAFbw+dDirY7R6I="
+							},
+							"name": "isActivated",
+							"source": {
+								"$ref": "AAAAAAFbw+ixeLZuwvc="
+							},
+							"target": {
+								"$ref": "AAAAAAFbw+ixeLZuwvc="
+							},
+							"visibility": "public",
+							"messageSort": "synchCall",
+							"arguments": "user:User",
+							"isConcurrentIteration": false
+						},
+						{
+							"_type": "UMLMessage",
 							"_id": "AAAAAAFb5CEuvoV1wA4=",
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "handleRaspuns",
+							"name": "user-ul exista si e activat",
 							"source": {
 								"$ref": "AAAAAAFbw+ixeLZuwvc="
 							},
@@ -3014,7 +3202,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbw+dDirY7R6I="
 							},
-							"name": "notificaUser",
+							"name": "success",
 							"source": {
 								"$ref": "AAAAAAFbxAU1JZI6nO8="
 							},

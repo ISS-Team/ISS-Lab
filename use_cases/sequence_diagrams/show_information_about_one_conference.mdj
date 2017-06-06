@@ -72,9 +72,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 70.97900390625,
+													"left": 70,
 													"top": 5,
-													"width": 331.255859375,
+													"width": 313,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -100,7 +100,7 @@
 													"containerExtending": false,
 													"left": 5,
 													"top": 5,
-													"width": 60.97900390625,
+													"width": 60,
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
@@ -563,9 +563,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 56,
+													"left": 54,
 													"top": 79,
-													"width": 127.0927734375,
+													"width": 131,
 													"height": 13,
 													"autoResize": false,
 													"alpha": -4.248742171384204,
@@ -2322,7 +2322,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "2 : get(iconferenceId:int)",
+													"text": "2 : get(conferenceId:int)",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -2662,7 +2662,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "4 : conferenceId: int",
+													"text": "4 : select",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -3789,11 +3789,11 @@
 															"containerExtending": false,
 															"left": 1573,
 															"top": 47,
-															"width": 82.96630859375,
+															"width": 101.74267578125,
 															"height": 13,
 															"autoResize": false,
 															"underline": false,
-															"text": "ds: Session",
+															"text": "ds: SessionDB",
 															"horizontalAlignment": 2,
 															"verticalAlignment": 5,
 															"wordWrap": false
@@ -3861,7 +3861,7 @@
 													"containerExtending": false,
 													"left": 1568,
 													"top": 40,
-													"width": 92.96630859375,
+													"width": 111.74267578125,
 													"height": 40,
 													"autoResize": false,
 													"stereotypeLabel": {
@@ -3895,7 +3895,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1614,
+													"left": 1624,
 													"top": 80,
 													"width": 1,
 													"height": 353,
@@ -3913,7 +3913,7 @@
 											"containerExtending": false,
 											"left": 1568,
 											"top": 40,
-											"width": 92.96630859375,
+											"width": 111.74267578125,
 											"height": 393,
 											"autoResize": false,
 											"stereotypeDisplay": "label",
@@ -4297,7 +4297,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1472,
+													"left": 1477,
 													"top": 232,
 													"width": 85.2744140625,
 													"height": 13,
@@ -4309,7 +4309,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "10 : commit",
+													"text": "10 : select",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -4332,7 +4332,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1514,
+													"left": 1519,
 													"top": 217,
 													"width": 0,
 													"height": 13,
@@ -4366,7 +4366,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1514,
+													"left": 1519,
 													"top": 252,
 													"width": 0,
 													"height": 13,
@@ -4400,7 +4400,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1607,
+													"left": 1617,
 													"top": 248,
 													"width": 14,
 													"height": 29,
@@ -4423,7 +4423,7 @@
 												"$ref": "AAAAAAFcc4XX1SkDvoI="
 											},
 											"lineStyle": 0,
-											"points": "1421:248;1607:248",
+											"points": "1421:248;1617:248",
 											"nameLabel": {
 												"$ref": "AAAAAAFcc4jymylyK8Y="
 											},
@@ -4467,9 +4467,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1457,
+													"left": 1460,
 													"top": 276,
-													"width": 106.9580078125,
+													"width": 110,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -4502,7 +4502,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1510,
+													"left": 1515,
 													"top": 291,
 													"width": 0,
 													"height": 13,
@@ -4536,7 +4536,7 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1511,
+													"left": 1516,
 													"top": 256,
 													"width": 0,
 													"height": 13,
@@ -4593,7 +4593,7 @@
 												"$ref": "AAAAAAFcc4XmNSkiKb8="
 											},
 											"lineStyle": 0,
-											"points": "1607:272;1415:272",
+											"points": "1617:272;1415:272",
 											"nameLabel": {
 												"$ref": "AAAAAAFcc4kxnimIZLQ="
 											},
@@ -4637,9 +4637,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 1229,
+													"left": 1227,
 													"top": 280,
-													"width": 106.9580078125,
+													"width": 110,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -4807,9 +4807,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 637,
+													"left": 594,
 													"top": 284,
-													"width": 106.9580078125,
+													"width": 193.63525390625,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -4819,7 +4819,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "13 : List<Session>",
+													"text": "13 : HTTP OK with List<Session>",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -4977,9 +4977,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 47,
+													"left": -38,
 													"top": 309,
-													"width": 200.87158203125,
+													"width": 370.0048828125,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -4989,7 +4989,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "14 : Window listing all the sessions",
+													"text": "14 : Window listing all the sessions and data about a conference",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -5151,7 +5151,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "get(iconferenceId:int)",
+									"name": "get(conferenceId:int)",
 									"source": {
 										"$ref": "AAAAAAFcc2tYbCXu2jA="
 									},
@@ -5185,7 +5185,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "conferenceId: int",
+									"name": "select",
 									"source": {
 										"$ref": "AAAAAAFcc2un5yYsHm4="
 									},
@@ -5287,7 +5287,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "commit",
+									"name": "select",
 									"source": {
 										"$ref": "AAAAAAFcc4XX1Sj8Ps0="
 									},
@@ -5338,7 +5338,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "List<Session>",
+									"name": "HTTP OK with List<Session>",
 									"source": {
 										"$ref": "AAAAAAFcc4T2fijVncQ="
 									},
@@ -5355,7 +5355,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "Window listing all the sessions",
+									"name": "Window listing all the sessions and data about a conference",
 									"source": {
 										"$ref": "AAAAAAFcc2tYbCXu2jA="
 									},
@@ -5465,7 +5465,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFcc2qK3yW7S4A="
 									},
-									"name": "ds: Session",
+									"name": "ds: SessionDB",
 									"visibility": "public",
 									"represent": {
 										"$ref": "AAAAAAFcc4XmNSkaGyY="
