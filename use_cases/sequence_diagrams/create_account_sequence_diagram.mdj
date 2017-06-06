@@ -1270,7 +1270,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "2 : afiseaza site",
+											"text": "2 : ",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3128,9 +3128,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 195,
+											"left": 194,
 											"top": 452,
-											"width": 73.70263671875,
+											"width": 74,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3298,9 +3298,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 488,
+											"left": 487,
 											"top": 444,
-											"width": 81.630859375,
+											"width": 82,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3812,7 +3812,6 @@
 							"_parent": {
 								"$ref": "AAAAAAFbv47ZEzuG6b8="
 							},
-							"name": "afiseaza site",
 							"source": {
 								"$ref": "AAAAAAFbv5DnODu16cI="
 							},

@@ -806,7 +806,7 @@
 													"height": 13,
 													"autoResize": false,
 													"underline": false,
-													"text": "D:ResearchPaperDatabase",
+													"text": "D:Database",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1682,9 +1682,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 26,
+											"left": 25,
 											"top": 217,
-											"width": 176.8837890625,
+											"width": 178,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3445,7 +3445,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFccujcxQuIqI4="
 							},
-							"name": "D:ResearchPaperDatabase",
+							"name": "D:Database",
 							"visibility": "public",
 							"represent": {
 								"$ref": "AAAAAAFccunOTAv0XMQ="
