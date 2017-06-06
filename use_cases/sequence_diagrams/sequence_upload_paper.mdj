@@ -1512,9 +1512,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 53,
+											"left": 50,
 											"top": 200,
-											"width": 111.998046875,
+											"width": 116,
 											"height": 13,
 											"autoResize": false,
 											"alpha": -2.3561936568583173,
@@ -1682,9 +1682,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 54,
+											"left": 26,
 											"top": 217,
-											"width": 121.95751953125,
+											"width": 176.8837890625,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -1694,7 +1694,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "4 : Click \"Add\" button",
+											"text": "4 : Click \"Upload paper\" button",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -1852,9 +1852,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 120,
+											"left": 62,
 											"top": 242,
-											"width": 264.4560546875,
+											"width": 380.09130859375,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -1864,7 +1864,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "5 : save(confId:Int,rs:ResearchPaper,u:String)",
+											"text": "5 : save(conferenceId:int, paper:ResearchPaper,username:String)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2022,9 +2022,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 349,
+											"left": 339,
 											"top": 296,
-											"width": 202,
+											"width": 222.5615234375,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.6178194531135446,
@@ -2034,7 +2034,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "6 : checkPaper(rs:ResearchPaper)",
+											"text": "6 : checkPaper(paper:ResearchPaper)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -2704,7 +2704,7 @@
 											"containerExtending": false,
 											"left": 413,
 											"top": 428,
-											"width": 72.97265625,
+											"width": 73,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -2872,9 +2872,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 212,
+											"left": 211,
 											"top": 452,
-											"width": 81.630859375,
+											"width": 82,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3250,7 +3250,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFccujcxQuIqI4="
 							},
-							"name": "Click \"Add\" button",
+							"name": "Click \"Upload paper\" button",
 							"source": {
 								"$ref": "AAAAAAFccu4tDwwfMDM="
 							},
@@ -3267,7 +3267,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFccujcxQuIqI4="
 							},
-							"name": "save(confId:Int,rs:ResearchPaper,u:String)",
+							"name": "save",
 							"source": {
 								"$ref": "AAAAAAFccukIeAuXnhs="
 							},
@@ -3276,6 +3276,7 @@
 							},
 							"visibility": "public",
 							"messageSort": "synchCall",
+							"arguments": "conferenceId:int, paper:ResearchPaper,username:String",
 							"isConcurrentIteration": false
 						},
 						{
@@ -3284,7 +3285,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFccujcxQuIqI4="
 							},
-							"name": "checkPaper(rs:ResearchPaper)",
+							"name": "checkPaper(paper:ResearchPaper)",
 							"source": {
 								"$ref": "AAAAAAFccumTAwu3sFE="
 							},

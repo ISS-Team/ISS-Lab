@@ -278,7 +278,9 @@ $(document).ready(function () {
                 contentType: "application/json",
                 dataType: "json",
                 data: JSON.stringify(reviewInfo),
-                success: function () {},
+                success: function () {
+                    alert("Success");
+                },
                 error: function () {
                     alert("Eroare la recenzie hartie");
                 }

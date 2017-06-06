@@ -494,7 +494,7 @@
 													"left": 305,
 													"top": 80,
 													"width": 1,
-													"height": 418,
+													"height": 423,
 													"autoResize": false
 												}
 											],
@@ -510,7 +510,7 @@
 											"left": 264,
 											"top": 40,
 											"width": 82.86083984375,
-											"height": 458,
+											"height": 463,
 											"autoResize": false,
 											"stereotypeDisplay": "label",
 											"showVisibility": true,
@@ -696,7 +696,7 @@
 													"left": 479,
 													"top": 80,
 													"width": 1,
-													"height": 418,
+													"height": 423,
 													"autoResize": false
 												}
 											],
@@ -712,7 +712,7 @@
 											"left": 416,
 											"top": 40,
 											"width": 126.91357421875,
-											"height": 458,
+											"height": 463,
 											"autoResize": false,
 											"stereotypeDisplay": "label",
 											"showVisibility": true,
@@ -1171,7 +1171,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "1 : click Review Paper button",
+													"text": "1 : click Review button",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -1499,9 +1499,9 @@
 													"showShadow": true,
 													"containerChangeable": false,
 													"containerExtending": false,
-													"left": 170,
+													"left": 120,
 													"top": 187,
-													"width": 78.04443359375,
+													"width": 179.943359375,
 													"height": 13,
 													"autoResize": false,
 													"alpha": 1.5707963267948966,
@@ -1511,7 +1511,7 @@
 													},
 													"edgePosition": 1,
 													"underline": false,
-													"text": "3 : Fill data",
+													"text": "3 : Select options for any paper",
 													"horizontalAlignment": 2,
 													"verticalAlignment": 5,
 													"wordWrap": false
@@ -3526,7 +3526,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFbw2ox6f+prrY="
 									},
-									"name": "click Review Paper button",
+									"name": "click Review button",
 									"source": {
 										"$ref": "AAAAAAFbw3o7Sf+84rg="
 									},
@@ -3560,7 +3560,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFbw2ox6f+prrY="
 									},
-									"name": "Fill data",
+									"name": "Select options for any paper",
 									"source": {
 										"$ref": "AAAAAAFbw3o7Sf+84rg="
 									},

@@ -1258,9 +1258,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 217,
+											"left": 182,
 											"top": 164,
-											"width": 20,
+											"width": 90.3271484375,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -1270,7 +1270,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "2 : ",
+											"text": "2 : afiseaza site",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3128,9 +3128,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 217,
+											"left": 195,
 											"top": 452,
-											"width": 28,
+											"width": 73.70263671875,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3140,7 +3140,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "16 : ",
+											"text": "16 : Redirect",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3298,9 +3298,9 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 514,
+											"left": 488,
 											"top": 444,
-											"width": 28,
+											"width": 81.630859375,
 											"height": 13,
 											"autoResize": false,
 											"alpha": 1.5707963267948966,
@@ -3310,7 +3310,7 @@
 											},
 											"edgePosition": 1,
 											"underline": false,
-											"text": "15 : ",
+											"text": "15 : HTTP OK",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -3812,6 +3812,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbv47ZEzuG6b8="
 							},
+							"name": "afiseaza site",
 							"source": {
 								"$ref": "AAAAAAFbv5DnODu16cI="
 							},
@@ -4030,6 +4031,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbv47ZEzuG6b8="
 							},
+							"name": "HTTP OK",
 							"source": {
 								"$ref": "AAAAAAFbv5D81TvV6O4="
 							},
@@ -4046,6 +4048,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFbv47ZEzuG6b8="
 							},
+							"name": "Redirect",
 							"source": {
 								"$ref": "AAAAAAFbv5DnODu16cI="
 							},
